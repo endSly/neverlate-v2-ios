@@ -16,6 +16,7 @@
 #import "GSDeparture.h"
 
 #import "GSStopCell.h"
+#import "GSDepartureHeaderView.h"
 
 #import "UIFont+IonIcons.h"
 #import "ViewFrameAccessor.h"
@@ -76,12 +77,28 @@
 
 - (void)loadNextDepartures:(GSStop *)stop
 {
-    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": stop.stop_id} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
+    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": @"12.0"} callback:^(NSArray *departures, NSHTTPURLResponse *resp, NSError *error) {
+        
+        GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
+                                                                          owner:self
+                                                                        options:nil].firstObject;
+        
+        headerView.stopNameLabel.text = stop.stop_name;
+        GSDeparture *departure1 = departures[0], *departure2 = departures[1];
+        headerView.tripHeadsign1.text = departure1.trip_headsign;
+        headerView.tripHeadsign2.text = departure2.trip_headsign;
+        
+        headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
+        
+        self.navigationItem.title = nil;
         
         [UIView animateWithDuration:0.5f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            self.tableView.contentInsetTop = 192.0f;
             self.tableView.contentOffsetY -= 128.0f;
+        } completion:^(BOOL finished) {
+            self.tableView.contentOffsetY += 128.0f;
+            headerView.backgroundColor = UIColor.clearColor;
+            [self.navigationController.navigationBar addSubview:headerView];
         }];
         
     }];

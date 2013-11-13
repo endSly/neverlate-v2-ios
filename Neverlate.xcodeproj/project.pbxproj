@@ -42,6 +42,8 @@
 		0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
 		0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295901833B80D00BE6D8C /* ionicons.ttf */; };
 		0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */; };
+		0D32959A1834359A00BE6D8C /* GSDepartureHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */; };
+		0D32959E1834370700BE6D8C /* GSDepartureHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D32959D1834370700BE6D8C /* GSDepartureHeaderView.m */; };
 		0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FA1833A8580061CD8B /* GSStopCell.m */; };
 		0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */; };
 		0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3021833D2890061CD8B /* GSLocationManager.m */; };
@@ -147,6 +149,9 @@
 		0D3295901833B80D00BE6D8C /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 		0D3295941833B8E300BE6D8C /* UIFont+IonIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+IonIcons.h"; sourceTree = "<group>"; };
 		0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+IonIcons.m"; sourceTree = "<group>"; };
+		0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GSDepartureHeaderView.xib; sourceTree = "<group>"; };
+		0D32959C1834370700BE6D8C /* GSDepartureHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDepartureHeaderView.h; sourceTree = "<group>"; };
+		0D32959D1834370700BE6D8C /* GSDepartureHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDepartureHeaderView.m; sourceTree = "<group>"; };
 		0D35D2F91833A8580061CD8B /* GSStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopCell.h; sourceTree = "<group>"; };
 		0D35D2FA1833A8580061CD8B /* GSStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopCell.m; sourceTree = "<group>"; };
 		0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationBar.h; sourceTree = "<group>"; };
@@ -335,6 +340,9 @@
 				0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */,
 				0D35D2F91833A8580061CD8B /* GSStopCell.h */,
 				0D35D2FA1833A8580061CD8B /* GSStopCell.m */,
+				0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */,
+				0D32959C1834370700BE6D8C /* GSDepartureHeaderView.h */,
+				0D32959D1834370700BE6D8C /* GSDepartureHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -473,6 +481,7 @@
 			files = (
 				0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */,
 				0D07DC1C18337E9700CCE04B /* Images.xcassets in Resources */,
+				0D32959A1834359A00BE6D8C /* GSDepartureHeaderView.xib in Resources */,
 				0D07DC0E18337E9700CCE04B /* InfoPlist.strings in Resources */,
 				0D07DC1718337E9700CCE04B /* Main.storyboard in Resources */,
 			);
@@ -503,6 +512,7 @@
 				0D07DC56183383D100CCE04B /* GSAgency.m in Sources */,
 				0D35D30F1833D6F00061CD8B /* ViewFrameAccessor.m in Sources */,
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
+				0D32959E1834370700BE6D8C /* GSDepartureHeaderView.m in Sources */,
 				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
 				0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */,

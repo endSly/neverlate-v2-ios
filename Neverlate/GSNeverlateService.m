@@ -12,6 +12,7 @@
 #import "GSRoute.h"
 #import "GSTrip.h"
 #import "GSStop.h"
+#import "GSDeparture.h"
 
 #define BASE_URL    @"https://neverlate-service.herokuapp.com"
 #define AUTH_TOKEN  @"13D062745383DF798B486CB73F7FE539DC165D3B931645473A0D0A823F2F1009"
@@ -37,7 +38,7 @@
     [self get:@"/api/v1/:agency_key/stops"  class:GSStop.class      as:$(getStops:callback:)];
     
     [self get:@"/api/v1/:agency_key/stops/:stop_id/next-departures"
-        class:GSStop.class
+        class:GSDeparture.class
            as:$(getNextDepartures:callback:)];
 }
 
