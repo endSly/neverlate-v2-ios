@@ -14,7 +14,6 @@
 		0D07DC1018337E9700CCE04B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC0F18337E9700CCE04B /* main.m */; };
 		0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC1318337E9700CCE04B /* GSAppDelegate.m */; };
 		0D07DC1718337E9700CCE04B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D07DC1518337E9700CCE04B /* Main.storyboard */; };
-		0D07DC1A18337E9700CCE04B /* GSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC1918337E9700CCE04B /* GSViewController.m */; };
 		0D07DC1C18337E9700CCE04B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D07DC1B18337E9700CCE04B /* Images.xcassets */; };
 		0D07DC2318337E9700CCE04B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC2218337E9700CCE04B /* XCTest.framework */; };
 		0D07DC2418337E9700CCE04B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC0318337E9700CCE04B /* Foundation.framework */; };
@@ -39,6 +38,10 @@
 		0D07DC7018338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
 		0D07DC76183395DA00CCE04B /* libTenzingCore-RESTService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC471833801300CCE04B /* libTenzingCore-RESTService.a */; };
 		0D07DC77183395DD00CCE04B /* libTenzingCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC451833801300CCE04B /* libTenzingCore.a */; };
+		0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
+		0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
+		0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FA1833A8580061CD8B /* GSStopCell.m */; };
+		0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,8 +115,6 @@
 		0D07DC1218337E9700CCE04B /* GSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSAppDelegate.h; sourceTree = "<group>"; };
 		0D07DC1318337E9700CCE04B /* GSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSAppDelegate.m; sourceTree = "<group>"; };
 		0D07DC1618337E9700CCE04B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0D07DC1818337E9700CCE04B /* GSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GSViewController.h; sourceTree = "<group>"; };
-		0D07DC1918337E9700CCE04B /* GSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GSViewController.m; sourceTree = "<group>"; };
 		0D07DC1B18337E9700CCE04B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0D07DC2118337E9700CCE04B /* NeverlateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeverlateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D07DC2218337E9700CCE04B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -135,6 +136,12 @@
 		0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNeverlateService.h; sourceTree = "<group>"; };
 		0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNeverlateService.m; sourceTree = "<group>"; };
+		0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsTableController.h; sourceTree = "<group>"; };
+		0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsTableController.m; sourceTree = "<group>"; };
+		0D35D2F91833A8580061CD8B /* GSStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopCell.h; sourceTree = "<group>"; };
+		0D35D2FA1833A8580061CD8B /* GSStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopCell.m; sourceTree = "<group>"; };
+		0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationBar.h; sourceTree = "<group>"; };
+		0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,13 +208,12 @@
 			isa = PBXGroup;
 			children = (
 				0D07DC3D18337F3500CCE04B /* Models */,
+				0D07DC7E1833A4C200CCE04B /* Contollers */,
+				0D35D2F81833A83E0061CD8B /* Views */,
 				0D07DC1218337E9700CCE04B /* GSAppDelegate.h */,
 				0D07DC1318337E9700CCE04B /* GSAppDelegate.m */,
 				0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */,
 				0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */,
-				0D07DC1518337E9700CCE04B /* Main.storyboard */,
-				0D07DC1818337E9700CCE04B /* GSViewController.h */,
-				0D07DC1918337E9700CCE04B /* GSViewController.m */,
 				0D07DC1B18337E9700CCE04B /* Images.xcassets */,
 				0D07DC0A18337E9700CCE04B /* Supporting Files */,
 			);
@@ -277,6 +283,27 @@
 				0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		0D07DC7E1833A4C200CCE04B /* Contollers */ = {
+			isa = PBXGroup;
+			children = (
+				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
+				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
+			);
+			name = Contollers;
+			sourceTree = "<group>";
+		};
+		0D35D2F81833A83E0061CD8B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */,
+				0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */,
+				0D07DC1518337E9700CCE04B /* Main.storyboard */,
+				0D35D2F91833A8580061CD8B /* GSStopCell.h */,
+				0D35D2FA1833A8580061CD8B /* GSStopCell.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,7 +440,7 @@
 			files = (
 				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
-				0D07DC1A18337E9700CCE04B /* GSViewController.m in Sources */,
+				0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */,
 				0D07DC1018337E9700CCE04B /* main.m in Sources */,
 				0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */,
 				0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */,
@@ -421,6 +448,8 @@
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
 				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
+				0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */,
+				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +461,7 @@
 				0D07DC2F18337E9700CCE04B /* NeverlateTests.m in Sources */,
 				0D07DC5B1833855000CCE04B /* GSRoute.m in Sources */,
 				0D07DC631833867700CCE04B /* GSDeparture.m in Sources */,
+				0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */,
 				0D07DC5F183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC57183383D100CCE04B /* GSAgency.m in Sources */,
 				0D07DC531833807000CCE04B /* GSStop.m in Sources */,
@@ -684,6 +714,7 @@
 				0D07DC3418337E9700CCE04B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0D07DC3518337E9700CCE04B /* Build configuration list for PBXNativeTarget "NeverlateTests" */ = {
 			isa = XCConfigurationList;
@@ -692,6 +723,7 @@
 				0D07DC3718337E9700CCE04B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -24,6 +24,7 @@
     if (!service) {
         service = [[GSNeverlateService alloc] init];
         service.baseURL = [NSURL URLWithString:BASE_URL];
+        service.operationQueue = NSOperationQueue.mainQueue;
     }
     return service;
 }
@@ -54,7 +55,7 @@
                data:(NSData *__autoreleasing *)data
               error:(NSError *__autoreleasing *)error
 {
-    NSLog(@"[%@] %i %@", self.class, ((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
+    NSLog(@"[%@] %li %@", self.class, (long)((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
 }
 
 @end
