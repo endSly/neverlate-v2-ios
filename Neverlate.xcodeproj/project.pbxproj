@@ -112,6 +112,7 @@
 		0D07DC0918337E9700CCE04B /* Neverlate */ = {
 			isa = PBXGroup;
 			children = (
+				0D07DC3D18337F3500CCE04B /* Models */,
 				0D07DC1218337E9700CCE04B /* GSAppDelegate.h */,
 				0D07DC1318337E9700CCE04B /* GSAppDelegate.m */,
 				0D07DC1518337E9700CCE04B /* Main.storyboard */,
@@ -150,6 +151,13 @@
 				0D07DC2B18337E9700CCE04B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0D07DC3D18337F3500CCE04B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
