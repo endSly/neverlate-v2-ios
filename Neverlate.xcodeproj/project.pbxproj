@@ -40,6 +40,8 @@
 		0D07DC77183395DD00CCE04B /* libTenzingCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC451833801300CCE04B /* libTenzingCore.a */; };
 		0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
 		0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
+		0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295901833B80D00BE6D8C /* ionicons.ttf */; };
+		0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */; };
 		0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FA1833A8580061CD8B /* GSStopCell.m */; };
 		0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */; };
 /* End PBXBuildFile section */
@@ -138,6 +140,9 @@
 		0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNeverlateService.m; sourceTree = "<group>"; };
 		0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsTableController.h; sourceTree = "<group>"; };
 		0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsTableController.m; sourceTree = "<group>"; };
+		0D3295901833B80D00BE6D8C /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
+		0D3295941833B8E300BE6D8C /* UIFont+IonIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+IonIcons.h"; sourceTree = "<group>"; };
+		0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+IonIcons.m"; sourceTree = "<group>"; };
 		0D35D2F91833A8580061CD8B /* GSStopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopCell.h; sourceTree = "<group>"; };
 		0D35D2FA1833A8580061CD8B /* GSStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopCell.m; sourceTree = "<group>"; };
 		0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationBar.h; sourceTree = "<group>"; };
@@ -207,6 +212,7 @@
 		0D07DC0918337E9700CCE04B /* Neverlate */ = {
 			isa = PBXGroup;
 			children = (
+				0D3295921833B88D00BE6D8C /* Categories */,
 				0D07DC3D18337F3500CCE04B /* Models */,
 				0D07DC7E1833A4C200CCE04B /* Contollers */,
 				0D35D2F81833A83E0061CD8B /* Views */,
@@ -223,6 +229,7 @@
 		0D07DC0A18337E9700CCE04B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0D3295901833B80D00BE6D8C /* ionicons.ttf */,
 				0D07DC0B18337E9700CCE04B /* Neverlate-Info.plist */,
 				0D07DC0C18337E9700CCE04B /* InfoPlist.strings */,
 				0D07DC0F18337E9700CCE04B /* main.m */,
@@ -292,6 +299,15 @@
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
 			);
 			name = Contollers;
+			sourceTree = "<group>";
+		};
+		0D3295921833B88D00BE6D8C /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				0D3295941833B8E300BE6D8C /* UIFont+IonIcons.h */,
+				0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		0D35D2F81833A83E0061CD8B /* Views */ = {
@@ -417,6 +433,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */,
 				0D07DC1C18337E9700CCE04B /* Images.xcassets in Resources */,
 				0D07DC0E18337E9700CCE04B /* InfoPlist.strings in Resources */,
 				0D07DC1718337E9700CCE04B /* Main.storyboard in Resources */,
@@ -450,6 +467,7 @@
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
 				0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */,
 				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
+				0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

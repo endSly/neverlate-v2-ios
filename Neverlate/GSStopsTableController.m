@@ -19,9 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    //self.navigationController.navigationBar.barTintColor = [UIColor.redColor colorWithAlphaComponent:0.6];
-    
+
     [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
         self.stops = stops;
         [self.tableView reloadData];
