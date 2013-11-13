@@ -45,6 +45,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="headingArrow" destination="kCW-ea-jHk" id="5Rg-b9-XSr"/>
+                                    <outlet property="stopDistanceLabel" destination="9op-Zx-Wit" id="RwO-QV-IPh"/>
                                     <outlet property="stopNameLabel" destination="4WH-bj-A3s" id="vOz-fP-QZ8"/>
                                 </connections>
                             </tableViewCell>

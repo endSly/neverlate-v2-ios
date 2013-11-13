@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+#import "GSCoordinates.h"
+
 @interface GSStop : NSObject
 
 @property (nonatomic, strong) NSString  * agency_key;
@@ -16,9 +18,11 @@
 @property (nonatomic, strong) NSString  * stop_name;
 @property (nonatomic, strong) NSNumber  * location_type;
 @property (nonatomic, strong) NSString  * parent_station;
-@property (nonatomic, strong) NSArray   * loc;
+@property (nonatomic, strong) GSCoordinates * loc;
 
 @property (nonatomic, readwrite) NSNumber   * latitude;
 @property (nonatomic, readwrite) NSNumber   * longitude;
+
+@property (nonatomic, readonly) CLLocationDistance distance;
 
 @end

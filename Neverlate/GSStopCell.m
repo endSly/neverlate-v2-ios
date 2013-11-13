@@ -10,6 +10,8 @@
 
 #import "UIFont+IonIcons.h"
 
+#import "GSStop.h"
+
 @implementation GSStopCell
 
 - (void)layoutSubviews
@@ -18,6 +20,20 @@
     self.headingArrow.text = icon_navigate;
     
     self.headingArrow.transform = CGAffineTransformMakeRotation(-3.14159265 / 4);
+    
+    
+}
+
+- (void)setStop:(GSStop *)stop
+{
+    _stop = stop;
+    if (stop.distance > 1000) {
+        self.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1fkm", stop.distance / 1000.0f];
+    } else {
+        self.stopDistanceLabel.text = [NSString stringWithFormat:@"%.0fmåå", stop.distance];
+    }
+    
+    self.stopNameLabel.text = stop.stop_name;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -8,8 +8,16 @@
 
 @import CoreLocation;
 
+extern NSString * kGSLocationUpdated;
+extern NSString * kGSHeadingUpdated;
+
 @interface GSLocationManager : NSObject <CLLocationManagerDelegate>
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation    * location;
+@property (nonatomic, strong) CLHeading     * heading;
+
+@property (nonatomic, strong) CLLocationManager * locationManager;
+
++ (instancetype)sharedManager;
 
 @end

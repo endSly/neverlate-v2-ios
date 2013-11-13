@@ -14,7 +14,7 @@
  * [longitude, latitude]
  */
 
-typedef NSArray GSCoordinates;
+#define GSCoordinates NSArray
 
 @interface NSArray (GSCoordinates)
 

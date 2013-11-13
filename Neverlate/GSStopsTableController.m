@@ -10,12 +10,24 @@
 
 #import "GSNeverlateService.h"
 
+#import "GSLocationManager.h"
+
 #import "GSStop.h"
+#import "GSDeparture.h"
 
 #import "GSStopCell.h"
 
+#import "UIFont+IonIcons.h"
 #import "ViewFrameAccessor.h"
 #import "ScrollViewFrameAccessor.h"
+
+@interface GSStopsTableController (PrivateMethods)
+
+- (void)refreshStops;
+- (void)sortStopsByDistance;
+- (void)loadNextDepartures:(GSStop *)stop;
+
+@end
 
 @implementation GSStopsTableController
 
@@ -27,23 +39,44 @@
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
     
-    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
-        NSDictionary *stopsHash = [stops groupBy:^id(GSStop *stop) { return stop.parent_station ?: NSNull.null; }];
-        NSArray *rootStops = [stops filter:^BOOL(GSStop *stop) { return !(BOOL)(stop.parent_station.boolValue); }];
-        
-        self.stops = [rootStops sortedArrayUsingComparator:^NSComparisonResult(GSStop *stop1, GSStop *stop2) {
-            
-        }];
+    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
+    menuButton.titleLabel.font = [UIFont iconicFontOfSize:18];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:kGSLocationUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {
+        [self sortStopsByDistance];
         
         [self.tableView reloadData];
+    }];
+    
+    [self refreshStops];
+}
+
+- (void)refreshStops
+{
+    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
+        self.stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
         
-        [self loadNextDepartures];
+        // Get root stops
+        self.stops = self.stopsTree[NSNull.null];
+        
+        [self sortStopsByDistance];
+        
+        [self loadNextDepartures:self.stops.firstObject];
+        
+        [self.tableView reloadData];
     }];
 }
 
-- (void)loadNextDepartures
+- (void)sortStopsByDistance
 {
-    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": @"12.0"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
+    self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES]]];
+}
+
+- (void)loadNextDepartures:(GSStop *)stop
+{
+    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": stop.stop_id} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
         
         [UIView animateWithDuration:0.5f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
@@ -79,7 +112,7 @@
     
     GSStop *stop = self.stops[indexPath.row];
     
-    cell.stopNameLabel.text = stop.stop_name;
+    cell.stop = stop;
     
     return cell;
 }

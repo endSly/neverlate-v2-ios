@@ -8,30 +8,14 @@
 
 #import "GSStop.h"
 
+#import "GSLocationManager.h"
+
 @implementation GSStop
 
-- (NSNumber *)latitude
+- (CLLocationDistance)distance
 {
-    return self.loc[1];
-}
-
-- (NSNumber *)longitude
-{
-    return self.loc[0];
-}
-
-- (void)setLatitude:(NSNumber *)latitude
-{
-    NSMutableArray *loc = self.loc ? [self.loc mutableCopy] : [NSMutableArray arrayWithObjects:@0, @0, nil];
-    loc[1] = latitude;
-    self.loc = loc;
-}
-
-- (void)setLongitude:(NSNumber *)longitude
-{
-    NSMutableArray *loc = self.loc ? [self.loc mutableCopy] : [NSMutableArray arrayWithObjects:@0, @0, nil];
-    loc[0] = longitude;
-    self.loc = loc;
+    CLLocation *location = [GSLocationManager sharedManager].location;
+    return [location distanceFromLocation:self.loc.CLLocation];
 }
 
 @end

@@ -10,6 +10,7 @@
 
 @interface GSStopsTableController : UITableViewController
 
-@property (nonatomic, strong) NSArray * stops;
+@property (nonatomic, strong) NSArray       * stops;
+@property (nonatomic, strong) NSDictionary  * stopsTree;
 
 @end

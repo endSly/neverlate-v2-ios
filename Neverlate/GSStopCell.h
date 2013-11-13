@@ -8,10 +8,14 @@
 
 @import UIKit;
 
+@class GSStop;
+
 @interface GSStopCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * headingArrow;
 @property (nonatomic, weak) IBOutlet UILabel * stopNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * stopDistanceLabel;
+
+@property (nonatomic, strong) GSStop    * stop;
 
 @end
