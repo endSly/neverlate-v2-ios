@@ -10,4 +10,6 @@
 
 @interface GSStopCell : UITableViewCell
 
+@property (nonatomic, weak) IBOutlet UILabel * headingArrow;
+
 @end

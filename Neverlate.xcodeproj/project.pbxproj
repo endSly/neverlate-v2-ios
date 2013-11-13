@@ -313,9 +313,9 @@
 		0D35D2F81833A83E0061CD8B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0D07DC1518337E9700CCE04B /* Main.storyboard */,
 				0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */,
 				0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */,
-				0D07DC1518337E9700CCE04B /* Main.storyboard */,
 				0D35D2F91833A8580061CD8B /* GSStopCell.h */,
 				0D35D2FA1833A8580061CD8B /* GSStopCell.m */,
 			);

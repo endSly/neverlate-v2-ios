@@ -8,15 +8,16 @@
 
 #import "GSStopCell.h"
 
+#import "UIFont+IonIcons.h"
+
 @implementation GSStopCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)layoutSubviews
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    self.headingArrow.font = [UIFont iconicFontOfSize:16];
+    self.headingArrow.text = icon_navigate;
+    
+    self.headingArrow.transform = CGAffineTransformMakeRotation(3.14159265 / 4);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
