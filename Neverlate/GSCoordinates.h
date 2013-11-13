@@ -6,7 +6,8 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import CoreLocation;
 
 /*
  * Coordinates are represented in neverlate service by a two positions array
@@ -19,5 +20,7 @@ typedef NSArray GSCoordinates;
 
 @property (nonatomic, readonly) NSNumber    * latitude;
 @property (nonatomic, readonly) NSNumber    * longitude;
+
+@property (nonatomic, readonly) CLLocation  * CLLocation;
 
 @end

@@ -20,4 +20,10 @@
     return self[0];
 }
 
+- (CLLocation *)CLLocation
+{
+    return [[CLLocation alloc] initWithLatitude:self.latitude.floatValue
+                                      longitude:self.longitude.floatValue];
+}
+
 @end
