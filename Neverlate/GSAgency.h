@@ -8,6 +8,8 @@
 
 @import Foundation;
 
+#import "GSCoordinates.h"
+
 @class GSAgencyBounds;
 
 @interface GSAgency : NSObject
@@ -19,14 +21,14 @@
 @property (nonatomic, strong) NSString  * agency_phone;
 @property (nonatomic, strong) NSString  * agency_timezone;
 @property (nonatomic, strong) NSString  * agency_url;
-@property (nonatomic, strong) NSArray   * agency_center;
+@property (nonatomic, strong) GSCoordinates     * agency_center;
 @property (nonatomic, strong) GSAgencyBounds    * agency_bounds;
 
 @end
 
 @interface GSAgencyBounds : NSObject
 
-@property (nonatomic, strong) NSArray   * ne;
-@property (nonatomic, strong) NSArray   * sw;
+@property (nonatomic, strong) GSCoordinates * ne;
+@property (nonatomic, strong) GSCoordinates * sw;
 
 @end

@@ -14,14 +14,27 @@
 
 #import "GSStopCell.h"
 
+#import "ViewFrameAccessor.h"
+#import "ScrollViewFrameAccessor.h"
+
 @implementation GSStopsTableController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0xFF / 255.0f green:0x32 / 255.0f blue:0x04 / 255.0f alpha:0.5];
+    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
+    
     [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
-        self.stops = stops;
+        NSDictionary *stopsHash = [stops groupBy:^id(GSStop *stop) { return stop.parent_station ?: NSNull.null; }];
+        NSArray *rootStops = [stops filter:^BOOL(GSStop *stop) { return !(BOOL)(stop.parent_station.boolValue); }];
+        
+        self.stops = [rootStops sortedArrayUsingComparator:^NSComparisonResult(GSStop *stop1, GSStop *stop2) {
+            
+        }];
+        
         [self.tableView reloadData];
         
         [self loadNextDepartures];
@@ -31,11 +44,13 @@
 - (void)loadNextDepartures
 {
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": @"12.0"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
-        [UIView animateWithDuration:0.7 animations:^{
-            CGRect frame = self.navigationController.navigationBar.frame;
-            frame.size.height = 200.0f;
-            self.navigationController.navigationBar.frame = frame;
+        
+        [UIView animateWithDuration:0.5f animations:^{
+            self.navigationController.navigationBar.height = 172.0f;
+            self.tableView.contentInsetTop = 192.0f;
+            self.tableView.contentOffsetY -= 128.0f;
         }];
+        
     }];
 }
 
@@ -64,61 +79,13 @@
     
     GSStop *stop = self.stops[indexPath.row];
     
-    cell.textLabel.text = stop.stop_name;
-    cell.detailTextLabel.text = stop.stop_code;
+    cell.stopNameLabel.text = stop.stop_name;
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return 60.0f;
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
- */
 
 @end

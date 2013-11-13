@@ -6,10 +6,12 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface GSStopCell : UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * headingArrow;
+@property (nonatomic, weak) IBOutlet UILabel * stopNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel * stopDistanceLabel;
 
 @end

@@ -10,22 +10,31 @@
 
 @implementation GSNavigationBar
 
-- (id)initWithFrame:(CGRect)frame
+- (void)layoutSubviews
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
+    [super layoutSubviews];
+    
+    if(!_underlayView)
+	{
+		const CGFloat statusBarHeight = 20;    //  Make this dynamic in your own code...
+		const CGSize selfSize = self.frame.size;
+        
+		_underlayView = [[UIView alloc] initWithFrame:CGRectMake(0, -statusBarHeight, selfSize.width, selfSize.height + statusBarHeight)];
+		_underlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		_underlayView.backgroundColor = self.barTintColor;
+		_underlayView.userInteractionEnabled = NO;
+        _underlayView.opaque = NO;
+	} else {
+        [_underlayView removeFromSuperview];
     }
-    return self;
+    
+    [self insertSubview:_underlayView atIndex:1];
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setBarTintColor:(UIColor *)barTintColor
 {
-    // Drawing code
+    _underlayView.backgroundColor = [barTintColor colorWithAlphaComponent:0.5];
+    super.barTintColor = [barTintColor colorWithAlphaComponent:0.5];
 }
-*/
 
 @end

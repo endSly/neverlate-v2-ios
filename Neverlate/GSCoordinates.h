@@ -1,0 +1,23 @@
+//
+//  NSArray+GSCoordinates.h
+//  Neverlate
+//
+//  Created by Endika Gutiérrez Salas on 13/11/13.
+//  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+/*
+ * Coordinates are represented in neverlate service by a two positions array
+ * [longitude, latitude]
+ */
+
+typedef NSArray GSCoordinates;
+
+@interface NSArray (GSCoordinates)
+
+@property (nonatomic, readonly) NSNumber    * latitude;
+@property (nonatomic, readonly) NSNumber    * longitude;
+
+@end

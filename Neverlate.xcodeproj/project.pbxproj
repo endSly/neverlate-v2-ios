@@ -44,6 +44,10 @@
 		0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */; };
 		0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FA1833A8580061CD8B /* GSStopCell.m */; };
 		0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */; };
+		0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3021833D2890061CD8B /* GSLocationManager.m */; };
+		0D35D30E1833D6F00061CD8B /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D30B1833D6F00061CD8B /* ScrollViewFrameAccessor.m */; };
+		0D35D30F1833D6F00061CD8B /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D30D1833D6F00061CD8B /* ViewFrameAccessor.m */; };
+		0D35D3131833DEDE0061CD8B /* GSCoordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3121833DEDE0061CD8B /* GSCoordinates.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +151,15 @@
 		0D35D2FA1833A8580061CD8B /* GSStopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopCell.m; sourceTree = "<group>"; };
 		0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationBar.h; sourceTree = "<group>"; };
 		0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationBar.m; sourceTree = "<group>"; };
+		0D35D3011833D2890061CD8B /* GSLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSLocationManager.h; sourceTree = "<group>"; };
+		0D35D3021833D2890061CD8B /* GSLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSLocationManager.m; sourceTree = "<group>"; };
+		0D35D3091833D6F00061CD8B /* FrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameAccessor.h; sourceTree = "<group>"; };
+		0D35D30A1833D6F00061CD8B /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
+		0D35D30B1833D6F00061CD8B /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
+		0D35D30C1833D6F00061CD8B /* ViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewFrameAccessor.h; sourceTree = "<group>"; };
+		0D35D30D1833D6F00061CD8B /* ViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFrameAccessor.m; sourceTree = "<group>"; };
+		0D35D3111833DEDE0061CD8B /* GSCoordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCoordinates.h; sourceTree = "<group>"; };
+		0D35D3121833DEDE0061CD8B /* GSCoordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCoordinates.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +233,8 @@
 				0D07DC1318337E9700CCE04B /* GSAppDelegate.m */,
 				0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */,
 				0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */,
+				0D35D3011833D2890061CD8B /* GSLocationManager.h */,
+				0D35D3021833D2890061CD8B /* GSLocationManager.m */,
 				0D07DC1B18337E9700CCE04B /* Images.xcassets */,
 				0D07DC0A18337E9700CCE04B /* Supporting Files */,
 			);
@@ -269,6 +284,8 @@
 				0D07DC5D183385E500CCE04B /* GSTrip.m */,
 				0D07DC601833867700CCE04B /* GSDeparture.h */,
 				0D07DC611833867700CCE04B /* GSDeparture.m */,
+				0D35D3111833DEDE0061CD8B /* GSCoordinates.h */,
+				0D35D3121833DEDE0061CD8B /* GSCoordinates.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -286,8 +303,8 @@
 		0D07DC64183387CB00CCE04B /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				0D07DC691833895F00CCE04B /* ISO8601DateFormatter.h */,
-				0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */,
+				0D35D3101833D6F80061CD8B /* ISO8601DateFormatter */,
+				0D35D3081833D6F00061CD8B /* FrameAccessor */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -320,6 +337,27 @@
 				0D35D2FA1833A8580061CD8B /* GSStopCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		0D35D3081833D6F00061CD8B /* FrameAccessor */ = {
+			isa = PBXGroup;
+			children = (
+				0D35D3091833D6F00061CD8B /* FrameAccessor.h */,
+				0D35D30A1833D6F00061CD8B /* ScrollViewFrameAccessor.h */,
+				0D35D30B1833D6F00061CD8B /* ScrollViewFrameAccessor.m */,
+				0D35D30C1833D6F00061CD8B /* ViewFrameAccessor.h */,
+				0D35D30D1833D6F00061CD8B /* ViewFrameAccessor.m */,
+			);
+			path = FrameAccessor;
+			sourceTree = "<group>";
+		};
+		0D35D3101833D6F80061CD8B /* ISO8601DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				0D07DC691833895F00CCE04B /* ISO8601DateFormatter.h */,
+				0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */,
+			);
+			name = ISO8601DateFormatter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,14 +496,18 @@
 				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
 				0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */,
+				0D35D3131833DEDE0061CD8B /* GSCoordinates.m in Sources */,
 				0D07DC1018337E9700CCE04B /* main.m in Sources */,
 				0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */,
 				0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */,
 				0D07DC56183383D100CCE04B /* GSAgency.m in Sources */,
+				0D35D30F1833D6F00061CD8B /* ViewFrameAccessor.m in Sources */,
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
 				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
+				0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */,
 				0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */,
+				0D35D30E1833D6F00061CD8B /* ScrollViewFrameAccessor.m in Sources */,
 				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
 				0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */,
 			);
