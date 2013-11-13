@@ -35,6 +35,8 @@
 		0D07DC631833867700CCE04B /* GSDeparture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC611833867700CCE04B /* GSDeparture.m */; };
 		0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */; };
 		0D07DC6C1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */; };
+		0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
+		0D07DC7018338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		0D07DC611833867700CCE04B /* GSDeparture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDeparture.m; sourceTree = "<group>"; };
 		0D07DC691833895F00CCE04B /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNeverlateService.h; sourceTree = "<group>"; };
+		0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNeverlateService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 				0D07DC3D18337F3500CCE04B /* Models */,
 				0D07DC1218337E9700CCE04B /* GSAppDelegate.h */,
 				0D07DC1318337E9700CCE04B /* GSAppDelegate.m */,
+				0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */,
+				0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */,
 				0D07DC1518337E9700CCE04B /* Main.storyboard */,
 				0D07DC1818337E9700CCE04B /* GSViewController.h */,
 				0D07DC1918337E9700CCE04B /* GSViewController.m */,
@@ -389,6 +395,7 @@
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
 				0D07DC1A18337E9700CCE04B /* GSViewController.m in Sources */,
 				0D07DC1018337E9700CCE04B /* main.m in Sources */,
+				0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */,
 				0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */,
 				0D07DC56183383D100CCE04B /* GSAgency.m in Sources */,
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
@@ -401,6 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D07DC7018338B4800CCE04B /* GSNeverlateService.m in Sources */,
 				0D07DC2F18337E9700CCE04B /* NeverlateTests.m in Sources */,
 				0D07DC5B1833855000CCE04B /* GSRoute.m in Sources */,
 				0D07DC631833867700CCE04B /* GSDeparture.m in Sources */,
@@ -538,6 +546,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Neverlate/Neverlate-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./**",
+				);
 				INFOPLIST_FILE = "Neverlate/Neverlate-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -551,6 +564,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Neverlate/Neverlate-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./**",
+				);
 				INFOPLIST_FILE = "Neverlate/Neverlate-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
