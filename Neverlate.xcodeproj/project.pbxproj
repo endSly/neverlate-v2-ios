@@ -37,6 +37,8 @@
 		0D07DC6C1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */; };
 		0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
 		0D07DC7018338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
+		0D07DC76183395DA00CCE04B /* libTenzingCore-RESTService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC471833801300CCE04B /* libTenzingCore-RESTService.a */; };
+		0D07DC77183395DD00CCE04B /* libTenzingCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC451833801300CCE04B /* libTenzingCore.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,20 @@
 			remoteInfo = TenzingCore;
 		};
 		0D07DC4C1833803D00CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D2666D916835096000B905C;
+			remoteInfo = "TenzingCore-RESTService";
+		};
+		0D07DC72183395D400CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DCE261E162DC7F500649563;
+			remoteInfo = TenzingCore;
+		};
+		0D07DC74183395D600CCE04B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
 			proxyType = 1;
@@ -138,6 +154,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D07DC77183395DD00CCE04B /* libTenzingCore.a in Frameworks */,
+				0D07DC76183395DA00CCE04B /* libTenzingCore-RESTService.a in Frameworks */,
 				0D07DC2318337E9700CCE04B /* XCTest.framework in Frameworks */,
 				0D07DC2518337E9700CCE04B /* UIKit.framework in Frameworks */,
 				0D07DC2418337E9700CCE04B /* Foundation.framework in Frameworks */,
@@ -294,6 +312,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				0D07DC75183395D600CCE04B /* PBXTargetDependency */,
+				0D07DC73183395D400CCE04B /* PBXTargetDependency */,
 				0D07DC2718337E9700CCE04B /* PBXTargetDependency */,
 			);
 			name = NeverlateTests;
@@ -437,6 +457,16 @@
 			name = "TenzingCore-RESTService";
 			targetProxy = 0D07DC4C1833803D00CCE04B /* PBXContainerItemProxy */;
 		};
+		0D07DC73183395D400CCE04B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TenzingCore;
+			targetProxy = 0D07DC72183395D400CCE04B /* PBXContainerItemProxy */;
+		};
+		0D07DC75183395D600CCE04B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "TenzingCore-RESTService";
+			targetProxy = 0D07DC74183395D600CCE04B /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -552,6 +582,10 @@
 					"./**",
 				);
 				INFOPLIST_FILE = "Neverlate/Neverlate-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -570,6 +604,10 @@
 					"./**",
 				);
 				INFOPLIST_FILE = "Neverlate/Neverlate-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -591,6 +629,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./**",
+				);
 				INFOPLIST_FILE = "NeverlateTests/NeverlateTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -610,6 +653,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Neverlate/Neverlate-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./**",
+				);
 				INFOPLIST_FILE = "NeverlateTests/NeverlateTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

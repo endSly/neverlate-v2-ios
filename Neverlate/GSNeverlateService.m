@@ -40,4 +40,21 @@
            as:$(getNextDepartures:callback:)];
 }
 
+#pragma mark - REST Service Delegate
+
+- (void)RESTService:(TZRESTService *)service beforeSendRequest:(NSMutableURLRequest *__autoreleasing *)request
+{
+    [(*request) addValue:AUTH_TOKEN forHTTPHeaderField:@"Authorization"];
+    
+    NSLog(@"[%@] %@ %@", self.class, (*request).HTTPMethod, (*request).URL);
+}
+
+- (void)RESTService:(TZRESTService *)service
+      afterResponse:(NSURLResponse *__autoreleasing *)resp
+               data:(NSData *__autoreleasing *)data
+              error:(NSError *__autoreleasing *)error
+{
+    NSLog(@"[%@] %i %@", self.class, ((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
+}
+
 @end

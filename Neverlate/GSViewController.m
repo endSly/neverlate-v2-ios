@@ -8,6 +8,8 @@
 
 #import "GSViewController.h"
 
+#import "GSNeverlateService.h"
+
 @interface GSViewController ()
 
 @end
@@ -17,7 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	[[GSNeverlateService sharedService] getAgencies:nil callback:^(NSArray *agencies, NSHTTPURLResponse *resp, NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

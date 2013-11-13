@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 
+#import "GSNeverlateService.h"
+
 @interface NeverlateTests : XCTestCase
 
 @end
@@ -26,9 +28,18 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testService
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    [[GSNeverlateService sharedService] getAgencies:nil callback:^(NSArray *agencies, NSHTTPURLResponse *resp, NSError *error) {
+        XCTAssertNil(error, @"Service should get agencies");
+        XCTAssertTrue([agencies isKindOfClass:NSArray.class], @"Agencies should be an array");
+        XCTAssertEqual(resp.statusCode, 200, @"Service should response 200");
+        dispatch_semaphore_signal(sema);
+    }];
+    
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
 }
 
 @end
