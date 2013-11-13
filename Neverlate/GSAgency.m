@@ -1,13 +1,17 @@
 //
-//  GSViewController.h
+//  GSAgency.m
 //  Neverlate
 //
 //  Created by Endika Gutiérrez Salas on 13/11/13.
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-@import UIKit;
+#import "GSAgency.h"
 
-@interface GSViewController : UIViewController
+@implementation GSAgency
+
+@end
+
+@implementation GSAgencyBounds
 
 @end

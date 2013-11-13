@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface GSAppDelegate : UIResponder <UIApplicationDelegate>
 

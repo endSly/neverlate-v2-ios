@@ -21,6 +21,20 @@
 		0D07DC2518337E9700CCE04B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC0718337E9700CCE04B /* UIKit.framework */; };
 		0D07DC2D18337E9700CCE04B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D07DC2B18337E9700CCE04B /* InfoPlist.strings */; };
 		0D07DC2F18337E9700CCE04B /* NeverlateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC2E18337E9700CCE04B /* NeverlateTests.m */; };
+		0D07DC4E1833804400CCE04B /* libTenzingCore-RESTService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC471833801300CCE04B /* libTenzingCore-RESTService.a */; };
+		0D07DC4F1833804700CCE04B /* libTenzingCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC451833801300CCE04B /* libTenzingCore.a */; };
+		0D07DC521833807000CCE04B /* GSStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC511833807000CCE04B /* GSStop.m */; };
+		0D07DC531833807000CCE04B /* GSStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC511833807000CCE04B /* GSStop.m */; };
+		0D07DC56183383D100CCE04B /* GSAgency.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC55183383D100CCE04B /* GSAgency.m */; };
+		0D07DC57183383D100CCE04B /* GSAgency.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC55183383D100CCE04B /* GSAgency.m */; };
+		0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC591833855000CCE04B /* GSRoute.m */; };
+		0D07DC5B1833855000CCE04B /* GSRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC591833855000CCE04B /* GSRoute.m */; };
+		0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC5D183385E500CCE04B /* GSTrip.m */; };
+		0D07DC5F183385E500CCE04B /* GSTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC5D183385E500CCE04B /* GSTrip.m */; };
+		0D07DC621833867700CCE04B /* GSDeparture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC611833867700CCE04B /* GSDeparture.m */; };
+		0D07DC631833867700CCE04B /* GSDeparture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC611833867700CCE04B /* GSDeparture.m */; };
+		0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */; };
+		0D07DC6C1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +44,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 0D07DBFF18337E9700CCE04B;
 			remoteInfo = Neverlate;
+		};
+		0D07DC441833801300CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DCE261F162DC7F500649563;
+			remoteInfo = TenzingCore;
+		};
+		0D07DC461833801300CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D2666DA16835096000B905C;
+			remoteInfo = "TenzingCore-RESTService";
+		};
+		0D07DC481833801300CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DCE2630162DC7F500649563;
+			remoteInfo = TenzingCoreTests;
+		};
+		0D07DC4A1833803B00CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0DCE261E162DC7F500649563;
+			remoteInfo = TenzingCore;
+		};
+		0D07DC4C1833803D00CCE04B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D2666D916835096000B905C;
+			remoteInfo = "TenzingCore-RESTService";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -53,6 +102,19 @@
 		0D07DC2A18337E9700CCE04B /* NeverlateTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NeverlateTests-Info.plist"; sourceTree = "<group>"; };
 		0D07DC2C18337E9700CCE04B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D07DC2E18337E9700CCE04B /* NeverlateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NeverlateTests.m; sourceTree = "<group>"; };
+		0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TenzingCore.xcodeproj; path = TenzingCore/TenzingCore.xcodeproj; sourceTree = "<group>"; };
+		0D07DC501833807000CCE04B /* GSStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStop.h; sourceTree = "<group>"; };
+		0D07DC511833807000CCE04B /* GSStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStop.m; sourceTree = "<group>"; };
+		0D07DC54183383D100CCE04B /* GSAgency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAgency.h; sourceTree = "<group>"; };
+		0D07DC55183383D100CCE04B /* GSAgency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAgency.m; sourceTree = "<group>"; };
+		0D07DC581833855000CCE04B /* GSRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSRoute.h; sourceTree = "<group>"; };
+		0D07DC591833855000CCE04B /* GSRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSRoute.m; sourceTree = "<group>"; };
+		0D07DC5C183385E500CCE04B /* GSTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSTrip.h; sourceTree = "<group>"; };
+		0D07DC5D183385E500CCE04B /* GSTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSTrip.m; sourceTree = "<group>"; };
+		0D07DC601833867700CCE04B /* GSDeparture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDeparture.h; sourceTree = "<group>"; };
+		0D07DC611833867700CCE04B /* GSDeparture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDeparture.m; sourceTree = "<group>"; };
+		0D07DC691833895F00CCE04B /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +122,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D07DC4F1833804700CCE04B /* libTenzingCore.a in Frameworks */,
+				0D07DC4E1833804400CCE04B /* libTenzingCore-RESTService.a in Frameworks */,
 				0D07DC0618337E9700CCE04B /* CoreGraphics.framework in Frameworks */,
 				0D07DC0818337E9700CCE04B /* UIKit.framework in Frameworks */,
 				0D07DC0418337E9700CCE04B /* Foundation.framework in Frameworks */,
@@ -84,6 +148,7 @@
 			children = (
 				0D07DC0918337E9700CCE04B /* Neverlate */,
 				0D07DC2818337E9700CCE04B /* NeverlateTests */,
+				0D07DC64183387CB00CCE04B /* Vendor */,
 				0D07DC0218337E9700CCE04B /* Frameworks */,
 				0D07DC0118337E9700CCE04B /* Products */,
 			);
@@ -101,6 +166,7 @@
 		0D07DC0218337E9700CCE04B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */,
 				0D07DC0318337E9700CCE04B /* Foundation.framework */,
 				0D07DC0518337E9700CCE04B /* CoreGraphics.framework */,
 				0D07DC0718337E9700CCE04B /* UIKit.framework */,
@@ -156,8 +222,37 @@
 		0D07DC3D18337F3500CCE04B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0D07DC54183383D100CCE04B /* GSAgency.h */,
+				0D07DC55183383D100CCE04B /* GSAgency.m */,
+				0D07DC501833807000CCE04B /* GSStop.h */,
+				0D07DC511833807000CCE04B /* GSStop.m */,
+				0D07DC581833855000CCE04B /* GSRoute.h */,
+				0D07DC591833855000CCE04B /* GSRoute.m */,
+				0D07DC5C183385E500CCE04B /* GSTrip.h */,
+				0D07DC5D183385E500CCE04B /* GSTrip.m */,
+				0D07DC601833867700CCE04B /* GSDeparture.h */,
+				0D07DC611833867700CCE04B /* GSDeparture.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		0D07DC3F1833801300CCE04B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D07DC451833801300CCE04B /* libTenzingCore.a */,
+				0D07DC471833801300CCE04B /* libTenzingCore-RESTService.a */,
+				0D07DC491833801300CCE04B /* TenzingCoreTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D07DC64183387CB00CCE04B /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				0D07DC691833895F00CCE04B /* ISO8601DateFormatter.h */,
+				0D07DC6A1833895F00CCE04B /* ISO8601DateFormatter.m */,
+			);
+			name = Vendor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +269,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				0D07DC4D1833803D00CCE04B /* PBXTargetDependency */,
+				0D07DC4B1833803B00CCE04B /* PBXTargetDependency */,
 			);
 			name = Neverlate;
 			productName = Neverlate;
@@ -224,6 +321,12 @@
 			mainGroup = 0D07DBF718337E9700CCE04B;
 			productRefGroup = 0D07DC0118337E9700CCE04B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 0D07DC3F1833801300CCE04B /* Products */;
+					ProjectRef = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				0D07DBFF18337E9700CCE04B /* Neverlate */,
@@ -231,6 +334,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		0D07DC451833801300CCE04B /* libTenzingCore.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTenzingCore.a;
+			remoteRef = 0D07DC441833801300CCE04B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0D07DC471833801300CCE04B /* libTenzingCore-RESTService.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libTenzingCore-RESTService.a";
+			remoteRef = 0D07DC461833801300CCE04B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0D07DC491833801300CCE04B /* TenzingCoreTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = TenzingCoreTests.octest;
+			remoteRef = 0D07DC481833801300CCE04B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		0D07DBFE18337E9700CCE04B /* Resources */ = {
@@ -258,9 +385,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
 				0D07DC1A18337E9700CCE04B /* GSViewController.m in Sources */,
 				0D07DC1018337E9700CCE04B /* main.m in Sources */,
+				0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */,
+				0D07DC56183383D100CCE04B /* GSAgency.m in Sources */,
+				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
+				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
+				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +402,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D07DC2F18337E9700CCE04B /* NeverlateTests.m in Sources */,
+				0D07DC5B1833855000CCE04B /* GSRoute.m in Sources */,
+				0D07DC631833867700CCE04B /* GSDeparture.m in Sources */,
+				0D07DC5F183385E500CCE04B /* GSTrip.m in Sources */,
+				0D07DC57183383D100CCE04B /* GSAgency.m in Sources */,
+				0D07DC531833807000CCE04B /* GSStop.m in Sources */,
+				0D07DC6C1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +418,16 @@
 			isa = PBXTargetDependency;
 			target = 0D07DBFF18337E9700CCE04B /* Neverlate */;
 			targetProxy = 0D07DC2618337E9700CCE04B /* PBXContainerItemProxy */;
+		};
+		0D07DC4B1833803B00CCE04B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TenzingCore;
+			targetProxy = 0D07DC4A1833803B00CCE04B /* PBXContainerItemProxy */;
+		};
+		0D07DC4D1833803D00CCE04B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "TenzingCore-RESTService";
+			targetProxy = 0D07DC4C1833803D00CCE04B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
