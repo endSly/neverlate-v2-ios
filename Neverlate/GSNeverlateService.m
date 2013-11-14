@@ -25,7 +25,6 @@
     if (!service) {
         service = [[GSNeverlateService alloc] init];
         service.baseURL = [NSURL URLWithString:BASE_URL];
-        service.operationQueue = NSOperationQueue.mainQueue;
     }
     return service;
 }

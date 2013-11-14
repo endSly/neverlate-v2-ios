@@ -86,7 +86,7 @@
 
 - (void)refreshStops
 {
-    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSHTTPURLResponse *resp, NSError *error) {
+    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
         self.stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
         
         // Get root stops
@@ -119,7 +119,7 @@
     
     logicStop = logicStop ?: stop;
     
-    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSHTTPURLResponse *resp, NSError *error) {
+    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
         
         self.nextDepartures = departures;
         
