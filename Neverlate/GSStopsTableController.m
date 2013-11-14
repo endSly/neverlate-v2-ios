@@ -27,6 +27,10 @@
 - (void)refreshStops;
 - (void)sortStopsByDistance;
 - (void)loadNextDepartures:(GSStop *)stop;
+- (void)refreshHeaderView;
+
+- (void)showDeparturesHeader;
+- (void)hideDeparturesHeader;
 
 @end
 
@@ -41,10 +45,33 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
     
     // Build menu options in navBar
-    UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
-    menuButton.titleLabel.font = [UIFont iconicFontOfSize:18];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    {
+        self.title = @"Metro Bilbao";
+        
+        UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+        [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
+        menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+        
+        UIButton *mapButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+        [mapButton setTitle:icon_ios7_navigate_outline forState:UIControlStateNormal];
+        [mapButton setTitle:icon_ios7_navigate forState:UIControlStateSelected];
+        mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
+    }
+    
+    // Build departure header view
+    {
+        GSDepartureHeaderView *headerView = _headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
+                                                                                        owner:self
+                                                                                      options:nil].firstObject;
+        
+        headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
+        
+        headerView.hidden = YES;
+        
+        [self.navigationController.navigationBar addSubview:headerView];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kGSLocationUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {
         [self sortStopsByDistance];
@@ -80,10 +107,10 @@
 
 - (void)loadNextDepartures:(GSStop *)stop
 {
-    if (self.showDeparturesStop == stop)
+    if (self.nextDeparturesStop == stop)
         return;
     
-    self.showDeparturesStop = stop;
+    self.nextDeparturesStop = stop;
     
     GSStop *logicStop = nil;
     if (!stop.isStop) {
@@ -93,41 +120,70 @@
     logicStop = logicStop ?: stop;
     
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSHTTPURLResponse *resp, NSError *error) {
-        GSDepartureHeaderView *headerView;
-        if (!_headerView) {
-            _headerView = headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
-                                                                     owner:self
-                                                                   options:nil].firstObject;
-            
-            [UIView animateWithDuration:0.5f animations:^{
-                self.navigationController.navigationBar.height = 172.0f;
-                self.tableView.contentOffsetY -= 128.0f;
-            } completion:^(BOOL finished) {
-                self.tableView.contentOffsetY += 128.0f;
-                
-                [self.navigationController.navigationBar addSubview:headerView];
-            }];
-        } else {
-            headerView = _headerView;
-        }
         
-        headerView.stopNameLabel.text = stop.stop_name;
-        headerView.distanceLabel.text = stop.formattedDistance;
-        GSDeparture *departure1 = departures[0], *departure2 = departures[1];
-        headerView.tripHeadsign1.text = departure1.trip_headsign;
-        headerView.tripHeadsign2.text = departure2.trip_headsign;
-        headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
-        headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
+        self.nextDepartures = departures;
         
-        headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
+        [self showDeparturesHeader];
         
-        
-        
-        self.navigationItem.title = nil;
-        
-
-        
+        [self refreshHeaderView];
     }];
+}
+
+- (void)showDeparturesHeader
+{
+    if (!_hideFirstStop) {
+        [self.tableView beginUpdates];
+        _hideFirstStop = YES;
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationBottom];
+        [self.tableView endUpdates];
+    }
+    
+    GSDepartureHeaderView *headerView = _headerView;
+    
+    self.navigationItem.title = nil;
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.rightBarButtonItem = nil;
+    
+    headerView.layer.opacity = 0;
+    
+    headerView.hidden = NO;
+    
+    [UIView animateWithDuration:0.35f animations:^{
+        self.navigationController.navigationBar.height = 172.0f;
+        self.tableView.contentOffsetY -= 128.0f;
+        headerView.layer.opacity = 1;
+    } completion:^(BOOL finished) {
+        self.tableView.contentOffsetY += 128.0f;
+    }];
+}
+
+- (void)hideDeparturesHeader
+{
+    GSDepartureHeaderView *headerView = _headerView;
+    
+    [UIView animateWithDuration:0.35f animations:^{
+        self.navigationController.navigationBar.height = 44.0f;
+        headerView.layer.opacity = 0;
+    } completion:^(BOOL finished) {
+        
+        headerView.hidden = YES;
+    }];
+    
+}
+
+- (void)refreshHeaderView
+{
+    GSStop *stop = self.nextDeparturesStop;
+    GSDepartureHeaderView *headerView = _headerView;
+    GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
+    
+    headerView.stopNameLabel.text = stop.stop_name;
+    headerView.distanceLabel.text = stop.formattedDistance;
+    headerView.tripHeadsign1.text = departure1.trip_headsign;
+    headerView.tripHeadsign2.text = departure2.trip_headsign;
+    headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
+    headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,7 +201,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.stops.count;
+    return _hideFirstStop ? self.stops.count - 1 : self.stops.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -153,7 +209,7 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSStop *stop = self.stops[indexPath.row];
+    GSStop *stop = self.stops[_hideFirstStop ? indexPath.row + 1 : indexPath.row];
     
     cell.stop = stop;
     

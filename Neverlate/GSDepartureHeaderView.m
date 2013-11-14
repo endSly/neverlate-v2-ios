@@ -21,6 +21,9 @@
     
     self.headingArrow.transform = CGAffineTransformMakeRotation(-3.14159265 / 4);
     
+    [self.menuButton setTitle:icon_navicon forState:UIControlStateNormal];
+    self.menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+    
     [super layoutSubviews];
 }
 

@@ -19,4 +19,6 @@
 @property (nonatomic, weak) IBOutlet UILabel    * departureTime1;
 @property (nonatomic, weak) IBOutlet UILabel    * departureTime2;
 
+@property (nonatomic, weak) IBOutlet UIButton   * menuButton;
+
 @end
