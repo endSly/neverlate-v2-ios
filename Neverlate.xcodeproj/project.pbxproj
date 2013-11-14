@@ -51,6 +51,8 @@
 		0D35D30F1833D6F00061CD8B /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D30D1833D6F00061CD8B /* ViewFrameAccessor.m */; };
 		0D35D3131833DEDE0061CD8B /* GSCoordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3121833DEDE0061CD8B /* GSCoordinates.m */; };
 		0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3171834CD340061CD8B /* GSNavigationController.m */; };
+		0D35D32B1834EEDE0061CD8B /* libnanostore2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D3241834EEC00061CD8B /* libnanostore2.a */; };
+		0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,41 @@
 			remoteGlobalIDString = 0D2666D916835096000B905C;
 			remoteInfo = "TenzingCore-RESTService";
 		};
+		0D35D3211834EEC00061CD8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = NanoStore;
+		};
+		0D35D3231834EEC00061CD8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 748D3451139772B600FD5565;
+			remoteInfo = libnanostore2;
+		};
+		0D35D3251834EEC00061CD8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74C1FA8C1538DDD60077DAD1;
+			remoteInfo = UnitTestMac;
+		};
+		0D35D3271834EEC00061CD8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 74C1FABE1538E14B0077DAD1;
+			remoteInfo = UnitTestiOS;
+		};
+		0D35D3291834EED70061CD8B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 748D3450139772B600FD5565;
+			remoteInfo = libnanostore2;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +205,8 @@
 		0D35D3121833DEDE0061CD8B /* GSCoordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCoordinates.m; sourceTree = "<group>"; };
 		0D35D3161834CD340061CD8B /* GSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationController.h; sourceTree = "<group>"; };
 		0D35D3171834CD340061CD8B /* GSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationController.m; sourceTree = "<group>"; };
+		0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NanoStore.xcodeproj; path = NanoStore/NanoStore.xcodeproj; sourceTree = "<group>"; };
+		0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +214,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */,
+				0D35D32B1834EEDE0061CD8B /* libnanostore2.a in Frameworks */,
 				0D07DC4F1833804700CCE04B /* libTenzingCore.a in Frameworks */,
 				0D07DC4E1833804400CCE04B /* libTenzingCore-RESTService.a in Frameworks */,
 				0D07DC0618337E9700CCE04B /* CoreGraphics.framework in Frameworks */,
@@ -221,11 +262,13 @@
 		0D07DC0218337E9700CCE04B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */,
 				0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */,
 				0D07DC0318337E9700CCE04B /* Foundation.framework */,
 				0D07DC0518337E9700CCE04B /* CoreGraphics.framework */,
 				0D07DC0718337E9700CCE04B /* UIKit.framework */,
 				0D07DC2218337E9700CCE04B /* XCTest.framework */,
+				0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -373,6 +416,17 @@
 			name = ISO8601DateFormatter;
 			sourceTree = "<group>";
 		};
+		0D35D31A1834EEBE0061CD8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D35D3221834EEC00061CD8B /* NanoStore.framework */,
+				0D35D3241834EEC00061CD8B /* libnanostore2.a */,
+				0D35D3261834EEC00061CD8B /* UnitTestMac.octest */,
+				0D35D3281834EEC00061CD8B /* UnitTestiOS.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -387,6 +441,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				0D35D32A1834EED70061CD8B /* PBXTargetDependency */,
 				0D07DC4D1833803D00CCE04B /* PBXTargetDependency */,
 				0D07DC4B1833803B00CCE04B /* PBXTargetDependency */,
 			);
@@ -443,6 +498,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 0D35D31A1834EEBE0061CD8B /* Products */;
+					ProjectRef = 0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */;
+				},
+				{
 					ProductGroup = 0D07DC3F1833801300CCE04B /* Products */;
 					ProjectRef = 0D07DC3E1833801300CCE04B /* TenzingCore.xcodeproj */;
 				},
@@ -475,6 +534,34 @@
 			fileType = wrapper.cfbundle;
 			path = TenzingCoreTests.octest;
 			remoteRef = 0D07DC481833801300CCE04B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0D35D3221834EEC00061CD8B /* NanoStore.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NanoStore.framework;
+			remoteRef = 0D35D3211834EEC00061CD8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0D35D3241834EEC00061CD8B /* libnanostore2.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libnanostore2.a;
+			remoteRef = 0D35D3231834EEC00061CD8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0D35D3261834EEC00061CD8B /* UnitTestMac.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTestMac.octest;
+			remoteRef = 0D35D3251834EEC00061CD8B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		0D35D3281834EEC00061CD8B /* UnitTestiOS.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTestiOS.octest;
+			remoteRef = 0D35D3271834EEC00061CD8B /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -572,6 +659,11 @@
 			isa = PBXTargetDependency;
 			name = "TenzingCore-RESTService";
 			targetProxy = 0D07DC74183395D600CCE04B /* PBXContainerItemProxy */;
+		};
+		0D35D32A1834EED70061CD8B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libnanostore2;
+			targetProxy = 0D35D3291834EED70061CD8B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -680,6 +772,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Neverlate/Neverlate-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -702,6 +796,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Neverlate/Neverlate-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

@@ -1,3 +1,6 @@
 [submodule "TenzingCore"]
 	path = TenzingCore
 	url = git@github.com:endSly/TenzingCore.git
+[submodule "NanoStore"]
+	path = NanoStore
+	url = git@github.com:tciuro/NanoStore.git
