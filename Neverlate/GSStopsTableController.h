@@ -8,7 +8,14 @@
 
 @import UIKit;
 
-@interface GSStopsTableController : UITableViewController
+@class GSStop;
+@class GSDepartureHeaderView;
+
+@interface GSStopsTableController : UITableViewController {
+    GSDepartureHeaderView *_headerView;
+}
+
+@property (nonatomic, weak) GSStop  * showDeparturesStop;
 
 @property (nonatomic, strong) NSArray       * stops;
 @property (nonatomic, strong) NSDictionary  * stopsTree;

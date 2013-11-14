@@ -52,6 +52,18 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sAg-d2-Rjj" userLabel="SeparationLine">
+                    <rect key="frame" x="20" y="128" width="300" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XA5-m3-hQA">
+                    <rect key="frame" x="268" y="49" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="0.93000000000000005" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -59,6 +71,7 @@
             <connections>
                 <outlet property="departureTime1" destination="0c7-PR-oey" id="rSB-3g-SpP"/>
                 <outlet property="departureTime2" destination="hKQ-To-WD8" id="YP2-kB-ZZb"/>
+                <outlet property="distanceLabel" destination="XA5-m3-hQA" id="p4W-0P-7fm"/>
                 <outlet property="headingArrow" destination="hli-AK-b4r" id="Omg-k6-pCr"/>
                 <outlet property="stopNameLabel" destination="V6B-aI-K5r" id="Hle-iu-RQO"/>
                 <outlet property="tripHeadsign1" destination="OYb-X8-eDm" id="iwE-AT-lcE"/>

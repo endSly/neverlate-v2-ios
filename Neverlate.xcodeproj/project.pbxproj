@@ -50,6 +50,7 @@
 		0D35D30E1833D6F00061CD8B /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D30B1833D6F00061CD8B /* ScrollViewFrameAccessor.m */; };
 		0D35D30F1833D6F00061CD8B /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D30D1833D6F00061CD8B /* ViewFrameAccessor.m */; };
 		0D35D3131833DEDE0061CD8B /* GSCoordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3121833DEDE0061CD8B /* GSCoordinates.m */; };
+		0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3171834CD340061CD8B /* GSNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,8 @@
 		0D35D30D1833D6F00061CD8B /* ViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewFrameAccessor.m; sourceTree = "<group>"; };
 		0D35D3111833DEDE0061CD8B /* GSCoordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCoordinates.h; sourceTree = "<group>"; };
 		0D35D3121833DEDE0061CD8B /* GSCoordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCoordinates.m; sourceTree = "<group>"; };
+		0D35D3161834CD340061CD8B /* GSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationController.h; sourceTree = "<group>"; };
+		0D35D3171834CD340061CD8B /* GSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +320,8 @@
 		0D07DC7E1833A4C200CCE04B /* Contollers */ = {
 			isa = PBXGroup;
 			children = (
+				0D35D3161834CD340061CD8B /* GSNavigationController.h */,
+				0D35D3171834CD340061CD8B /* GSNavigationController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
 			);
@@ -502,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */,
 				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
 				0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */,

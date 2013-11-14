@@ -13,6 +13,7 @@
 @property (nonatomic, weak) IBOutlet UILabel    * headingArrow;
 
 @property (nonatomic, weak) IBOutlet UILabel    * stopNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel    * distanceLabel;
 @property (nonatomic, weak) IBOutlet UILabel    * tripHeadsign1;
 @property (nonatomic, weak) IBOutlet UILabel    * tripHeadsign2;
 @property (nonatomic, weak) IBOutlet UILabel    * departureTime1;

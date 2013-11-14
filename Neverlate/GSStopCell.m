@@ -27,12 +27,7 @@
 - (void)setStop:(GSStop *)stop
 {
     _stop = stop;
-    if (stop.distance > 1000) {
-        self.stopDistanceLabel.text = [NSString stringWithFormat:@"%.1fkm", stop.distance / 1000.0f];
-    } else {
-        self.stopDistanceLabel.text = [NSString stringWithFormat:@"%.0fmåå", stop.distance];
-    }
-    
+    self.stopDistanceLabel.text = stop.formattedDistance;
     self.stopNameLabel.text = stop.stop_name;
 }
 

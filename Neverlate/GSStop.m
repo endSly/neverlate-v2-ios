@@ -18,4 +18,14 @@
     return [location distanceFromLocation:self.loc.CLLocation];
 }
 
+- (NSString *)formattedDistance
+{
+    CLLocationDistance distance = self.distance;
+    if (distance >= 1000.0f) {
+        return [NSString stringWithFormat:@"%.1fkm", distance / 1000.0f];
+    }
+    return [NSString stringWithFormat:@"%.0fm", distance];
+    
+}
+
 @end

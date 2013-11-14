@@ -60,7 +60,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gEb-e1-OlF">
             <objects>
-                <navigationController definesPresentationContext="YES" id="XTq-FG-d01" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="XTq-FG-d01" customClass="GSNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6IM-9m-hfW" customClass="GSNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>

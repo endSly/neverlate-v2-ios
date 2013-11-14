@@ -40,6 +40,7 @@
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
     
+    // Build menu options in navBar
     UIButton *menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
     menuButton.titleLabel.font = [UIFont iconicFontOfSize:18];
@@ -47,6 +48,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kGSLocationUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {
         [self sortStopsByDistance];
+        
+        [self loadNextDepartures:self.stops.firstObject];
         
         [self.tableView reloadData];
     }];
@@ -77,29 +80,51 @@
 
 - (void)loadNextDepartures:(GSStop *)stop
 {
-    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": @"12.0"} callback:^(NSArray *departures, NSHTTPURLResponse *resp, NSError *error) {
-        
-        GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
-                                                                          owner:self
-                                                                        options:nil].firstObject;
+    if (self.showDeparturesStop == stop)
+        return;
+    
+    self.showDeparturesStop = stop;
+    
+    GSStop *logicStop = nil;
+    if (stop.location_type.intValue != 0) {
+        logicStop = [self.stopsTree[stop.stop_id] find:^BOOL(GSStop *stop) { return stop.location_type.intValue == 0; }];
+    }
+    logicStop = logicStop ?: stop;
+    
+    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSHTTPURLResponse *resp, NSError *error) {
+        GSDepartureHeaderView *headerView;
+        if (!_headerView) {
+            _headerView = headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
+                                                                     owner:self
+                                                                   options:nil].firstObject;
+            
+            [UIView animateWithDuration:0.5f animations:^{
+                self.navigationController.navigationBar.height = 172.0f;
+                self.tableView.contentOffsetY -= 128.0f;
+            } completion:^(BOOL finished) {
+                self.tableView.contentOffsetY += 128.0f;
+                
+                [self.navigationController.navigationBar addSubview:headerView];
+            }];
+        } else {
+            headerView = _headerView;
+        }
         
         headerView.stopNameLabel.text = stop.stop_name;
+        headerView.distanceLabel.text = stop.formattedDistance;
         GSDeparture *departure1 = departures[0], *departure2 = departures[1];
         headerView.tripHeadsign1.text = departure1.trip_headsign;
         headerView.tripHeadsign2.text = departure2.trip_headsign;
+        headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
+        headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
         
         headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
         
+        
+        
         self.navigationItem.title = nil;
         
-        [UIView animateWithDuration:0.5f animations:^{
-            self.navigationController.navigationBar.height = 172.0f;
-            self.tableView.contentOffsetY -= 128.0f;
-        } completion:^(BOOL finished) {
-            self.tableView.contentOffsetY += 128.0f;
-            headerView.backgroundColor = UIColor.clearColor;
-            [self.navigationController.navigationBar addSubview:headerView];
-        }];
+
         
     }];
 }

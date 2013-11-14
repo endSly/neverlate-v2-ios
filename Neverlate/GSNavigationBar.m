@@ -16,7 +16,7 @@
     
     if(!_underlayView)
 	{
-		const CGFloat statusBarHeight = 20;    //  Make this dynamic in your own code...
+		const CGFloat statusBarHeight = 20;
 		const CGSize selfSize = self.frame.size;
         
 		_underlayView = [[UIView alloc] initWithFrame:CGRectMake(0, -statusBarHeight, selfSize.width, selfSize.height + statusBarHeight)];

@@ -24,5 +24,6 @@
 @property (nonatomic, readwrite) NSNumber   * longitude;
 
 @property (nonatomic, readonly) CLLocationDistance distance;
+@property (nonatomic, readonly) NSString    * formattedDistance;
 
 @end
