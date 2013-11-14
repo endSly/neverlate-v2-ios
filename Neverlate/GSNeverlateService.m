@@ -8,6 +8,8 @@
 
 #import "GSNeverlateService.h"
 
+#import "GSNanoStoreServiceCache.h"
+
 #import "GSAgency.h"
 #import "GSRoute.h"
 #import "GSTrip.h"
@@ -25,20 +27,23 @@
     if (!service) {
         service = [[GSNeverlateService alloc] init];
         service.baseURL = [NSURL URLWithString:BASE_URL];
+        service.cacheStore = [[GSNanoStoreServiceCache alloc] init];
     }
     return service;
 }
 
 + (void)initialize
 {
-    [self get:@"/api/v1/agencies"           class:GSAgency.class    as:$(getAgencies:callback:)];
-    [self get:@"/api/v1/:agency_key/routes" class:GSRoute.class     as:$(getRoutes:callback:)];
-    [self get:@"/api/v1/:agency_key/trips"  class:GSTrip.class      as:$(getRoutes:callback:)];
-    [self get:@"/api/v1/:agency_key/stops"  class:GSStop.class      as:$(getStops:callback:)];
+    [self get:@"/api/v1/agencies"           class:GSAgency.class    as:$(getAgencies:callback:) cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
+    [self get:@"/api/v1/:agency_key/routes" class:GSRoute.class     as:$(getRoutes:callback:)   cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
+    [self get:@"/api/v1/:agency_key/trips"  class:GSTrip.class      as:$(getRoutes:callback:)   cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
+    [self get:@"/api/v1/:agency_key/stops"  class:GSStop.class      as:$(getStops:callback:)    cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
     
     [self get:@"/api/v1/:agency_key/stops/:stop_id/next-departures"
         class:GSDeparture.class
-           as:$(getNextDepartures:callback:)];
+           as:$(getNextDepartures:callback:)
+     cachePolicy:TZCachePolicyBypassCache
+   expiration:0];
 }
 
 #pragma mark - REST Service Delegate

@@ -40,6 +40,7 @@
 		0D07DC77183395DD00CCE04B /* libTenzingCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC451833801300CCE04B /* libTenzingCore.a */; };
 		0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
 		0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
+		0D25ADA118353C910036D18D /* GSNanoStoreServiceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */; };
 		0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295901833B80D00BE6D8C /* ionicons.ttf */; };
 		0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */; };
 		0D32959A1834359A00BE6D8C /* GSDepartureHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */; };
@@ -184,6 +185,8 @@
 		0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNeverlateService.m; sourceTree = "<group>"; };
 		0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsTableController.h; sourceTree = "<group>"; };
 		0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsTableController.m; sourceTree = "<group>"; };
+		0D25AD9F18353C910036D18D /* GSNanoStoreServiceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNanoStoreServiceCache.h; sourceTree = "<group>"; };
+		0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNanoStoreServiceCache.m; sourceTree = "<group>"; };
 		0D3295901833B80D00BE6D8C /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 		0D3295941833B8E300BE6D8C /* UIFont+IonIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+IonIcons.h"; sourceTree = "<group>"; };
 		0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+IonIcons.m"; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */,
 				0D35D3011833D2890061CD8B /* GSLocationManager.h */,
 				0D35D3021833D2890061CD8B /* GSLocationManager.m */,
+				0D25AD9F18353C910036D18D /* GSNanoStoreServiceCache.h */,
+				0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */,
 				0D07DC1B18337E9700CCE04B /* Images.xcassets */,
 				0D07DC0A18337E9700CCE04B /* Supporting Files */,
 			);
@@ -594,6 +599,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D25ADA118353C910036D18D /* GSNanoStoreServiceCache.m in Sources */,
 				0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */,
 				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
