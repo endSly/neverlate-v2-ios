@@ -28,4 +28,19 @@
     
 }
 
+- (BOOL)isStop
+{
+    return self.location_type.intValue == GSLocationTypeStop;
+}
+
+- (BOOL)isStation
+{
+    return self.location_type.intValue == GSLocationTypeStation;
+}
+
+- (BOOL)isEntrance
+{
+    return self.location_type.intValue == GSLocationTypeEntrance;
+}
+
 @end

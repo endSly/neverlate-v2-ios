@@ -86,9 +86,10 @@
     self.showDeparturesStop = stop;
     
     GSStop *logicStop = nil;
-    if (stop.location_type.intValue != 0) {
-        logicStop = [self.stopsTree[stop.stop_id] find:^BOOL(GSStop *stop) { return stop.location_type.intValue == 0; }];
+    if (!stop.isStop) {
+        logicStop = [self.stopsTree[stop.stop_id] find:^BOOL(GSStop *stop) { return stop.isStop; }];
     }
+    
     logicStop = logicStop ?: stop;
     
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSHTTPURLResponse *resp, NSError *error) {
