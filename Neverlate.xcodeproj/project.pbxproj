@@ -54,6 +54,7 @@
 		0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3171834CD340061CD8B /* GSNavigationController.m */; };
 		0D35D32B1834EEDE0061CD8B /* libnanostore2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D3241834EEC00061CD8B /* libnanostore2.a */; };
 		0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */; };
+		0DFF187E18361B8500B08CA9 /* CLLocation+Heading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,8 @@
 		0D35D3171834CD340061CD8B /* GSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationController.m; sourceTree = "<group>"; };
 		0D35D3191834EEBE0061CD8B /* NanoStore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NanoStore.xcodeproj; path = NanoStore/NanoStore.xcodeproj; sourceTree = "<group>"; };
 		0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		0DFF187C18361B8500B08CA9 /* CLLocation+Heading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Heading.h"; sourceTree = "<group>"; };
+		0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Heading.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +384,8 @@
 			children = (
 				0D3295941833B8E300BE6D8C /* UIFont+IonIcons.h */,
 				0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */,
+				0DFF187C18361B8500B08CA9 /* CLLocation+Heading.h */,
+				0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */,
 				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
+				0DFF187E18361B8500B08CA9 /* CLLocation+Heading.m in Sources */,
 				0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */,
 				0D35D3131833DEDE0061CD8B /* GSCoordinates.m in Sources */,
 				0D07DC1018337E9700CCE04B /* main.m in Sources */,

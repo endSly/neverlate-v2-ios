@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
+@import CoreLocation;
 
 @interface CLLocation (Heading)
+
+- (CLLocationDirection)getHeadingtoLocation:(CLLocation *)toLoc;
 
 @end

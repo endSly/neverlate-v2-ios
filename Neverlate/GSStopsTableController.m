@@ -26,6 +26,7 @@
 
 - (void)refreshStops;
 - (void)sortStopsByDistance;
+- (void)sortStopsAlphabetically;
 - (void)loadNextDepartures:(GSStop *)stop;
 - (void)refreshHeaderView;
 
@@ -78,7 +79,10 @@
         
         [self loadNextDepartures:self.stops.firstObject];
         
-        [self.tableView reloadData];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:kGSHeadingUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {
+        [self refreshHeaderView];
     }];
     
     [self refreshStops];
@@ -92,9 +96,13 @@
         // Get root stops
         self.stops = self.stopsTree[NSNull.null];
         
-        [self sortStopsByDistance];
+        if (GSLocationManager.sharedManager.location) {
+            [self sortStopsByDistance];
         
-        [self loadNextDepartures:self.stops.firstObject];
+            [self loadNextDepartures:self.stops.firstObject];
+        } else {
+            [self sortStopsAlphabetically];
+        }
         
         [self.tableView reloadData];
     }];
@@ -103,6 +111,11 @@
 - (void)sortStopsByDistance
 {
     self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES]]];
+}
+
+- (void)sortStopsAlphabetically
+{
+    self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"stop_name" ascending:YES]]];
 }
 
 - (void)loadNextDepartures:(GSStop *)stop
@@ -184,6 +197,7 @@
     headerView.tripHeadsign2.text = departure2.trip_headsign;
     headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
     headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
+    headerView.headingAngle = GSLocationManager.sharedManager.heading.trueHeading * M_PI / 180.0;
 }
 
 - (void)didReceiveMemoryWarning

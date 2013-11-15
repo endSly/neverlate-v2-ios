@@ -27,4 +27,12 @@
     [super layoutSubviews];
 }
 
+- (void)setHeadingAngle:(float)headingAngle
+{
+    _headingAngle = headingAngle;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.headingArrow.transform = CGAffineTransformMakeRotation(headingAngle - M_PI / 4);
+    });
+}
+
 @end

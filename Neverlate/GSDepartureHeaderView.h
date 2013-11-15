@@ -21,4 +21,6 @@
 
 @property (nonatomic, weak) IBOutlet UIButton   * menuButton;
 
+@property (nonatomic) CGFloat headingAngle; // In Radians
+
 @end
