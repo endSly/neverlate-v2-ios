@@ -39,6 +39,12 @@
 - (NSData *)RESTService:(TZRESTService *)service cachedResultForRequest:(NSURLRequest *)request
 {
     NSFNanoObject *object = [self searchForURL:request.URL];
+    if ([[NSDate date] compare:[object objectForKey:@"expiration"]] == NSOrderedDescending) {
+        // Expired Result
+        [self.nanoStore removeObject:object error:nil];
+        return nil;
+    }
+    
     return [object objectForKey:@"data"];
 }
 
