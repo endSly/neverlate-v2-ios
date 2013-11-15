@@ -56,6 +56,8 @@
 		0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */; };
 		0DFF187E18361B8500B08CA9 /* CLLocation+Heading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */; };
 		0DFF188B183639CD00B08CA9 /* GSIndeterminatedProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */; };
+		0DFF189718367CEA00B08CA9 /* GSMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF189618367CEA00B08CA9 /* GSMapViewController.m */; };
+		0DFF189E18367DFA00B08CA9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DFF189D18367DFA00B08CA9 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +218,9 @@
 		0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Heading.m"; sourceTree = "<group>"; };
 		0DFF1889183639CC00B08CA9 /* GSIndeterminatedProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSIndeterminatedProgressView.h; sourceTree = "<group>"; };
 		0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSIndeterminatedProgressView.m; sourceTree = "<group>"; };
+		0DFF189518367CEA00B08CA9 /* GSMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSMapViewController.h; sourceTree = "<group>"; };
+		0DFF189618367CEA00B08CA9 /* GSMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSMapViewController.m; sourceTree = "<group>"; };
+		0DFF189D18367DFA00B08CA9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +235,7 @@
 				0D07DC0618337E9700CCE04B /* CoreGraphics.framework in Frameworks */,
 				0D07DC0818337E9700CCE04B /* UIKit.framework in Frameworks */,
 				0D07DC0418337E9700CCE04B /* Foundation.framework in Frameworks */,
+				0DFF189E18367DFA00B08CA9 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +282,7 @@
 				0D07DC0318337E9700CCE04B /* Foundation.framework */,
 				0D07DC0518337E9700CCE04B /* CoreGraphics.framework */,
 				0D07DC0718337E9700CCE04B /* UIKit.framework */,
+				0DFF189D18367DFA00B08CA9 /* MapKit.framework */,
 				0D07DC2218337E9700CCE04B /* XCTest.framework */,
 				0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */,
 			);
@@ -378,6 +385,8 @@
 				0D35D3171834CD340061CD8B /* GSNavigationController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
+				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,
+				0DFF189618367CEA00B08CA9 /* GSMapViewController.m */,
 			);
 			name = Contollers;
 			sourceTree = "<group>";
@@ -631,6 +640,7 @@
 				0D35D30E1833D6F00061CD8B /* ScrollViewFrameAccessor.m in Sources */,
 				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
 				0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */,
+				0DFF189718367CEA00B08CA9 /* GSMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

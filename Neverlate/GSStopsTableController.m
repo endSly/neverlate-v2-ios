@@ -63,6 +63,7 @@
         [mapButton setTitle:icon_ios7_navigate_outline forState:UIControlStateNormal];
         [mapButton setTitle:icon_ios7_navigate forState:UIControlStateSelected];
         mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+        [mapButton addTarget:self action:@selector(showMap) forControlEvents:UIControlEventTouchUpInside];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
     }
     
@@ -94,6 +95,11 @@
     } else {
         self.navigationController.navigationBar.height = 44.0f;
     }
+}
+
+- (void)showMap
+{
+    [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
 }
 
 - (void)headingHasUpdated
