@@ -140,6 +140,14 @@
     self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"stop_name" ascending:YES]]];
 }
 
+- (void)updateNextDepartures
+{
+    NSArray *departures = self.nextDepartures;
+    departures = [departures filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"departure_date > %@", [NSDate date]]];
+    departures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
+    self.nextDepartures = departures;
+}
+
 - (void)loadNextDepartures:(GSStop *)stop
 {
     if (self.nextDeparturesStop == stop)
@@ -205,6 +213,8 @@
 
 - (void)refreshHeaderView
 {
+    [self updateNextDepartures];
+    
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
     GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
@@ -243,11 +253,12 @@
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     GSStop *stop = self.stops[_isHeaderVisible ? indexPath.row + 1 : indexPath.row];
-    
+
     cell.stop = stop;
     
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60.0f;

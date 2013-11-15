@@ -60,7 +60,8 @@ const CGFloat CHUNK_WIDTH = 36.0f;
         chunk.x = self.width;
     } completion:^(BOOL finished) {
         chunk.x = -CHUNK_WIDTH;
-        [self animateProgressChunk:chunk delay:0.4];
+        if (finished)
+            [self animateProgressChunk:chunk delay:0.4];
     }];
 }
 

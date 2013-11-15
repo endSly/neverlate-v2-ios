@@ -31,8 +31,6 @@
     }
     
     [self insertSubview:_underlayView atIndex:1];
-    
-
 }
 
 - (void)showIndeterminateProgressIndicator
@@ -47,6 +45,7 @@
 - (void)hideIndeterminateProgressIndicator
 {
     [self.indeterminateProgressView removeFromSuperview];
+    self.indeterminateProgressView = nil;
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor
