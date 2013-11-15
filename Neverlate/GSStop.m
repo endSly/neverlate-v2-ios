@@ -19,7 +19,6 @@
 - (CLLocationDistance)distance
 {
     CLLocation *location = [GSLocationManager sharedManager].location;
-    
     if (!location)
         return 0;
     
@@ -44,6 +43,10 @@
 
 - (GSStop *)nearestEntrance
 {
+    CLLocation *location = [GSLocationManager sharedManager].location;
+    if (!location)
+        return nil;
+    
     return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject;
 }
 
