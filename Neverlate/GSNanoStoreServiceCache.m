@@ -24,16 +24,21 @@
     return self;
 }
 
-- (NSData *)RESTService:(TZRESTService *)service cachedResultForRequest:(NSURLRequest *)request
+- (NSFNanoObject *)searchForURL:(NSURL *)url
 {
     NSFNanoSearch *search = [NSFNanoSearch searchWithStore:self.nanoStore];
     
     search.attribute = @"url";
     search.match = NSFEqualTo;
-    search.value = request.URL.absoluteString;
+    search.value = url.absoluteString;
     
     NSDictionary *searchResults = [search searchObjectsWithReturnType:NSFReturnObjects error:nil];
-    NSDictionary *object = searchResults.allValues.firstObject;
+    return searchResults.allValues.firstObject;
+}
+
+- (NSData *)RESTService:(TZRESTService *)service cachedResultForRequest:(NSURLRequest *)request
+{
+    NSFNanoObject *object = [self searchForURL:request.URL];
     return [object objectForKey:@"data"];
 }
 
@@ -43,7 +48,8 @@
            response:(NSURLResponse *)response
          expiration:(NSTimeInterval)expiration
 {
-    NSFNanoObject *object = [NSFNanoObject nanoObject];
+    NSFNanoObject *object = [self searchForURL:request.URL] ?: [NSFNanoObject nanoObject];
+    
     [object setObject:[NSDate dateWithTimeIntervalSinceNow:expiration] forKey:@"expiration"];
     [object setObject:request.URL.absoluteString forKey:@"url"];
     [object setObject:data forKey:@"data"];
