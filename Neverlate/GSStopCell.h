@@ -10,7 +10,9 @@
 
 @class GSStop;
 
-@interface GSStopCell : UITableViewCell
+@interface GSStopCell : UITableViewCell {
+    BOOL _initialized;
+}
 
 @property (nonatomic, weak) IBOutlet UILabel * headingArrow;
 @property (nonatomic, weak) IBOutlet UILabel * stopNameLabel;

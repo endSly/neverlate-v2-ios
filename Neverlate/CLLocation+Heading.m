@@ -13,7 +13,7 @@
 #define DEG_TO_RAD(deg) (M_PI * (deg) / 180.0)
 #define RAD_TO_DEG(rad) ((rad) * 180.0 / M_PI)
 
-- (CLLocationDirection)getHeadingtoLocation:(CLLocation *)toLoc
+- (CLLocationDirection)headingtoLocation:(CLLocation *)toLoc
 {
     float fLat = DEG_TO_RAD(self.coordinate.latitude);
     float fLng = DEG_TO_RAD(self.coordinate.longitude);

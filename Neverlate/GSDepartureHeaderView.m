@@ -16,7 +16,7 @@
 {
     self.backgroundColor = UIColor.clearColor;
     
-    self.headingArrow.font = [UIFont iconicFontOfSize:16];
+    self.headingArrow.font = [UIFont iconicFontOfSize:20];
     self.headingArrow.text = icon_navigate;
     
     self.headingArrow.transform = CGAffineTransformMakeRotation(-3.14159265 / 4);

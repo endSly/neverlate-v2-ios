@@ -10,11 +10,17 @@
 
 #import "GSLocationManager.h"
 
+#import "CLLocation+Heading.h"
+
 @implementation GSStop
 
 - (CLLocationDistance)distance
 {
     CLLocation *location = [GSLocationManager sharedManager].location;
+    
+    if (!location)
+        return 0;
+    
     return [location distanceFromLocation:self.loc.CLLocation];
 }
 
@@ -26,6 +32,12 @@
     }
     return [NSString stringWithFormat:@"%.0fm", distance];
     
+}
+
+- (CLLocationDirection)direction
+{
+    return [self.loc.CLLocation headingtoLocation:[GSLocationManager sharedManager].location]
+    - GSLocationManager.sharedManager.heading.trueHeading;
 }
 
 - (BOOL)isStop

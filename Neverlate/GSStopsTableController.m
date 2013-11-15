@@ -79,6 +79,9 @@
         
         [self loadNextDepartures:self.stops.firstObject];
         
+        [self.tableView reloadData];
+        
+        [self refreshHeaderView];
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:kGSHeadingUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {

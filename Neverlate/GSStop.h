@@ -29,8 +29,9 @@ NS_ENUM(NSUInteger, GSLocationType) {
 @property (nonatomic, readwrite) NSNumber   * latitude;
 @property (nonatomic, readwrite) NSNumber   * longitude;
 
-@property (nonatomic, readonly) CLLocationDistance distance;
-@property (nonatomic, readonly) NSString    * formattedDistance;
+@property (nonatomic, readonly) CLLocationDistance  distance;
+@property (nonatomic, readonly) NSString            * formattedDistance;
+@property (nonatomic, readonly) CLLocationDirection direction;
 
 @property (nonatomic, readonly, getter = isStop)        BOOL stop;
 @property (nonatomic, readonly, getter = isStation)     BOOL station;

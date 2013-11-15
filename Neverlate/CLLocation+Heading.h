@@ -10,6 +10,6 @@
 
 @interface CLLocation (Heading)
 
-- (CLLocationDirection)getHeadingtoLocation:(CLLocation *)toLoc;
+- (CLLocationDirection)headingtoLocation:(CLLocation *)toLoc;
 
 @end
