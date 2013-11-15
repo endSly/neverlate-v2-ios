@@ -35,10 +35,17 @@ NS_ENUM(NSUInteger, GSLocationType) {
 
 @property (nonatomic, strong) NSArray   * childStops;
 
-@property (nonatomic, readonly) GSStop              * nearestStop;
+@property (nonatomic, strong) NSArray   * entrances;
 
-@property (nonatomic, readonly, getter = isStop)        BOOL stop;
-@property (nonatomic, readonly, getter = isStation)     BOOL station;
-@property (nonatomic, readonly, getter = isEntrance)    BOOL entrance;
+/*! @return nearest stop of Entrance type location type */
+@property (nonatomic, readonly) GSStop  * nearestEntrance;
+/*! @return first ocurrence of Stop location type */
+@property (nonatomic, readonly) GSStop  * stop;
+/*! @return first ocurrence of Station location type */
+@property (nonatomic, readonly) GSStop  * station;
+
+@property (nonatomic, readonly, getter = isStop)        BOOL isStop;
+@property (nonatomic, readonly, getter = isStation)     BOOL isStation;
+@property (nonatomic, readonly, getter = isEntrance)    BOOL isEntrance;
 
 @end

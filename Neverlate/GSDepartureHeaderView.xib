@@ -39,7 +39,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Station Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V6B-aI-K5r">
-                    <rect key="frame" x="40" y="21" width="240" height="35"/>
+                    <rect key="frame" x="40" y="22" width="240" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,6 +73,13 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Entrance Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtd-wU-seW">
+                    <rect key="frame" x="71" y="55" width="179" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -81,6 +88,7 @@
                 <outlet property="departureTime1" destination="0c7-PR-oey" id="rSB-3g-SpP"/>
                 <outlet property="departureTime2" destination="hKQ-To-WD8" id="YP2-kB-ZZb"/>
                 <outlet property="distanceLabel" destination="XA5-m3-hQA" id="p4W-0P-7fm"/>
+                <outlet property="entranceNameLabel" destination="rtd-wU-seW" id="ckv-cQ-nxt"/>
                 <outlet property="headingArrow" destination="hli-AK-b4r" id="Omg-k6-pCr"/>
                 <outlet property="menuButton" destination="OoF-Ie-37v" id="e8Q-aB-QMY"/>
                 <outlet property="stopNameLabel" destination="V6B-aI-K5r" id="Hle-iu-RQO"/>

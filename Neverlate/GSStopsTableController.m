@@ -104,6 +104,11 @@
         // Get root stops
         self.stops = self.stopsTree[NSNull.null];
         
+        // Build stops tree
+        for (GSStop *stop in self.stops) {
+            stop.childStops = self.stopsTree[stop.stop_id];
+        }
+        
         if (GSLocationManager.sharedManager.location) {
             [self sortStopsByDistance];
         
@@ -118,7 +123,7 @@
 
 - (void)sortStopsByDistance
 {
-    self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"nearestStop.distance" ascending:YES]]];
+    self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"nearestEntrance.distance" ascending:YES]]];
 }
 
 - (void)sortStopsAlphabetically
@@ -133,12 +138,7 @@
     
     self.nextDeparturesStop = stop;
     
-    GSStop *logicStop = nil;
-    if (!stop.isStop) {
-        logicStop = [self.stopsTree[stop.stop_id] find:^BOOL(GSStop *stop) { return stop.isStop; }];
-    }
-    
-    logicStop = logicStop ?: stop;
+    GSStop *logicStop = stop.stop;
     
     [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
@@ -197,13 +197,12 @@
 
 - (void)refreshHeaderView
 {
-    
-    
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
     GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
     
     headerView.stopNameLabel.text = stop.stop_name;
+    headerView.entranceNameLabel.text = stop.nearestEntrance.stop_name;
     headerView.distanceLabel.text = stop.formattedDistance;
     headerView.tripHeadsign1.text = departure1.trip_headsign;
     headerView.tripHeadsign2.text = departure2.trip_headsign;

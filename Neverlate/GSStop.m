@@ -42,9 +42,30 @@
     - GSLocationManager.sharedManager.heading.trueHeading;
 }
 
-- (GSStop *)nearestStop
+- (GSStop *)nearestEntrance
 {
-    return self;
+    return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject ?: self;
+}
+
+- (NSArray *)entrances
+{
+    return [self.childStops filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"location_type = %u", GSLocationTypeEntrance]];
+}
+
+- (GSStop *)stop
+{
+    if (self.isStop) return self;
+    
+    GSStop *stop = [self.childStops find:^BOOL(GSStop *s) { return s.isStop; }];
+    return stop ?: self;
+}
+
+- (GSStop *)station
+{
+    if (self.isStation) return self;
+    
+    GSStop *station = [self.childStops find:^BOOL(GSStop *s) { return s.isStation; }];
+    return station ?: self;
 }
 
 - (BOOL)isStop
