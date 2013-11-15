@@ -41,9 +41,17 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Entrance Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBX-ak-Q6H">
+                                            <rect key="frame" x="20" y="29" width="212" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="entranceNameLabel" destination="GBX-ak-Q6H" id="tYl-lI-4bc"/>
                                     <outlet property="headingArrow" destination="kCW-ea-jHk" id="5Rg-b9-XSr"/>
                                     <outlet property="stopDistanceLabel" destination="9op-Zx-Wit" id="RwO-QV-IPh"/>
                                     <outlet property="stopNameLabel" destination="4WH-bj-A3s" id="vOz-fP-QZ8"/>

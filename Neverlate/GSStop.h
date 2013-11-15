@@ -39,9 +39,9 @@ NS_ENUM(NSUInteger, GSLocationType) {
 
 /*! @return nearest stop of Entrance type location type */
 @property (nonatomic, readonly) GSStop  * nearestEntrance;
-/*! @return first ocurrence of Stop location type */
+/*! @return first ocurrence of Stop location type or self */
 @property (nonatomic, readonly) GSStop  * stop;
-/*! @return first ocurrence of Station location type */
+/*! @return first ocurrence of Station location type or self */
 @property (nonatomic, readonly) GSStop  * station;
 
 @property (nonatomic, readonly, getter = isStop)        BOOL isStop;

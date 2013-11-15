@@ -40,9 +40,10 @@
 
 - (void)updateInfo
 {
-    self.stopDistanceLabel.text = self.stop.formattedDistance;
+    self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
     self.stopNameLabel.text = self.stop.stop_name;
-    self.headingArrow.transform = CGAffineTransformMakeRotation(self.stop.direction * M_PI / 180 + (3 * M_PI / 4));
+    self.entranceNameLabel.text = self.stop.nearestEntrance.stop_name;
+    self.headingArrow.transform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + (3 * M_PI / 4));
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

@@ -44,7 +44,7 @@
 
 - (GSStop *)nearestEntrance
 {
-    return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject ?: self;
+    return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject;
 }
 
 - (NSArray *)entrances

@@ -189,7 +189,6 @@
         self.navigationController.navigationBar.height = 44.0f;
         headerView.layer.opacity = 0;
     } completion:^(BOOL finished) {
-        
         headerView.hidden = YES;
     }];
     
