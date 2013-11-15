@@ -47,7 +47,7 @@
     if (!location)
         return nil;
     
-    return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject;
+    return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject ?: self;
 }
 
 - (NSArray *)entrances

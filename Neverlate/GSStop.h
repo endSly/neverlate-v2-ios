@@ -37,7 +37,7 @@ NS_ENUM(NSUInteger, GSLocationType) {
 
 @property (nonatomic, strong) NSArray   * entrances;
 
-/*! @return nearest stop of Entrance type location type */
+/*! @return nearest stop of Entrance type location type or self */
 @property (nonatomic, readonly) GSStop  * nearestEntrance;
 /*! @return first ocurrence of Stop location type or self */
 @property (nonatomic, readonly) GSStop  * stop;
