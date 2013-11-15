@@ -29,8 +29,11 @@
 - (void)refreshStops;
 - (void)sortStopsByDistance;
 - (void)sortStopsAlphabetically;
-- (void)loadNextDepartures:(GSStop *)stop;
+- (void)loadNextDepartures;
 - (void)refreshHeaderView;
+
+- (void)headingHasUpdated;
+- (void)locationHasUpdated;
 
 - (void)showDeparturesHeader;
 - (void)hideDeparturesHeader;
@@ -65,30 +68,21 @@
     
     // Build departure header view
     {
-        GSDepartureHeaderView *headerView = _headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
-                                                                                        owner:self
-                                                                                      options:nil].firstObject;
+        GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
+                                                                          owner:self
+                                                                        options:nil].firstObject;
         
         headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
-        
         headerView.hidden = YES;
-        
         [self.navigationController.navigationBar addSubview:headerView];
+        _headerView = headerView;
     }
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:kGSLocationUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {
-        [self sortStopsByDistance];
-        
-        [self loadNextDepartures:self.stops.firstObject];
-        
-        [self.tableView reloadData];
-        
-        [self refreshHeaderView];
-    }];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headingHasUpdated)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
     
-    [[NSNotificationCenter defaultCenter] addObserverForName:kGSHeadingUpdated object:GSLocationManager.sharedManager queue:nil usingBlock:^(NSNotification *note) {
-        [self refreshHeaderView];
-    }];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
+    [_timer fire];
     
     [self refreshStops];
 }
@@ -100,6 +94,26 @@
     } else {
         self.navigationController.navigationBar.height = 44.0f;
     }
+}
+
+- (void)headingHasUpdated
+{
+    [self refreshHeaderView];
+}
+
+- (void)locationHasUpdated
+{
+    [self sortStopsByDistance];
+    
+    if (self.nextDeparturesStop != self.stops.firstObject) {
+        self.nextDeparturesStop = self.stops.firstObject;
+        
+        [self loadNextDepartures];
+    }
+    
+    [self.tableView reloadData];
+    
+    [self refreshHeaderView];
 }
 
 - (void)refreshStops
@@ -119,9 +133,7 @@
         }
         
         if (GSLocationManager.sharedManager.location) {
-            [self sortStopsByDistance];
-        
-            [self loadNextDepartures:self.stops.firstObject];
+            [self locationHasUpdated];
         } else {
             [self sortStopsAlphabetically];
         }
@@ -142,31 +154,43 @@
 
 - (void)updateNextDepartures
 {
-    NSArray *departures = self.nextDepartures;
-    departures = [departures filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"departure_date > %@", [NSDate date]]];
-    departures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
-    self.nextDepartures = departures;
+    self.nextDepartures = [self.nextDepartures filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"departure_date > %@", [NSDate date]]];
+    if (self.nextDepartures && self.nextDepartures.count < 6) {
+        [self loadNextDepartures];
+    }
+    [self refreshHeaderView];
 }
 
-- (void)loadNextDepartures:(GSStop *)stop
+- (void)loadNextDepartures
 {
-    if (self.nextDeparturesStop == stop)
-        return;
-    
-    self.nextDeparturesStop = stop;
-    
-    GSStop *logicStop = stop.stop;
+    GSStop *logicStop = self.nextDeparturesStop.stop;
     
     [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
         [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
         
-        self.nextDepartures = departures;
+        self.nextDepartures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
         
         [self showDeparturesHeader];
         
         [self refreshHeaderView];
     }];
+}
+
+- (void)refreshHeaderView
+{
+    GSStop *stop = self.nextDeparturesStop;
+    GSDepartureHeaderView *headerView = _headerView;
+    GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
+    
+    headerView.stopNameLabel.text = stop.stop_name;
+    headerView.entranceNameLabel.text = stop.nearestEntrance.stop_name;
+    headerView.distanceLabel.text = stop.formattedDistance;
+    headerView.tripHeadsign1.text = departure1.trip_headsign;
+    headerView.tripHeadsign2.text = departure2.trip_headsign;
+    headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
+    headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
+    headerView.headingAngle = stop.direction * M_PI / 180.0;
 }
 
 - (void)showDeparturesHeader
@@ -209,24 +233,6 @@
         headerView.hidden = YES;
     }];
     
-}
-
-- (void)refreshHeaderView
-{
-    [self updateNextDepartures];
-    
-    GSStop *stop = self.nextDeparturesStop;
-    GSDepartureHeaderView *headerView = _headerView;
-    GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
-    
-    headerView.stopNameLabel.text = stop.stop_name;
-    headerView.entranceNameLabel.text = stop.nearestEntrance.stop_name;
-    headerView.distanceLabel.text = stop.formattedDistance;
-    headerView.tripHeadsign1.text = departure1.trip_headsign;
-    headerView.tripHeadsign2.text = departure2.trip_headsign;
-    headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
-    headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
-    headerView.headingAngle = stop.direction * M_PI / 180.0;
 }
 
 - (void)didReceiveMemoryWarning

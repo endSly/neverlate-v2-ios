@@ -14,12 +14,14 @@
 @interface GSStopsTableController : UITableViewController {
     GSDepartureHeaderView *_headerView;
     
+    NSTimer *_timer;
+    
     BOOL _isHeaderVisible;
 }
 
-@property (nonatomic, weak) GSStop  * nextDeparturesStop;
-@property (nonatomic, strong) NSArray       * nextDepartures;
+@property (nonatomic, weak) GSStop      * nextDeparturesStop;
+@property (nonatomic, strong) NSArray   * nextDepartures;
 
-@property (nonatomic, strong) NSArray       * stops;
+@property (nonatomic, strong) NSArray   * stops;
 
 @end
