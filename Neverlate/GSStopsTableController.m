@@ -93,20 +93,29 @@
     [self refreshStops];
 }
 
+- (void)viewWillLayoutSubviews
+{
+    if (_isHeaderVisible) {
+        self.navigationController.navigationBar.height = 172.0f;
+    } else {
+        self.navigationController.navigationBar.height = 44.0f;
+    }
+}
+
 - (void)refreshStops
 {
     [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
     [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
         [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
         
-        self.stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
+        NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
         
         // Get root stops
-        self.stops = self.stopsTree[NSNull.null];
+        self.stops = stopsTree[NSNull.null];
         
         // Build stops tree
         for (GSStop *stop in self.stops) {
-            stop.childStops = self.stopsTree[stop.stop_id];
+            stop.childStops = stopsTree[stop.stop_id];
         }
         
         if (GSLocationManager.sharedManager.location) {
@@ -154,9 +163,9 @@
 
 - (void)showDeparturesHeader
 {
-    if (!_hideFirstStop) {
+    if (!_isHeaderVisible) {
         [self.tableView beginUpdates];
-        _hideFirstStop = YES;
+        _isHeaderVisible = YES;
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
                               withRowAnimation:UITableViewRowAnimationBottom];
         [self.tableView endUpdates];
@@ -225,7 +234,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _hideFirstStop ? self.stops.count - 1 : self.stops.count;
+    return _isHeaderVisible ? self.stops.count - 1 : self.stops.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -233,7 +242,7 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSStop *stop = self.stops[_hideFirstStop ? indexPath.row + 1 : indexPath.row];
+    GSStop *stop = self.stops[_isHeaderVisible ? indexPath.row + 1 : indexPath.row];
     
     cell.stop = stop;
     

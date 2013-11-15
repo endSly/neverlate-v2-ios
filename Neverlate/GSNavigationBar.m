@@ -15,6 +15,8 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
+    
     if(!_underlayView) {
 		const CGFloat statusBarHeight = 20;
 		const CGSize selfSize = self.frame.size;
@@ -30,7 +32,7 @@
     
     [self insertSubview:_underlayView atIndex:1];
     
-    [super layoutSubviews];
+
 }
 
 - (void)showIndeterminateProgressIndicator
