@@ -15,6 +15,8 @@
 #import "GSStop.h"
 #import "GSDeparture.h"
 
+#import "GSIndeterminatedProgressView.h"
+#import "GSNavigationBar.h"
 #import "GSStopCell.h"
 #import "GSDepartureHeaderView.h"
 
@@ -93,7 +95,10 @@
 
 - (void)refreshStops
 {
+    [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
     [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
+        [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
+        
         self.stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
         
         // Get root stops
@@ -113,7 +118,7 @@
 
 - (void)sortStopsByDistance
 {
-    self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"distance" ascending:YES]]];
+    self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"nearestStop.distance" ascending:YES]]];
 }
 
 - (void)sortStopsAlphabetically
@@ -135,7 +140,9 @@
     
     logicStop = logicStop ?: stop;
     
+    [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
+        [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
         
         self.nextDepartures = departures;
         
@@ -190,6 +197,8 @@
 
 - (void)refreshHeaderView
 {
+    
+    
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
     GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
@@ -200,7 +209,7 @@
     headerView.tripHeadsign2.text = departure2.trip_headsign;
     headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
     headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
-    headerView.headingAngle = GSLocationManager.sharedManager.heading.trueHeading * M_PI / 180.0;
+    headerView.headingAngle = stop.direction * M_PI / 180.0;
 }
 
 - (void)didReceiveMemoryWarning

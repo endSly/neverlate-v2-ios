@@ -19,6 +19,7 @@
 - (void)layoutSubviews
 {
     if (!_initialized) {
+        _initialized = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
         

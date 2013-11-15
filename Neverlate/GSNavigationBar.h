@@ -8,8 +8,15 @@
 
 @import UIKit;
 
+@class GSIndeterminatedProgressView;
+
 @interface GSNavigationBar : UINavigationBar {
     UIView *_underlayView;
 }
+
+@property (nonatomic, weak) GSIndeterminatedProgressView *indeterminateProgressView;
+
+- (void)showIndeterminateProgressIndicator;
+- (void)hideIndeterminateProgressIndicator;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "GSStop.h"
 
+#import <TenzingCore/TenzingCore.h>
+
 #import "GSLocationManager.h"
 
 #import "CLLocation+Heading.h"
@@ -38,6 +40,11 @@
 {
     return [self.loc.CLLocation headingtoLocation:[GSLocationManager sharedManager].location]
     - GSLocationManager.sharedManager.heading.trueHeading;
+}
+
+- (GSStop *)nearestStop
+{
+    return self;
 }
 
 - (BOOL)isStop

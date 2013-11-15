@@ -8,14 +8,14 @@
 
 #import "GSNavigationBar.h"
 
+#import "FrameAccessor.h"
+#import "GSIndeterminatedProgressView.h"
+
 @implementation GSNavigationBar
 
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
-    
-    if(!_underlayView)
-	{
+    if(!_underlayView) {
 		const CGFloat statusBarHeight = 20;
 		const CGSize selfSize = self.frame.size;
         
@@ -29,6 +29,22 @@
     }
     
     [self insertSubview:_underlayView atIndex:1];
+    
+    [super layoutSubviews];
+}
+
+- (void)showIndeterminateProgressIndicator
+{
+    GSIndeterminatedProgressView *progressView = [[GSIndeterminatedProgressView alloc] initWithFrame:CGRectMake(0, self.height -2, self.width, 2)];
+    progressView.progressTintColor = self.barTintColor;
+    progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    [self addSubview:progressView];
+    self.indeterminateProgressView = progressView;
+}
+
+- (void)hideIndeterminateProgressIndicator
+{
+    [self.indeterminateProgressView removeFromSuperview];
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor

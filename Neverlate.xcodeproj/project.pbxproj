@@ -55,6 +55,7 @@
 		0D35D32B1834EEDE0061CD8B /* libnanostore2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D3241834EEC00061CD8B /* libnanostore2.a */; };
 		0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */; };
 		0DFF187E18361B8500B08CA9 /* CLLocation+Heading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */; };
+		0DFF188B183639CD00B08CA9 /* GSIndeterminatedProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -213,6 +214,8 @@
 		0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0DFF187C18361B8500B08CA9 /* CLLocation+Heading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Heading.h"; sourceTree = "<group>"; };
 		0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Heading.m"; sourceTree = "<group>"; };
+		0DFF1889183639CC00B08CA9 /* GSIndeterminatedProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSIndeterminatedProgressView.h; sourceTree = "<group>"; };
+		0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSIndeterminatedProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +397,8 @@
 			isa = PBXGroup;
 			children = (
 				0D07DC1518337E9700CCE04B /* Main.storyboard */,
+				0DFF1889183639CC00B08CA9 /* GSIndeterminatedProgressView.h */,
+				0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */,
 				0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */,
 				0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */,
 				0D35D2F91833A8580061CD8B /* GSStopCell.h */,
@@ -614,6 +619,7 @@
 				0D07DC1018337E9700CCE04B /* main.m in Sources */,
 				0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */,
 				0D07DC6B1833895F00CCE04B /* ISO8601DateFormatter.m in Sources */,
+				0DFF188B183639CD00B08CA9 /* GSIndeterminatedProgressView.m in Sources */,
 				0D07DC56183383D100CCE04B /* GSAgency.m in Sources */,
 				0D35D30F1833D6F00061CD8B /* ViewFrameAccessor.m in Sources */,
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,

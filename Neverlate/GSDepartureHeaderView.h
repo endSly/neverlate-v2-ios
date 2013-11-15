@@ -8,7 +8,9 @@
 
 @import UIKit;
 
-@interface GSDepartureHeaderView : UIView
+@interface GSDepartureHeaderView : UIView {
+    BOOL _initialized;
+}
 
 @property (nonatomic, weak) IBOutlet UILabel    * headingArrow;
 
