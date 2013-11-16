@@ -39,7 +39,7 @@
 		0D07DC7C1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
 		0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */; };
 		0D25ADA118353C910036D18D /* GSNanoStoreServiceCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */; };
-		0D29F20E1838069C004EA2B8 /* GSAgenciesTebleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D29F20D1838069C004EA2B8 /* GSAgenciesTebleController.m */; };
+		0D29F20E1838069C004EA2B8 /* GSAgenciesTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */; };
 		0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295901833B80D00BE6D8C /* ionicons.ttf */; };
 		0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */; };
 		0D32959A1834359A00BE6D8C /* GSDepartureHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */; };
@@ -154,8 +154,8 @@
 		0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsTableController.m; sourceTree = "<group>"; };
 		0D25AD9F18353C910036D18D /* GSNanoStoreServiceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNanoStoreServiceCache.h; sourceTree = "<group>"; };
 		0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNanoStoreServiceCache.m; sourceTree = "<group>"; };
-		0D29F20C1838069C004EA2B8 /* GSAgenciesTebleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAgenciesTebleController.h; sourceTree = "<group>"; };
-		0D29F20D1838069C004EA2B8 /* GSAgenciesTebleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAgenciesTebleController.m; sourceTree = "<group>"; };
+		0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAgenciesTableController.h; sourceTree = "<group>"; };
+		0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAgenciesTableController.m; sourceTree = "<group>"; };
 		0D3295901833B80D00BE6D8C /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 		0D3295941833B8E300BE6D8C /* UIFont+IonIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+IonIcons.h"; sourceTree = "<group>"; };
 		0D3295951833B8E300BE6D8C /* UIFont+IonIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+IonIcons.m"; sourceTree = "<group>"; };
@@ -352,8 +352,8 @@
 			children = (
 				0D35D3161834CD340061CD8B /* GSNavigationController.h */,
 				0D35D3171834CD340061CD8B /* GSNavigationController.m */,
-				0D29F20C1838069C004EA2B8 /* GSAgenciesTebleController.h */,
-				0D29F20D1838069C004EA2B8 /* GSAgenciesTebleController.m */,
+				0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */,
+				0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
 				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,
@@ -608,7 +608,7 @@
 				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
 				0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */,
 				0DFF189718367CEA00B08CA9 /* GSMapViewController.m in Sources */,
-				0D29F20E1838069C004EA2B8 /* GSAgenciesTebleController.m in Sources */,
+				0D29F20E1838069C004EA2B8 /* GSAgenciesTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

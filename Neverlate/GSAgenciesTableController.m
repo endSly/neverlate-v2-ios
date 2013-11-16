@@ -8,7 +8,7 @@
 
 #import "GSAgenciesTebleController.h"
 
-@interface GSAgenciesTebleController ()
+@interface GSAgenciesTableController ()
 
 @end
 

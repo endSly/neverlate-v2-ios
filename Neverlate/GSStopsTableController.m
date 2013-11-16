@@ -15,6 +15,8 @@
 #import "GSStop.h"
 #import "GSDeparture.h"
 
+#import <ECSlidingViewController/UIViewController+ECSlidingViewController.h>
+
 #import "GSIndeterminatedProgressView.h"
 #import "GSNavigationBar.h"
 #import "GSStopCell.h"
@@ -98,6 +100,7 @@
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
     [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
     menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+    [menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     
     UIButton *mapButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
@@ -114,6 +117,11 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
     });
+}
+
+- (void)showAgenciesMenuAction:(id)sender
+{
+    [self.slidingViewController anchorTopViewToLeftAnimated:YES];
 }
 
 - (void)setNextDeparturesStop:(GSStop *)nextDeparturesStop

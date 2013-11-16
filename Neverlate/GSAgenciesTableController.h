@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GSAgenciesTebleController : UITableViewController
+@interface GSAgenciesTableController : UITableViewController
 
 @end
