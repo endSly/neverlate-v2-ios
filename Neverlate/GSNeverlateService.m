@@ -16,7 +16,7 @@
 #import "GSStop.h"
 #import "GSDeparture.h"
 
-#define BASE_URL    @"https://neverlate-service.herokuapp.com"
+#define BASE_URL    @"https://neverlate-es-bizkaia.herokuapp.com"
 #define AUTH_TOKEN  @"13D062745383DF798B486CB73F7FE539DC165D3B931645473A0D0A823F2F1009"
 
 @implementation GSNeverlateService
