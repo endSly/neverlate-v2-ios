@@ -8,25 +8,26 @@
 
 #import "GSMapViewController.h"
 
-@interface GSMapViewController ()
+#import "GSNeverlateService.h"
 
-@end
+#import "GSStop.h"
 
 @implementation GSMapViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    [self loadStops];
+}
+
+- (void)loadStops
+{
+    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
+        NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
+        
+        [self.mapView addAnnotations:stopsTree[NSNull.null]];
+    }];
 }
 
 - (void)didReceiveMemoryWarning

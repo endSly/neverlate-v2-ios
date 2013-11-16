@@ -86,4 +86,16 @@
     return self.location_type.intValue == GSLocationTypeEntrance;
 }
 
+#pragma mark - MapKit Annotation
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return self.loc.CLLocation.coordinate;
+}
+
+- (NSString *)title
+{
+    return self.stop_name;
+}
+
 @end

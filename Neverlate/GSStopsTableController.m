@@ -50,6 +50,8 @@
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
 
+    [self buildNavigationItem];
+    
     // Build departure header view
     {
         GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
@@ -63,8 +65,6 @@
         
         _headerView = headerView;
     }
-    
-    [self buildNavigationItem];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headingHasUpdated)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
@@ -86,7 +86,7 @@
 
 - (void)buildNavigationItem
 {
-    self.title = @"Metro Bilbao";
+    self.navigationItem.title = @"Metro Bilbao";
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
     [menuButton setTitle:icon_navicon forState:UIControlStateNormal];

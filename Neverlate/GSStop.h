@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import MapKit;
 
 #import "GSCoordinates.h"
 
@@ -16,7 +17,7 @@ NS_ENUM(NSUInteger, GSLocationType) {
     GSLocationTypeEntrance = 2,
 };
 
-@interface GSStop : NSObject
+@interface GSStop : NSObject <MKAnnotation>
 
 @property (nonatomic, strong) NSString  * agency_key;
 @property (nonatomic, strong) NSString  * stop_id;
