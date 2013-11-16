@@ -1,10 +1,13 @@
 PODS:
   - ECSlidingViewController (2.0.0-beta1)
+  - NanoStore (2.7.7)
 
 DEPENDENCIES:
   - ECSlidingViewController (~> 2.0.0-beta)
+  - NanoStore (~> 2.7.7)
 
 SPEC CHECKSUMS:
   ECSlidingViewController: 48b0087403b291128737a8a8e0d8117a709b87b7
+  NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
 
 COCOAPODS: 0.27.1
