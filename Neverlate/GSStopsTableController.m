@@ -32,15 +32,16 @@
 - (void)loadNextDepartures;
 - (void)refreshHeaderView;
 
-- (void)headingHasUpdated;
 - (void)locationHasUpdated;
 
-- (void)showDeparturesHeader;
-- (void)hideDeparturesHeader;
+- (void)showDeparturesHeader:(BOOL)animated;
+- (void)hideDeparturesHeader:(BOOL)animated;
 
 @end
 
 @implementation GSStopsTableController
+
+#pragma  mark - View controller lifecycle
 
 - (void)viewDidLoad
 {
@@ -67,22 +68,28 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headingHasUpdated)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
-    [_timer fire];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
     
     [self refreshStops];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
+    [_timer fire];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_timer invalidate];
+}
+
 - (void)viewWillLayoutSubviews
 {
-    if (_isHeaderVisible) {
-        self.navigationController.navigationBar.height = 172.0f;
-    } else {
-        self.navigationController.navigationBar.height = 44.0f;
-    }
+    self.navigationController.navigationBar.height = _isHeaderVisible ? 172.0f : 44.0f;
 }
+
+#pragma mark - Helpers
 
 - (void)buildNavigationItem
 {
@@ -103,25 +110,28 @@
 
 - (void)showMapAction:(id)sender
 {
-    [self hideDeparturesHeader];
-    [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
+    [self hideDeparturesHeader:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
+    });
 }
 
-- (void)headingHasUpdated
+- (void)setNextDeparturesStop:(GSStop *)nextDeparturesStop
 {
-    [self refreshHeaderView];
+    if (self.nextDeparturesStop == nextDeparturesStop)
+        return;
+    
+    _nextDeparturesStop = nextDeparturesStop;
+    
+    [self hideDeparturesHeader:YES];
+    [self loadNextDepartures];
 }
 
 - (void)locationHasUpdated
 {
     [self sortStopsByDistance];
-    
-    if (self.nextDeparturesStop != self.stops.firstObject) {
-        self.nextDeparturesStop = self.stops.firstObject;
-        
-        [self loadNextDepartures];
-    }
-    
+    self.nextDeparturesStop = self.stops.firstObject;
+
     [self.tableView reloadData];
     
     [self refreshHeaderView];
@@ -166,6 +176,12 @@
 - (void)updateNextDepartures
 {
     self.nextDepartures = [self.nextDepartures filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"departure_date > %@", [NSDate date]]];
+    if (self.nextDepartures.count < 2) {
+        [self hideDeparturesHeader:YES];
+    } else {
+        [self showDeparturesHeader:YES];
+    }
+    
     if (self.nextDepartures && self.nextDepartures.count < 6) {
         [self loadNextDepartures];
     }
@@ -174,6 +190,8 @@
 
 - (void)loadNextDepartures
 {
+    self.nextDepartures = nil;
+    
     GSStop *logicStop = self.nextDeparturesStop.stop;
     
     [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
@@ -182,7 +200,7 @@
         
         self.nextDepartures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
         
-        [self showDeparturesHeader];
+        [self showDeparturesHeader:YES];
         
         [self refreshHeaderView];
     }];
@@ -216,7 +234,9 @@
     headerView.headingAngle = stop.direction * M_PI / 180.0;
 }
 
-- (void)showDeparturesHeader
+#pragma mark - Departures Header Control
+
+- (void)showDeparturesHeader:(BOOL)animated
 {
     if (_isHeaderVisible)
         return;
@@ -233,41 +253,55 @@
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.rightBarButtonItem = nil;
     
-    headerView.layer.opacity = 0;
-    
     headerView.hidden = NO;
     
-    [UIView animateWithDuration:0.35f animations:^{
+    if (animated) {
+        headerView.layer.opacity = 0;
+        
+        [UIView animateWithDuration:0.25f animations:^{
+            self.navigationController.navigationBar.height = 172.0f;
+            self.tableView.contentOffsetY -= 128.0f;
+            headerView.layer.opacity = 1;
+        } completion:^(BOOL finished) {
+            self.tableView.contentOffsetY += 128.0f;
+        }];
+    } else {
         self.navigationController.navigationBar.height = 172.0f;
-        self.tableView.contentOffsetY -= 128.0f;
-        headerView.layer.opacity = 1;
-    } completion:^(BOOL finished) {
-        self.tableView.contentOffsetY += 128.0f;
-    }];
+    }
 }
 
-- (void)hideDeparturesHeader
+- (void)hideDeparturesHeader:(BOOL)animated
 {
     if (!_isHeaderVisible)
         return;
     
+    [self.tableView beginUpdates];
+    _isHeaderVisible = NO;
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView endUpdates];
+    
+    
+    
     GSDepartureHeaderView *headerView = _headerView;
     
-    //[UIView animateWithDuration:0.35f animations:^{
+    if (animated) {
+        [UIView animateWithDuration:0.25f animations:^{
+            self.navigationController.navigationBar.height = 44.0f;
+            headerView.layer.opacity = 0;
+        } completion:^(BOOL finished) {
+            if (finished) {
+                headerView.hidden = YES;
+                [self buildNavigationItem];
+            }
+        }];
+    } else {
         self.navigationController.navigationBar.height = 44.0f;
-        headerView.layer.opacity = 0;
-    //} completion:^(BOOL finished) {
         headerView.hidden = YES;
-        _isHeaderVisible = NO;
         [self buildNavigationItem];
-    //}];
-    
-}
+    }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - Table view data source
