@@ -12,7 +12,7 @@
 
 @end
 
-@implementation GSAgenciesTebleController
+@implementation GSAgenciesTableController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
