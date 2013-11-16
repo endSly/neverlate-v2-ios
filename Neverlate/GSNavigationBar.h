@@ -12,6 +12,8 @@
 
 @interface GSNavigationBar : UINavigationBar {
     UIView *_underlayView;
+    
+    BOOL _initialized;
 }
 
 @property (nonatomic, weak) GSIndeterminatedProgressView *indeterminateProgressView;

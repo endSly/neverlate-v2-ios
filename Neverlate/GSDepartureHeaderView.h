@@ -23,6 +23,7 @@
 @property (nonatomic, weak) IBOutlet UILabel    * departureTime2;
 
 @property (nonatomic, weak) IBOutlet UIButton   * menuButton;
+@property (nonatomic, weak) IBOutlet UIButton   * showMapButton;
 
 @property (nonatomic) CGFloat headingAngle; // In Radians
 

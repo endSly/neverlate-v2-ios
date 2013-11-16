@@ -31,7 +31,7 @@
     [super layoutSubviews];
 }
 
-- (void)setHeadingAngle:(float)headingAngle
+- (void)setHeadingAngle:(CGFloat)headingAngle
 {
     _headingAngle = headingAngle;
     self.headingArrow.transform = CGAffineTransformMakeRotation(headingAngle + (3 * M_PI / 4));

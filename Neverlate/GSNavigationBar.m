@@ -15,6 +15,15 @@
 
 - (void)layoutSubviews
 {
+    if (!_initialized) {
+        GSIndeterminatedProgressView *progressView = [[GSIndeterminatedProgressView alloc] initWithFrame:CGRectMake(0, self.height -2, self.width, 2)];
+        progressView.progressTintColor = self.barTintColor;
+        progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+        progressView.hidden = YES;
+        [self addSubview:progressView];
+        self.indeterminateProgressView = progressView;
+    }
+    
     [super layoutSubviews];
     
     if(!_underlayView) {
@@ -35,17 +44,12 @@
 
 - (void)showIndeterminateProgressIndicator
 {
-    GSIndeterminatedProgressView *progressView = [[GSIndeterminatedProgressView alloc] initWithFrame:CGRectMake(0, self.height -2, self.width, 2)];
-    progressView.progressTintColor = self.barTintColor;
-    progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-    [self addSubview:progressView];
-    self.indeterminateProgressView = progressView;
+    self.indeterminateProgressView.hidden = NO;
 }
 
 - (void)hideIndeterminateProgressIndicator
 {
-    [self.indeterminateProgressView removeFromSuperview];
-    self.indeterminateProgressView = nil;
+    self.indeterminateProgressView.hidden = YES;
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor
