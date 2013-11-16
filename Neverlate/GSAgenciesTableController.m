@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import "GSAgenciesTebleController.h"
+#import "GSAgenciesTableController.h"
 
 @interface GSAgenciesTableController ()
 
