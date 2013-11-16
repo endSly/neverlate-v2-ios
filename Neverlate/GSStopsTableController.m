@@ -49,24 +49,7 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0xFF / 255.0f green:0x32 / 255.0f blue:0x04 / 255.0f alpha:0.5];
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
-    
-    // Build menu options in navBar
-    {
-        self.title = @"Metro Bilbao";
-        
-        UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-        [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
-        menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-        
-        UIButton *mapButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-        [mapButton setTitle:icon_ios7_navigate_outline forState:UIControlStateNormal];
-        [mapButton setTitle:icon_ios7_navigate forState:UIControlStateSelected];
-        mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
-        [mapButton addTarget:self action:@selector(showMap) forControlEvents:UIControlEventTouchUpInside];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
-    }
-    
+
     // Build departure header view
     {
         GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
@@ -76,8 +59,12 @@
         headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
         headerView.hidden = YES;
         [self.navigationController.navigationBar addSubview:headerView];
+        [headerView.showMapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
+        
         _headerView = headerView;
     }
+    
+    [self buildNavigationItem];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(headingHasUpdated)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
@@ -97,8 +84,26 @@
     }
 }
 
-- (void)showMap
+- (void)buildNavigationItem
 {
+    self.title = @"Metro Bilbao";
+    
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+    [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
+    menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    
+    UIButton *mapButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+    [mapButton setTitle:icon_ios7_navigate_outline forState:UIControlStateNormal];
+    [mapButton setTitle:icon_ios7_navigate forState:UIControlStateSelected];
+    mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+    [mapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
+}
+
+- (void)showMapAction:(id)sender
+{
+    [self hideDeparturesHeader];
     [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
 }
 
@@ -194,20 +199,33 @@
     headerView.distanceLabel.text = stop.formattedDistance;
     headerView.tripHeadsign1.text = departure1.trip_headsign;
     headerView.tripHeadsign2.text = departure2.trip_headsign;
-    headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", [departure1.departure_date timeIntervalSinceNow] / 60.0f];
-    headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", [departure2.departure_date timeIntervalSinceNow] / 60.0f];
+    NSTimeInterval departure1Interval = [departure1.departure_date timeIntervalSinceNow] / 60.0f;
+    if (departure1Interval > 120.0f) {
+        headerView.departureTime1.text = @"+120m";
+    } else {
+        headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", departure1Interval];
+    }
+    
+    NSTimeInterval departure2Interval = [departure2.departure_date timeIntervalSinceNow] / 60.0f;
+    if (departure2Interval > 120.0f) {
+        headerView.departureTime2.text = @"+120m";
+    } else {
+        headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", departure2Interval];
+    }
+    
     headerView.headingAngle = stop.direction * M_PI / 180.0;
 }
 
 - (void)showDeparturesHeader
 {
-    if (!_isHeaderVisible) {
-        [self.tableView beginUpdates];
-        _isHeaderVisible = YES;
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                              withRowAnimation:UITableViewRowAnimationBottom];
-        [self.tableView endUpdates];
-    }
+    if (_isHeaderVisible)
+        return;
+    
+    [self.tableView beginUpdates];
+    _isHeaderVisible = YES;
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView endUpdates];
     
     GSDepartureHeaderView *headerView = _headerView;
     
@@ -230,14 +248,19 @@
 
 - (void)hideDeparturesHeader
 {
+    if (!_isHeaderVisible)
+        return;
+    
     GSDepartureHeaderView *headerView = _headerView;
     
-    [UIView animateWithDuration:0.35f animations:^{
+    //[UIView animateWithDuration:0.35f animations:^{
         self.navigationController.navigationBar.height = 44.0f;
         headerView.layer.opacity = 0;
-    } completion:^(BOOL finished) {
+    //} completion:^(BOOL finished) {
         headerView.hidden = YES;
-    }];
+        _isHeaderVisible = NO;
+        [self buildNavigationItem];
+    //}];
     
 }
 
