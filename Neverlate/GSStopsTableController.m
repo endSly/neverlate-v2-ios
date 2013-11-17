@@ -51,12 +51,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.view.layer.shadowColor = UIColor.blackColor.CGColor;
-    self.view.layer.shadowOpacity = 1;
-    self.view.layer.shadowRadius = 6.0f;
-    self.view.layer.shadowOffset = CGSizeZero;
-    self.view.clipsToBounds = NO;
     
     self.tableView.contentOffsetY = 44.0f;
     
