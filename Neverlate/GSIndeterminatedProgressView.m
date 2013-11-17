@@ -26,6 +26,8 @@ const CGFloat CHUNK_WIDTH = 36.0f;
             [self addSubview:v];
         }
         
+        self.clipsToBounds = YES;
+        
         self.trackTintColor = UIColor.whiteColor;
         self.progressTintColor = UIColor.blueColor;
     }

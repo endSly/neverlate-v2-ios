@@ -34,6 +34,9 @@
 - (void)loadNextDepartures;
 - (void)refreshHeaderView;
 
+- (void)showAgenciesMenuAction:(id)sender;
+- (void)showMapAction:(id)sender;
+
 - (void)locationHasUpdated;
 
 - (void)showDeparturesHeader:(BOOL)animated;
@@ -49,6 +52,12 @@
 {
     [super viewDidLoad];
 
+    self.view.layer.shadowColor = UIColor.blackColor.CGColor;
+    self.view.layer.shadowOpacity = 1;
+    self.view.layer.shadowRadius = 6.0f;
+    self.view.layer.shadowOffset = CGSizeZero;
+    self.view.clipsToBounds = NO;
+    
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0xFF / 255.0f green:0x32 / 255.0f blue:0x04 / 255.0f alpha:0.5];
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
@@ -63,8 +72,10 @@
         
         headerView.frame = CGRectMake(0, -20, self.view.width, 192.0f);
         headerView.hidden = YES;
-        [self.navigationController.navigationBar addSubview:headerView];
         [headerView.showMapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
+        [headerView.menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.navigationController.navigationBar addSubview:headerView];
         
         _headerView = headerView;
     }
@@ -98,15 +109,15 @@
     self.navigationItem.title = @"Metro Bilbao";
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-    [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
     menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
+    [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     
     UIButton *mapButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+    mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
     [mapButton setTitle:icon_ios7_navigate_outline forState:UIControlStateNormal];
     [mapButton setTitle:icon_ios7_navigate forState:UIControlStateSelected];
-    mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
     [mapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
 }
@@ -121,7 +132,7 @@
 
 - (void)showAgenciesMenuAction:(id)sender
 {
-    [self.slidingViewController anchorTopViewToLeftAnimated:YES];
+    [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
 - (void)setNextDeparturesStop:(GSStop *)nextDeparturesStop

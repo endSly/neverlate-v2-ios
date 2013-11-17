@@ -10,4 +10,6 @@
 
 @interface GSAgenciesTableController : UITableViewController
 
+@property (nonatomic, strong) NSArray *agencies;
+
 @end
