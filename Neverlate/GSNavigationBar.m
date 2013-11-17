@@ -22,6 +22,9 @@
         progressView.hidden = YES;
         [self addSubview:progressView];
         self.indeterminateProgressView = progressView;
+        
+        self.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:20],
+                                     NSForegroundColorAttributeName: UIColor.whiteColor};
     }
     
     [super layoutSubviews];

@@ -8,6 +8,7 @@
 
 @import UIKit;
 
+@class GSAgency;
 @class GSStop;
 @class GSDepartureHeaderView;
 
@@ -18,6 +19,8 @@
     
     BOOL _isHeaderVisible;
 }
+
+@property (nonatomic, strong) GSAgency  * agency;
 
 @property (nonatomic, weak) GSStop      * nextDeparturesStop;
 @property (nonatomic, strong) NSArray   * nextDepartures;

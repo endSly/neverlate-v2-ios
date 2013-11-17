@@ -58,6 +58,12 @@
     self.view.layer.shadowOffset = CGSizeZero;
     self.view.clipsToBounds = NO;
     
+    self.tableView.contentOffsetY = 44.0f;
+    
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+    
+    //[self.view addGestureRecognizer:self.slidingViewController.panGesture];
+    
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0xFF / 255.0f green:0x32 / 255.0f blue:0x04 / 255.0f alpha:0.5];
     self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};

@@ -13,6 +13,8 @@
 #import "GSNeverlateService.h"
 #import "GSAgency.h"
 
+#import "GSStopsTableController.h"
+
 @interface GSAgenciesTableController ()
 
 @end
@@ -23,7 +25,7 @@
 {
     [super viewDidLoad];
 
-    self.tableView.backgroundColor = [UIColor colorWithRed:85 / 255.0f green:87 / 255.0f blue:89 / 255.0f alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:85 / 255.0f green:87 / 255.0f blue:89 / 255.0f alpha:1];
     
     [[GSNeverlateService sharedService] getAgencies:nil callback:^(NSArray *agencies, NSURLResponse *resp, NSError *error) {
         self.agencies = agencies = agencies;
@@ -67,8 +69,13 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UITableViewCell *cell = (UITableViewCell*) sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    GSAgency *agency = self.agencies[indexPath.row];
+    
+    GSStopsTableController * stopsTableController = ((UINavigationController *) segue.destinationViewController).viewControllers.firstObject;
+    
+    stopsTableController.agency = agency;
 }
 
 @end

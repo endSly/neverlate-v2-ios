@@ -12,9 +12,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="mGY-1P-yds">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="lNF-hD-E0M" id="iB4-fw-Fka"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GSStopCell" rowHeight="60" id="Tam-hl-Yzs" customClass="GSStopCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="60"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tam-hl-Yzs" id="Zel-bO-ag0">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
@@ -61,10 +69,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="W6a-hQ-o33"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="eu1-tE-vge" id="2d0-Ko-f3e"/>
                         <segue destination="gNX-0m-zMX" kind="push" identifier="GSShowMapSegue" id="fRa-Md-DHe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3e-lv-ceZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="eu1-tE-vge">
+                    <connections>
+                        <outlet property="delegate" destination="lNF-hD-E0M" id="XD9-oa-QvK"/>
+                        <outlet property="searchBar" destination="mGY-1P-yds" id="CgP-RA-1j9"/>
+                        <outlet property="searchContentsController" destination="lNF-hD-E0M" id="N72-DY-wi5"/>
+                        <outlet property="searchResultsDataSource" destination="lNF-hD-E0M" id="k3B-An-7qu"/>
+                        <outlet property="searchResultsDelegate" destination="lNF-hD-E0M" id="SUt-uQ-kQO"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="422" y="-171"/>
         </scene>
@@ -127,14 +145,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexTrackingBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="0.33333333333333331" green="0.3411764705882353" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="GSAgencyCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GSAgencyCell" id="Yqx-2k-F0I">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="GSAgencyCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GSAgencyCell" textLabel="ZXG-tL-q9E" style="IBUITableViewCellStyleDefault" id="Yqx-2k-F0I">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yqx-2k-F0I" id="1l2-47-spH">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZXG-tL-q9E">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -154,7 +181,7 @@
             <objects>
                 <navigationController storyboardIdentifier="GSAgenciesNavigationController" definesPresentationContext="YES" id="KLu-2n-6lI" customClass="GSNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ddp-5W-w8V">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ddp-5W-w8V" customClass="GSNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.1803921568627451" green="0.19215686274509802" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
