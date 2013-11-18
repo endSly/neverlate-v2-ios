@@ -29,7 +29,7 @@
 
 @interface GSStopsTableController (PrivateMethods)
 
-- (void)refreshStops;
+- (void)loadStops;
 - (void)sortStopsByDistance;
 - (void)sortStopsAlphabetically;
 - (void)loadNextDepartures;
@@ -99,11 +99,9 @@
     
     _agency = agency;
     
-    NSLog(@"%@", self.navigationController.navigationBar);
-    
     self.navigationController.navigationBar.barTintColor = [agency.agency_color colorWithAlphaComponent:0.5f];
     
-    [self refreshStops];
+    [self loadStops];
 }
 
 #pragma mark - Helpers
@@ -160,7 +158,7 @@
     [self refreshHeaderView];
 }
 
-- (void)refreshStops
+- (void)loadStops
 {
     self.stops = nil;
     [self.tableView reloadData];
