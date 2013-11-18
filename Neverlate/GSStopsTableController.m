@@ -12,6 +12,7 @@
 
 #import "GSLocationManager.h"
 
+#import "GSAgency.h"
 #import "GSStop.h"
 #import "GSDeparture.h"
 
@@ -55,14 +56,15 @@
     self.tableView.contentOffsetY = 44.0f;
     
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-    
-    //[self.view addGestureRecognizer:self.slidingViewController.panGesture];
-    
+
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0xFF / 255.0f green:0x32 / 255.0f blue:0x04 / 255.0f alpha:0.5];
-    self.navigationController.navigationBar.tintColor = UIColor.whiteColor;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: UIColor.whiteColor};
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     [self buildNavigationItem];
+    
+    if (!self.agency) {
+        [self.slidingViewController anchorTopViewToRightAnimated:NO];
+    }
     
     // Build departure header view
     {
@@ -82,8 +84,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
-    
-    [self refreshStops];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,11 +102,20 @@
     self.navigationController.navigationBar.height = _isHeaderVisible ? 172.0f : 44.0f;
 }
 
+- (void)setAgency:(GSAgency *)agency
+{
+    if (_agency == agency) return;
+    
+    _agency = agency;
+    
+    [self refreshStops];
+}
+
 #pragma mark - Helpers
 
 - (void)buildNavigationItem
 {
-    self.navigationItem.title = @"Metro Bilbao";
+    self.navigationItem.title = self.agency.agency_name;
     
     UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
     menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
@@ -158,8 +167,11 @@
 
 - (void)refreshStops
 {
+    self.stops = nil;
+    [self.tableView reloadData];
+    
     [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
-    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
+    [[GSNeverlateService sharedService] getStops:@{@"agency_key": self.agency.agency_key} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
         [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
         
         NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];

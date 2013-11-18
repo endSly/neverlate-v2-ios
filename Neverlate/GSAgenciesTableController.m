@@ -29,6 +29,7 @@
     
     [[GSNeverlateService sharedService] getAgencies:nil callback:^(NSArray *agencies, NSURLResponse *resp, NSError *error) {
         self.agencies = agencies = agencies;
+        [self.tableView reloadData];
     }];
 }
 
