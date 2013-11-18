@@ -8,7 +8,17 @@
 
 #import "GSAgency.h"
 
+#import "UIColor+HexColor.h"
+
 @implementation GSAgency
+
+- (void)setAgency_color:(UIColor *)agency_color
+{
+    if ([agency_color isKindOfClass:[NSString class]]) {
+        agency_color = [UIColor colorWithCSS:(NSString *) agency_color];
+    }
+    _agency_color = agency_color;
+}
 
 @end
 

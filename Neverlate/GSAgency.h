@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString  * agency_url;
 @property (nonatomic, strong) GSCoordinates     * agency_center;
 @property (nonatomic, strong) GSAgencyBounds    * agency_bounds;
+@property (nonatomic, strong) UIColor   * agency_color;
 
 @end
 
