@@ -48,10 +48,11 @@
 		0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */; };
 		0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3021833D2890061CD8B /* GSLocationManager.m */; };
 		0D35D3131833DEDE0061CD8B /* GSCoordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3121833DEDE0061CD8B /* GSCoordinates.m */; };
-		0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3171834CD340061CD8B /* GSNavigationController.m */; };
+		0D35D3181834CD340061CD8B /* GSAgencyNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */; };
 		0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */; };
 		0D45D247183A2219006498A9 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D246183A2219006498A9 /* UIColor+HexColor.m */; };
 		0D45D24B183A38FC006498A9 /* GSSlidingAnimationTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D24A183A38FC006498A9 /* GSSlidingAnimationTransitioning.m */; };
+		0D45D24F183A467C006498A9 /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D24E183A467C006498A9 /* GSNavigationController.m */; };
 		0D9F839C1836BBB200595484 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */; };
 		0D9F839D1836BBB200595484 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83981836BBB200595484 /* ViewFrameAccessor.m */; };
 		0D9F839E1836BBB200595484 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F839B1836BBB200595484 /* ISO8601DateFormatter.m */; };
@@ -172,13 +173,15 @@
 		0D35D3021833D2890061CD8B /* GSLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSLocationManager.m; sourceTree = "<group>"; };
 		0D35D3111833DEDE0061CD8B /* GSCoordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCoordinates.h; sourceTree = "<group>"; };
 		0D35D3121833DEDE0061CD8B /* GSCoordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCoordinates.m; sourceTree = "<group>"; };
-		0D35D3161834CD340061CD8B /* GSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationController.h; sourceTree = "<group>"; };
-		0D35D3171834CD340061CD8B /* GSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationController.m; sourceTree = "<group>"; };
+		0D35D3161834CD340061CD8B /* GSAgencyNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAgencyNavigationController.h; sourceTree = "<group>"; };
+		0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAgencyNavigationController.m; sourceTree = "<group>"; };
 		0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0D45D245183A2219006498A9 /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
 		0D45D246183A2219006498A9 /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
 		0D45D249183A38FC006498A9 /* GSSlidingAnimationTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSSlidingAnimationTransitioning.h; sourceTree = "<group>"; };
 		0D45D24A183A38FC006498A9 /* GSSlidingAnimationTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSSlidingAnimationTransitioning.m; sourceTree = "<group>"; };
+		0D45D24D183A467C006498A9 /* GSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNavigationController.h; sourceTree = "<group>"; };
+		0D45D24E183A467C006498A9 /* GSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNavigationController.m; sourceTree = "<group>"; };
 		0D9F83941836BBB200595484 /* FrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83951836BBB200595484 /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
@@ -353,8 +356,10 @@
 		0D07DC7E1833A4C200CCE04B /* Contollers */ = {
 			isa = PBXGroup;
 			children = (
-				0D35D3161834CD340061CD8B /* GSNavigationController.h */,
-				0D35D3171834CD340061CD8B /* GSNavigationController.m */,
+				0D45D24D183A467C006498A9 /* GSNavigationController.h */,
+				0D45D24E183A467C006498A9 /* GSNavigationController.m */,
+				0D35D3161834CD340061CD8B /* GSAgencyNavigationController.h */,
+				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
 				0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */,
 				0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
@@ -605,7 +610,7 @@
 			files = (
 				0D25ADA118353C910036D18D /* GSNanoStoreServiceCache.m in Sources */,
 				0D9F839D1836BBB200595484 /* ViewFrameAccessor.m in Sources */,
-				0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */,
+				0D35D3181834CD340061CD8B /* GSAgencyNavigationController.m in Sources */,
 				0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC1418337E9700CCE04B /* GSAppDelegate.m in Sources */,
 				0DFF187E18361B8500B08CA9 /* CLLocation+Heading.m in Sources */,
@@ -620,6 +625,7 @@
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
 				0D32959E1834370700BE6D8C /* GSDepartureHeaderView.m in Sources */,
 				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
+				0D45D24F183A467C006498A9 /* GSNavigationController.m in Sources */,
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
 				0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */,
 				0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */,

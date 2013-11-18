@@ -197,10 +197,10 @@
             </objects>
             <point key="canvasLocation" x="-1178" y="-970"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Agency Navigation Controller-->
         <scene sceneID="gEb-e1-OlF">
             <objects>
-                <navigationController storyboardIdentifier="GSNavigationController" definesPresentationContext="YES" id="XTq-FG-d01" customClass="GSNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="GSNavigationController" definesPresentationContext="YES" id="XTq-FG-d01" customClass="GSAgencyNavigationController" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6IM-9m-hfW" customClass="GSNavigationBar">
                         <autoresizingMask key="autoresizingMask"/>
