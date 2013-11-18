@@ -8,6 +8,10 @@
 
 #import "GSNavigationController.h"
 
+#import <UIViewController+ECSlidingViewController.h>
+
+#import "GSSlidingAnimationTransitioning.h"
+
 @interface GSNavigationController ()
 
 @end
@@ -23,11 +27,25 @@
     self.view.layer.shadowRadius = 12.0f;
     self.view.layer.shadowPath = [UIBezierPath bezierPathWithRect:self.view.frame].CGPath;
     self.view.clipsToBounds = NO;
+    
+    self.slidingViewController.delegate = self;
+    
+    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
+
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
     return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - ECSlidingViewController delegate
+
+- (id<UIViewControllerAnimatedTransitioning>)slidingViewController:(ECSlidingViewController *)slidingViewController
+                                   animationControllerForOperation:(ECSlidingViewControllerOperation)operation
+                                                 topViewController:(UIViewController *)topViewController
+{
+    return [[GSSlidingAnimationTransitioning alloc] init];
 }
 
 

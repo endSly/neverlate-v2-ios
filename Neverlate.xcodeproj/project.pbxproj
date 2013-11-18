@@ -51,6 +51,7 @@
 		0D35D3181834CD340061CD8B /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D35D3171834CD340061CD8B /* GSNavigationController.m */; };
 		0D35D32D1834EF1F0061CD8B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */; };
 		0D45D247183A2219006498A9 /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D246183A2219006498A9 /* UIColor+HexColor.m */; };
+		0D45D24B183A38FC006498A9 /* GSSlidingAnimationTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D24A183A38FC006498A9 /* GSSlidingAnimationTransitioning.m */; };
 		0D9F839C1836BBB200595484 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */; };
 		0D9F839D1836BBB200595484 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83981836BBB200595484 /* ViewFrameAccessor.m */; };
 		0D9F839E1836BBB200595484 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F839B1836BBB200595484 /* ISO8601DateFormatter.m */; };
@@ -176,6 +177,8 @@
 		0D35D32C1834EF1F0061CD8B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0D45D245183A2219006498A9 /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
 		0D45D246183A2219006498A9 /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
+		0D45D249183A38FC006498A9 /* GSSlidingAnimationTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSSlidingAnimationTransitioning.h; sourceTree = "<group>"; };
+		0D45D24A183A38FC006498A9 /* GSSlidingAnimationTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSSlidingAnimationTransitioning.m; sourceTree = "<group>"; };
 		0D9F83941836BBB200595484 /* FrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83951836BBB200595484 /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
@@ -264,6 +267,7 @@
 		0D07DC0918337E9700CCE04B /* Neverlate */ = {
 			isa = PBXGroup;
 			children = (
+				0D45D24C183A40B5006498A9 /* Helpers */,
 				0D3295921833B88D00BE6D8C /* Categories */,
 				0D07DC3D18337F3500CCE04B /* Models */,
 				0D07DC7E1833A4C200CCE04B /* Contollers */,
@@ -272,10 +276,6 @@
 				0D07DC1318337E9700CCE04B /* GSAppDelegate.m */,
 				0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */,
 				0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */,
-				0D35D3011833D2890061CD8B /* GSLocationManager.h */,
-				0D35D3021833D2890061CD8B /* GSLocationManager.m */,
-				0D25AD9F18353C910036D18D /* GSNanoStoreServiceCache.h */,
-				0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */,
 				0D07DC1B18337E9700CCE04B /* Images.xcassets */,
 				0D07DC0A18337E9700CCE04B /* Supporting Files */,
 			);
@@ -393,6 +393,19 @@
 				0D32959D1834370700BE6D8C /* GSDepartureHeaderView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		0D45D24C183A40B5006498A9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0D35D3011833D2890061CD8B /* GSLocationManager.h */,
+				0D35D3021833D2890061CD8B /* GSLocationManager.m */,
+				0D25AD9F18353C910036D18D /* GSNanoStoreServiceCache.h */,
+				0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */,
+				0D45D249183A38FC006498A9 /* GSSlidingAnimationTransitioning.h */,
+				0D45D24A183A38FC006498A9 /* GSSlidingAnimationTransitioning.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		0D9F83931836BBB200595484 /* FrameAccessor */ = {
@@ -613,6 +626,7 @@
 				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
 				0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */,
 				0D45D247183A2219006498A9 /* UIColor+HexColor.m in Sources */,
+				0D45D24B183A38FC006498A9 /* GSSlidingAnimationTransitioning.m in Sources */,
 				0DFF189718367CEA00B08CA9 /* GSMapViewController.m in Sources */,
 				0D29F20E1838069C004EA2B8 /* GSAgenciesTableController.m in Sources */,
 			);

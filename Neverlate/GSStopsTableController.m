@@ -55,9 +55,6 @@
     
     self.tableView.contentOffsetY = 44.0f;
     
-    self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0xFF / 255.0f green:0x32 / 255.0f blue:0x04 / 255.0f alpha:0.5];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
 
     [self buildNavigationItem];
@@ -107,6 +104,10 @@
     if (_agency == agency) return;
     
     _agency = agency;
+    
+    NSLog(@"%@", self.navigationController.navigationBar);
+    
+    self.navigationController.navigationBar.barTintColor = [agency.agency_color colorWithAlphaComponent:0.5f];
     
     [self refreshStops];
 }
@@ -226,7 +227,7 @@
     GSStop *logicStop = self.nextDeparturesStop.stop;
     
     [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
-    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": @"metrobilbao", @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
+    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": self.agency.agency_key, @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
         [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
         
         self.nextDepartures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];

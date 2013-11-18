@@ -6,8 +6,10 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
-@interface GSNavigationController : UINavigationController
+#import <ECSlidingViewController.h>
+
+@interface GSNavigationController : UINavigationController <ECSlidingViewControllerDelegate>
 
 @end
