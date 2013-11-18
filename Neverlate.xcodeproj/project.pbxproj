@@ -358,10 +358,10 @@
 			children = (
 				0D45D24D183A467C006498A9 /* GSNavigationController.h */,
 				0D45D24E183A467C006498A9 /* GSNavigationController.m */,
-				0D35D3161834CD340061CD8B /* GSAgencyNavigationController.h */,
-				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
 				0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */,
 				0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */,
+				0D35D3161834CD340061CD8B /* GSAgencyNavigationController.h */,
+				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
 				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,

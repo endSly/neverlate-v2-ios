@@ -53,15 +53,9 @@
 {
     [super viewDidLoad];
     
-    self.tableView.contentOffsetY = 44.0f;
-    
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.tableView.contentOffsetY = 44.0f; // Hide search bar
 
     [self buildNavigationItem];
-    
-    if (!self.agency) {
-        [self.slidingViewController anchorTopViewToRightAnimated:NO];
-    }
     
     // Build departure header view
     {

@@ -43,6 +43,9 @@
     }
     
     [self insertSubview:_underlayView atIndex:1];
+    
+    
+    self.tintColor = [UIColor whiteColor];
 }
 
 - (void)showIndeterminateProgressIndicator

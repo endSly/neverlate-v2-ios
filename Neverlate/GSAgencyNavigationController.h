@@ -10,6 +10,10 @@
 
 #import <ECSlidingViewController.h>
 
+@class GSAgency;
+
 @interface GSAgencyNavigationController : GSNavigationController <ECSlidingViewControllerDelegate>
+
+@property (nonatomic, strong) GSAgency  * agency;
 
 @end

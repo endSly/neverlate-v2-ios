@@ -8,19 +8,16 @@
 
 #import "GSAgencyNavigationController.h"
 
+#import <ECSlidingViewController.h>
 #import <UIViewController+ECSlidingViewController.h>
 
 #import "GSSlidingAnimationTransitioning.h"
 
-@interface GSAgencyNavigationController ()
-
-@end
-
 @implementation GSAgencyNavigationController
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     
     self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     self.view.layer.shadowOpacity = 0.5f;
@@ -31,7 +28,11 @@
     self.slidingViewController.delegate = self;
     
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-
+    
+    if (!self.agency) {
+        self.slidingViewController.anchorRightPeekAmount = -12.0f;
+        [self.slidingViewController anchorTopViewToRightAnimated:NO];
+    }
 }
 
 #pragma mark - ECSlidingViewController delegate
