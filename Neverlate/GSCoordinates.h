@@ -14,8 +14,6 @@
  * [longitude, latitude]
  */
 
-#define GSCoordinates NSArray
-
 @interface NSArray (GSCoordinates)
 
 @property (nonatomic, readonly) NSNumber    * latitude;
@@ -24,3 +22,5 @@
 @property (nonatomic, readonly) CLLocation  * CLLocation;
 
 @end
+
+#define GSCoordinates NSArray

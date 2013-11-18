@@ -8,6 +8,16 @@
 
 #import "GSRoute.h"
 
+#import "UIColor+HexColor.h"
+
 @implementation GSRoute
+
+- (void)setRoute_color:(UIColor *)route_color
+{
+    if ([route_color isKindOfClass:[NSString class]]) {
+        route_color = [UIColor colorWithCSS:(NSString *) route_color];
+    }
+    _route_color = route_color;
+}
 
 @end
