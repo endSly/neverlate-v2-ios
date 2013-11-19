@@ -14,32 +14,21 @@ const CGFloat CHUNK_WIDTH = 36.0f;
 
 @implementation GSIndeterminatedProgressView
 
+@synthesize isAnimating = _isAnimating;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.progressChunks = @[[[UIView alloc] initWithFrame:CGRectMake(-CHUNK_WIDTH, 0, CHUNK_WIDTH, self.height)],
-                                [[UIView alloc] initWithFrame:CGRectMake(-CHUNK_WIDTH, 0, CHUNK_WIDTH, self.height)],
-                                [[UIView alloc] initWithFrame:CGRectMake(-CHUNK_WIDTH, 0, CHUNK_WIDTH, self.height)]];
-        
-        for (UIView *v in self.progressChunks) {
-            [self addSubview:v];
-        }
-        
         self.clipsToBounds = YES;
         
-        self.trackTintColor = UIColor.whiteColor;
-        self.progressTintColor = UIColor.blueColor;
+        self.trackTintColor = [UIColor whiteColor];
+        self.progressTintColor = [UIColor blueColor];
+        
+        self.hidesWhenStopped = YES;
+        self.hidden = YES;
     }
     return self;
-}
-
-- (void)layoutSubviews
-{
-    NSTimeInterval delay = 0;
-    for (UIView *v in self.progressChunks) {
-        [self animateProgressChunk:v delay:(delay += 0.25)];
-    }
 }
 
 - (void)setTrackTintColor:(UIColor *)trackTintColor
@@ -54,6 +43,41 @@ const CGFloat CHUNK_WIDTH = 36.0f;
     for (UIView *v in self.progressChunks) {
         v.backgroundColor = progressTintColor;
     }
+}
+
+- (void)startAnimating
+{
+    if (_isAnimating) return;
+    _isAnimating = YES;
+    
+    self.hidden = NO;
+    
+    self.progressChunks = @[[[UIView alloc] initWithFrame:CGRectMake(-CHUNK_WIDTH, 0, CHUNK_WIDTH, self.height)],
+                            [[UIView alloc] initWithFrame:CGRectMake(-CHUNK_WIDTH, 0, CHUNK_WIDTH, self.height)],
+                            [[UIView alloc] initWithFrame:CGRectMake(-CHUNK_WIDTH, 0, CHUNK_WIDTH, self.height)]];
+    
+    NSTimeInterval delay = 0;
+    for (UIView *v in self.progressChunks) {
+        v.backgroundColor = self.progressTintColor;
+        
+        [self addSubview:v];
+        
+        [self animateProgressChunk:v delay:(delay += 0.25)];
+    }
+}
+
+- (void)stopAnimating
+{
+    if (!_isAnimating) return;
+    _isAnimating = NO;
+    
+    self.hidden = self.hidesWhenStopped;
+    
+    for (UIView *v in self.progressChunks) {
+        [v removeFromSuperview];
+    }
+    
+    self.progressChunks = nil;
 }
 
 - (void)animateProgressChunk:(UIView *)chunk delay:(NSTimeInterval)delay

@@ -10,15 +10,8 @@
 
 @class GSIndeterminatedProgressView;
 
-@interface GSNavigationBar : UINavigationBar {
-    UIView *_underlayView;
-    
-    BOOL _initialized;
-}
+@interface GSNavigationBar : UINavigationBar
 
 @property (nonatomic, weak) GSIndeterminatedProgressView *indeterminateProgressView;
-
-- (void)showIndeterminateProgressIndicator;
-- (void)hideIndeterminateProgressIndicator;
 
 @end

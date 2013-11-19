@@ -11,15 +11,19 @@
 #import "FrameAccessor.h"
 #import "GSIndeterminatedProgressView.h"
 
-@implementation GSNavigationBar
+@implementation GSNavigationBar {
+    UIView *_underlayView;
+    
+    BOOL _initialized;
+}
 
 - (void)layoutSubviews
 {
     if (!_initialized) {
+        _initialized = YES;
         GSIndeterminatedProgressView *progressView = [[GSIndeterminatedProgressView alloc] initWithFrame:CGRectMake(0, self.height -2, self.width, 2)];
         progressView.progressTintColor = self.barTintColor;
         progressView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-        progressView.hidden = YES;
         [self addSubview:progressView];
         self.indeterminateProgressView = progressView;
         
@@ -46,16 +50,6 @@
     
     
     self.tintColor = [UIColor whiteColor];
-}
-
-- (void)showIndeterminateProgressIndicator
-{
-    self.indeterminateProgressView.hidden = NO;
-}
-
-- (void)hideIndeterminateProgressIndicator
-{
-    self.indeterminateProgressView.hidden = YES;
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor

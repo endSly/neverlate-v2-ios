@@ -167,9 +167,9 @@
     self.stops = nil;
     [self.tableView reloadData];
     
-    [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
+    [((GSNavigationBar *) self.navigationController.navigationBar).indeterminateProgressView startAnimating];
     [[GSNeverlateService sharedService] getStops:@{@"agency_key": self.agency.agency_key} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
-        [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
+        [((GSNavigationBar *) self.navigationController.navigationBar).indeterminateProgressView stopAnimating];
         
         NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
         
@@ -222,9 +222,12 @@
     
     GSStop *logicStop = self.nextDeparturesStop.stop;
     
-    [((GSNavigationBar *) self.navigationController.navigationBar) showIndeterminateProgressIndicator];
+    GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
+    GSIndeterminatedProgressView *progressView = navigationBar.indeterminateProgressView;
+    
+    [progressView startAnimating];
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": self.agency.agency_key, @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
-        [((GSNavigationBar *) self.navigationController.navigationBar) hideIndeterminateProgressIndicator];
+        [progressView stopAnimating];
         
         self.nextDepartures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
         
@@ -288,10 +291,10 @@
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            //self.tableView.contentOffsetY -= 128.0f;
+            self.tableView.contentOffsetY -= 128.0f;
             headerView.layer.opacity = 1;
         } completion:^(BOOL finished) {
-            //self.tableView.contentOffsetY += 128.0f;
+            self.tableView.contentOffsetY += 128.0f;
         }];
     } else {
         self.navigationController.navigationBar.height = 172.0f;
