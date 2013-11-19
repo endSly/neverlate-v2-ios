@@ -15,6 +15,9 @@
 
 #import "GSStopsTableController.h"
 
+#import "GSNavigationBar.h"
+#import "GSIndeterminatedProgressView.h"
+
 @interface GSAgenciesTableController ()
 
 @end
@@ -27,7 +30,12 @@
 
     self.view.backgroundColor = [UIColor colorWithRed:85 / 255.0f green:87 / 255.0f blue:89 / 255.0f alpha:1];
     
+    GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
+    navigationBar.indeterminateProgressView.progressTintColor = navigationBar.barTintColor;
+    
+    [navigationBar.indeterminateProgressView startAnimating];
     [[GSNeverlateService sharedService] getAgencies:nil callback:^(NSArray *agencies, NSURLResponse *resp, NSError *error) {
+        [navigationBar.indeterminateProgressView stopAnimating];
         self.agencies = agencies = agencies;
         [self.tableView reloadData];
     }];

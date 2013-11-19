@@ -138,12 +138,12 @@
     [self.slidingViewController anchorTopViewToRightAnimated:YES];
 }
 
-- (void)setNextDeparturesStop:(GSStop *)nextDeparturesStop
+- (void)showNextDeparturesStop:(GSStop *)nextDeparturesStop
 {
     if (self.nextDeparturesStop == nextDeparturesStop)
         return;
     
-    _nextDeparturesStop = nextDeparturesStop;
+    self.nextDeparturesStop = nextDeparturesStop;
     
     [self hideDeparturesHeader:YES];
     [self loadNextDepartures];
@@ -380,7 +380,6 @@
     self.nextDeparturesStop = [self stopForIndex:_selectedStopIndex];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.tableView reloadData];
 }
 
 @end
