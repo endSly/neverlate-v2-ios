@@ -12,7 +12,10 @@
 
 @class GSAgencyBounds;
 
-@interface GSAgency : NSObject
+@interface GSAgency : NSObject {
+@private
+    NSArray *_stops;
+}
 
 @property (nonatomic, strong) NSString  * agency_key;
 @property (nonatomic, strong) NSString  * agency_id;

@@ -9,6 +9,8 @@
 @import Foundation;
 @import MapKit;
 
+@class GSAgency;
+
 #import "GSCoordinates.h"
 
 NS_ENUM(NSUInteger, GSLocationType) {
@@ -18,6 +20,8 @@ NS_ENUM(NSUInteger, GSLocationType) {
 };
 
 @interface GSStop : NSObject <MKAnnotation>
+
+@property (nonatomic, weak) GSAgency    * agency;
 
 @property (nonatomic, strong) NSString  * agency_key;
 @property (nonatomic, strong) NSString  * stop_id;
@@ -45,8 +49,10 @@ NS_ENUM(NSUInteger, GSLocationType) {
 /*! @return first ocurrence of Station location type or self */
 @property (nonatomic, readonly) GSStop  * station;
 
-@property (nonatomic, readonly, getter = isStop)        BOOL isStop;
-@property (nonatomic, readonly, getter = isStation)     BOOL isStation;
-@property (nonatomic, readonly, getter = isEntrance)    BOOL isEntrance;
+@property (nonatomic, readonly) BOOL isStop;
+@property (nonatomic, readonly) BOOL isStation;
+@property (nonatomic, readonly) BOOL isEntrance;
+
+@property (nonatomic, readonly) BOOL isRootStation;
 
 @end

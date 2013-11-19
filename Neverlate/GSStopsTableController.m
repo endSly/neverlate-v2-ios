@@ -8,15 +8,16 @@
 
 #import "GSStopsTableController.h"
 
-#import "GSNeverlateService.h"
+#import <ECSlidingViewController/UIViewController+ECSlidingViewController.h>
+#import <TenzingCore/TenzingCore.h>
 
 #import "GSLocationManager.h"
 
 #import "GSAgency.h"
+#import "GSAgency+Query.h"
 #import "GSStop.h"
+#import "GSStop+Query.h"
 #import "GSDeparture.h"
-
-#import <ECSlidingViewController/UIViewController+ECSlidingViewController.h>
 
 #import "GSIndeterminatedProgressView.h"
 #import "GSNavigationBar.h"
@@ -94,7 +95,9 @@
     [_timer fire];
     
     if (self.agency) {
-        self.navigationController.navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
+        GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
+        navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
+        navigationBar.indeterminateProgressView.progressTintColor = [self.agency.agency_color colorWithAlphaComponent:0.65f];
         [self loadStops];
     }
 }
@@ -176,19 +179,10 @@
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
     
     [navigationBar.indeterminateProgressView startAnimating];
-    [[GSNeverlateService sharedService] getStops:@{@"agency_key": self.agency.agency_key} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
+    [self.agency stops:^(NSArray *stops) {
         [navigationBar.indeterminateProgressView stopAnimating];
         
-        NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
-        
-        // Get root stops
-        self.stops = stopsTree[NSNull.null];
-        
-        // Build stops tree
-        for (GSStop *stop in self.stops) {
-            stop.childStops = stopsTree[stop.stop_id];
-        }
-        
+        self.stops = stops;
         if (GSLocationManager.sharedManager.location) {
             [self locationHasUpdated];
         } else {
@@ -227,16 +221,14 @@
 - (void)loadNextDepartures
 {
     self.nextDepartures = nil;
-    
-    GSStop *logicStop = self.nextDeparturesStop.stop;
-    
+
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
     
     [navigationBar.indeterminateProgressView startAnimating];
-    [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": self.agency.agency_key, @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
+    [self.nextDeparturesStop nextDepartures:^(NSArray *departures) {
         [navigationBar.indeterminateProgressView stopAnimating];
         
-        self.nextDepartures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
+        self.nextDepartures = departures;
         
         [self showDeparturesHeader:YES];
         

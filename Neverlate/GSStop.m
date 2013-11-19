@@ -86,6 +86,12 @@
     return self.location_type.intValue == GSLocationTypeEntrance;
 }
 
+- (BOOL)isRootStation
+{
+    return self.parent_station.length == 0;
+}
+
+
 #pragma mark - MapKit Annotation
 
 - (CLLocationCoordinate2D)coordinate

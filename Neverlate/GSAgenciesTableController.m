@@ -12,6 +12,7 @@
 
 #import "GSNeverlateService.h"
 #import "GSAgency.h"
+#import "GSAgency+Query.h"
 
 #import "GSStopsTableController.h"
 
@@ -34,9 +35,9 @@
     navigationBar.indeterminateProgressView.progressTintColor = navigationBar.barTintColor;
     
     [navigationBar.indeterminateProgressView startAnimating];
-    [[GSNeverlateService sharedService] getAgencies:nil callback:^(NSArray *agencies, NSURLResponse *resp, NSError *error) {
+    [GSAgency all:^(NSArray *agencies) {
         [navigationBar.indeterminateProgressView stopAnimating];
-        self.agencies = agencies = agencies;
+        self.agencies = agencies;
         [self.tableView reloadData];
     }];
 }
