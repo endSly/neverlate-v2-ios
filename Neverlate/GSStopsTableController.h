@@ -12,15 +12,7 @@
 @class GSStop;
 @class GSDepartureHeaderView;
 
-@interface GSStopsTableController : UITableViewController {
-    GSDepartureHeaderView *_headerView;
-    
-    NSTimer *_timer;
-    
-    BOOL _isHeaderVisible;
-    
-    NSInteger _selectedStopIndex;
-}
+@interface GSStopsTableController : UITableViewController
 
 @property (nonatomic, strong) GSAgency  * agency;
 

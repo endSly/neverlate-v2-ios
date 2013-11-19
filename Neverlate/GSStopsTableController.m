@@ -45,7 +45,17 @@
 
 @end
 
-@implementation GSStopsTableController
+@implementation GSStopsTableController {
+    GSDepartureHeaderView *_headerView;
+    
+    NSTimer *_timer;
+    
+    BOOL _isHeaderVisible;
+    
+    BOOL _nextDeparturesStopSelected;
+    
+    NSArray *_stopsForTable;
+}
 
 #pragma  mark - View controller lifecycle
 
@@ -79,9 +89,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _selectedStopIndex = -1;
+    _nextDeparturesStopSelected = NO;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
+    
+    if (self.agency) {
+        self.navigationController.navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
+        [self loadStops];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -92,17 +107,6 @@
 - (void)viewWillLayoutSubviews
 {
     self.navigationController.navigationBar.height = _isHeaderVisible ? 172.0f : 44.0f;
-}
-
-- (void)setAgency:(GSAgency *)agency
-{
-    if (_agency == agency) return;
-    
-    _agency = agency;
-    
-    self.navigationController.navigationBar.barTintColor = [agency.agency_color colorWithAlphaComponent:0.5f];
-    
-    [self loadStops];
 }
 
 #pragma mark - Helpers
@@ -145,6 +149,8 @@
     
     self.nextDeparturesStop = nextDeparturesStop;
     
+    _stopsForTable = [self.stops filter:^BOOL(GSStop *stop) { return stop != nextDeparturesStop; }];
+    
     [self hideDeparturesHeader:YES];
     [self loadNextDepartures];
 }
@@ -153,8 +159,8 @@
 {
     [self sortStopsByDistance];
     
-    if (_selectedStopIndex < 0) {
-        self.nextDeparturesStop = self.stops.firstObject;
+    if (!_nextDeparturesStopSelected) {
+        [self showNextDeparturesStop:self.stops.firstObject];
         
         [self.tableView reloadData];
         
@@ -167,9 +173,11 @@
     self.stops = nil;
     [self.tableView reloadData];
     
-    [((GSNavigationBar *) self.navigationController.navigationBar).indeterminateProgressView startAnimating];
+    GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
+    
+    [navigationBar.indeterminateProgressView startAnimating];
     [[GSNeverlateService sharedService] getStops:@{@"agency_key": self.agency.agency_key} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
-        [((GSNavigationBar *) self.navigationController.navigationBar).indeterminateProgressView stopAnimating];
+        [navigationBar.indeterminateProgressView stopAnimating];
         
         NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
         
@@ -223,11 +231,10 @@
     GSStop *logicStop = self.nextDeparturesStop.stop;
     
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
-    GSIndeterminatedProgressView *progressView = navigationBar.indeterminateProgressView;
     
-    [progressView startAnimating];
+    [navigationBar.indeterminateProgressView startAnimating];
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": self.agency.agency_key, @"stop_id": logicStop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
-        [progressView stopAnimating];
+        [navigationBar.indeterminateProgressView stopAnimating];
         
         self.nextDepartures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
         
@@ -272,11 +279,14 @@
     if (_isHeaderVisible)
         return;
     
-    [self.tableView beginUpdates];
+    
+    [self.tableView reloadData];
+    
+    //[self.tableView beginUpdates];
     _isHeaderVisible = YES;
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                          withRowAnimation:UITableViewRowAnimationBottom];
-    [self.tableView endUpdates];
+    //[self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+    //                      withRowAnimation:UITableViewRowAnimationBottom];
+    //[self.tableView endUpdates];
     
     GSDepartureHeaderView *headerView = _headerView;
     
@@ -291,10 +301,10 @@
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            self.tableView.contentOffsetY -= 128.0f;
+            //self.tableView.contentOffsetY -= 128.0f;
             headerView.layer.opacity = 1;
         } completion:^(BOOL finished) {
-            self.tableView.contentOffsetY += 128.0f;
+            //self.tableView.contentOffsetY += 128.0f;
         }];
     } else {
         self.navigationController.navigationBar.height = 172.0f;
@@ -306,13 +316,12 @@
     if (!_isHeaderVisible)
         return;
     
-    [self.tableView beginUpdates];
+    [self.tableView reloadData];
+    //[self.tableView beginUpdates];
     _isHeaderVisible = NO;
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                          withRowAnimation:UITableViewRowAnimationBottom];
-    [self.tableView endUpdates];
-    
-    
+    //[self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+    //                      withRowAnimation:UITableViewRowAnimationBottom];
+    //[self.tableView endUpdates];
     
     GSDepartureHeaderView *headerView = _headerView;
     
@@ -333,14 +342,11 @@
     }
 }
 
-- (GSStop *)stopForIndex:(NSUInteger)index
+- (GSStop *)stopForRow:(NSUInteger)row
 {
-    if (_isHeaderVisible) {
-        if (_selectedStopIndex < 0 || index >= _selectedStopIndex) {
-            return self.stops[index + 1];
-        }
-    }
-    return self.stops[index];
+    return _isHeaderVisible
+    ? _stopsForTable[row]
+    : self.stops[row];
 }
 
 #pragma mark - Table view data source
@@ -352,7 +358,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _isHeaderVisible ? self.stops.count - 1 : self.stops.count;
+    return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -360,8 +366,7 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSStop *stop = [self stopForIndex:indexPath.row];
-
+    GSStop *stop = [self stopForRow:indexPath.row];
     cell.stop = stop;
     
     return cell;
@@ -376,10 +381,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedStopIndex = indexPath.row;
-    self.nextDeparturesStop = [self stopForIndex:_selectedStopIndex];
+    /*
+    {
+        [self.tableView beginUpdates];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                              withRowAnimation:UITableViewRowAnimationBottom];
+        
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationMiddle];
+        
+        [self.tableView endUpdates];
+    }
+    */
+    _nextDeparturesStopSelected = YES;
+    [self showNextDeparturesStop:[self stopForRow:indexPath.row]];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.tableView reloadData];
 }
 
 @end
