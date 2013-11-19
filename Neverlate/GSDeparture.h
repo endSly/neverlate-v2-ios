@@ -8,8 +8,15 @@
 
 #import "GSTrip.h"
 
+@class GSRoute;
+
 @interface GSDeparture : GSTrip
 
 @property (nonatomic, strong, readwrite) NSDate * departure_date;
+
+@property (nonatomic, strong) GSRoute   * route;
+
+@property (nonatomic, readonly) NSString    * title;
+
 
 @end

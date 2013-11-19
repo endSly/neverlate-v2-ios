@@ -239,8 +239,8 @@
     headerView.stopNameLabel.text = stop.stop_name;
     headerView.entranceNameLabel.text = stop.nearestEntrance.stop_name;
     headerView.distanceLabel.text = stop.formattedDistance;
-    headerView.tripHeadsign1.text = departure1.trip_headsign;
-    headerView.tripHeadsign2.text = departure2.trip_headsign;
+    headerView.tripHeadsign1.text = departure1.title;
+    headerView.tripHeadsign2.text = departure2.title;
     NSTimeInterval departure1Interval = [departure1.departure_date timeIntervalSinceNow] / 60.0f;
     if (departure1Interval > 120.0f) {
         headerView.departureTime1.text = @"+120m";

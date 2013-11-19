@@ -10,6 +10,8 @@
 
 #import "ISO8601DateFormatter.h"
 
+#import "GSRoute.h"
+
 @implementation GSDeparture
 
 - (void)setDeparture_date:(NSDate *)departure_date
@@ -28,6 +30,13 @@
         _departure_date = [dateFormatter dateFromString:(NSString *)departure_date];
         return;
     }
+}
+
+- (NSString *)title
+{
+    return self.trip_headsign.length != 0
+    ? self.trip_headsign
+    : [NSString stringWithFormat:@"%@ %@", self.route.route_short_name, self.route.route_long_name];
 }
 
 @end
