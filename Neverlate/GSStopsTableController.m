@@ -135,9 +135,7 @@
 - (void)showMapAction:(id)sender
 {
     [self hideDeparturesHeader:YES];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
-    });
+    [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
 }
 
 - (void)showAgenciesMenuAction:(id)sender
@@ -238,6 +236,9 @@
 
 - (void)refreshHeaderView
 {
+    if (self.nextDepartures.count < 2)
+        return;
+
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
     GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
@@ -270,15 +271,9 @@
 {
     if (_isHeaderVisible)
         return;
-    
-    
-    [self.tableView reloadData];
-    
-    //[self.tableView beginUpdates];
+
     _isHeaderVisible = YES;
-    //[self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-    //                      withRowAnimation:UITableViewRowAnimationBottom];
-    //[self.tableView endUpdates];
+    [self.tableView reloadData];
     
     GSDepartureHeaderView *headerView = _headerView;
     
@@ -293,10 +288,10 @@
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            //self.tableView.contentOffsetY -= 128.0f;
+            self.tableView.contentOffsetY -= 128.0f;
             headerView.layer.opacity = 1;
         } completion:^(BOOL finished) {
-            //self.tableView.contentOffsetY += 128.0f;
+            self.tableView.contentOffsetY += 128.0f;
         }];
     } else {
         self.navigationController.navigationBar.height = 172.0f;
@@ -307,14 +302,10 @@
 {
     if (!_isHeaderVisible)
         return;
-    
-    [self.tableView reloadData];
-    //[self.tableView beginUpdates];
+
     _isHeaderVisible = NO;
-    //[self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-    //                      withRowAnimation:UITableViewRowAnimationBottom];
-    //[self.tableView endUpdates];
-    
+    [self.tableView reloadData];
+
     GSDepartureHeaderView *headerView = _headerView;
     
     if (animated) {
@@ -373,18 +364,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    {
-        [self.tableView beginUpdates];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                              withRowAnimation:UITableViewRowAnimationBottom];
-        
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationMiddle];
-        
-        [self.tableView endUpdates];
-    }
-    */
     _nextDeparturesStopSelected = YES;
     [self showNextDeparturesStop:[self stopForRow:indexPath.row]];
     
