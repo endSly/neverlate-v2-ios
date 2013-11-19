@@ -55,8 +55,21 @@
         }
         // Get root stops
         _stops = stopsTree[NSNull.null];
+        _stopsMap = stopsMap;
         callback(_stops);
         
+    }];
+}
+
+- (void)stopWithId:(NSString *)stopId callback:(void(^)(NSArray *))callback
+{
+    if (_stopsMap) {
+        callback(_stopsMap[stopId]);
+        return;
+    }
+    
+    [self stops:^(NSArray *stops) {
+        callback(_stopsMap[stopId]);
     }];
 }
 

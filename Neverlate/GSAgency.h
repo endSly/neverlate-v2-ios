@@ -14,7 +14,8 @@
 
 @interface GSAgency : NSObject {
 @private
-    NSArray *_stops;
+    NSArray * _stops;
+    NSDictionary * _stopsMap;
 }
 
 @property (nonatomic, strong) NSString  * agency_key;

@@ -17,5 +17,7 @@ struct GSAgencyQueryPrivate {
 + (void)all:(void(^)(NSArray *))callback;
 
 - (void)stops:(void(^)(NSArray *))callback;
+- (void)stopWithId:(NSString *)stopId callback:(void(^)(NSArray *))callback;
+
 
 @end
