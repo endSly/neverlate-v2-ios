@@ -14,6 +14,7 @@
 #import "GSAgency.h"
 #import "GSAgency+Query.h"
 
+#import "GSAgencyNavigationController.h"
 #import "GSStopsTableController.h"
 
 #import "GSNavigationBar.h"
@@ -82,8 +83,10 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     GSAgency *agency = self.agencies[indexPath.row];
     
-    GSStopsTableController * stopsTableController = ((UINavigationController *) segue.destinationViewController).viewControllers.firstObject;
+    GSAgencyNavigationController *agencyNavigation = (GSAgencyNavigationController *) segue.destinationViewController;
+    agencyNavigation.agency = agency;
     
+    GSStopsTableController * stopsTableController = agencyNavigation.viewControllers.firstObject;
     stopsTableController.agency = agency;
 }
 

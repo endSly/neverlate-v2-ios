@@ -9,8 +9,12 @@
 @import UIKit;
 @import MapKit;
 
+@class GSAgency;
+
 @interface GSMapViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet MKMapView  * mapView;
+
+@property (nonatomic, strong) GSAgency * agency;
 
 @end

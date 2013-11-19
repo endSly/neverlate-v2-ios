@@ -8,8 +8,10 @@
 
 #import "GSMapViewController.h"
 
-#import "GSNeverlateService.h"
+#import "GSAgencyNavigationController.h"
 
+#import "GSAgency.h"
+#import "GSAgency+Query.h"
 #import "GSStop.h"
 
 @implementation GSMapViewController
@@ -18,22 +20,18 @@
 {
     [super viewDidLoad];
 	
-    [self loadStops];
-}
-
-- (void)loadStops
-{
-    [[GSNeverlateService sharedService] getStops:@{@"agency_key": @"metrobilbao"} callback:^(NSArray *stops, NSURLResponse *resp, NSError *error) {
-        NSDictionary *stopsTree = [stops groupBy:^id(GSStop *stop) { return stop.parent_station.length > 0 ? stop.parent_station : NSNull.null; }];
-        
-        [self.mapView addAnnotations:stopsTree[NSNull.null]];
+    GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
+    self.agency = navigationController.agency;
+    
+    CLLocationCoordinate2D center = self.agency.agency_center.CLLocation.coordinate;
+    CLLocationCoordinate2D ne = self.agency.agency_bounds.ne.CLLocation.coordinate;
+    CLLocationCoordinate2D sw = self.agency.agency_bounds.sw.CLLocation.coordinate;
+    
+    self.mapView.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(ne.latitude - sw.latitude, ne.longitude - sw.longitude));
+    
+    [self.agency stops:^(NSArray *stops) {
+        [self.mapView addAnnotations:stops];
     }];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
