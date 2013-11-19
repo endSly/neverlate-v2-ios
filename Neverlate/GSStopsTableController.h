@@ -18,6 +18,8 @@
     NSTimer *_timer;
     
     BOOL _isHeaderVisible;
+    
+    NSInteger _selectedStopIndex;
 }
 
 @property (nonatomic, strong) GSAgency  * agency;

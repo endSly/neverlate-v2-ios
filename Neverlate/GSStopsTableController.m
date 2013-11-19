@@ -79,6 +79,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    _selectedStopIndex = -1;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
 }
@@ -151,11 +152,14 @@
 - (void)locationHasUpdated
 {
     [self sortStopsByDistance];
-    self.nextDeparturesStop = self.stops.firstObject;
-
-    [self.tableView reloadData];
     
-    [self refreshHeaderView];
+    if (_selectedStopIndex < 0) {
+        self.nextDeparturesStop = self.stops.firstObject;
+        
+        [self.tableView reloadData];
+        
+        [self refreshHeaderView];
+    }
 }
 
 - (void)loadStops
@@ -284,10 +288,10 @@
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            self.tableView.contentOffsetY -= 128.0f;
+            //self.tableView.contentOffsetY -= 128.0f;
             headerView.layer.opacity = 1;
         } completion:^(BOOL finished) {
-            self.tableView.contentOffsetY += 128.0f;
+            //self.tableView.contentOffsetY += 128.0f;
         }];
     } else {
         self.navigationController.navigationBar.height = 172.0f;
@@ -324,8 +328,16 @@
         headerView.hidden = YES;
         [self buildNavigationItem];
     }
+}
 
-    
+- (GSStop *)stopForIndex:(NSUInteger)index
+{
+    if (_isHeaderVisible) {
+        if (_selectedStopIndex < 0 || index >= _selectedStopIndex) {
+            return self.stops[index + 1];
+        }
+    }
+    return self.stops[index];
 }
 
 #pragma mark - Table view data source
@@ -345,7 +357,7 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSStop *stop = self.stops[_isHeaderVisible ? indexPath.row + 1 : indexPath.row];
+    GSStop *stop = [self stopForIndex:indexPath.row];
 
     cell.stop = stop;
     
@@ -355,6 +367,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60.0f;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _selectedStopIndex = indexPath.row;
+    self.nextDeparturesStop = [self stopForIndex:_selectedStopIndex];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView reloadData];
 }
 
 @end
