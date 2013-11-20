@@ -9,6 +9,7 @@
 #import "GSAgency.h"
 
 @class GSStop;
+@class GSTrip;
 
 @interface GSAgency (Query)
 
@@ -16,6 +17,6 @@
 
 - (void)stops:(void(^)(NSArray *))callback;
 - (void)stopWithId:(NSString *)stopId callback:(void(^)(GSStop *))callback;
-
+- (void)tripWithId:(NSString *)tripId callback:(void(^)(GSTrip *))callback;
 
 @end
