@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import "GSTripsTableController.h"
+#import "GSStopInfoTableController.h"
 
 #import "GSAgency.h"
 #import "GSAgency+Query.h"
@@ -16,11 +16,11 @@
 
 #import "GSAgencyNavigationController.h"
 
-@interface GSTripsTableController ()
+@interface GSStopInfoTableController ()
 
 @end
 
-@implementation GSTripsTableController
+@implementation GSStopInfoTableController
 
 - (void)viewDidLoad
 {
@@ -51,13 +51,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"GSDepartureCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    GSDeparture *departure = self.nextDepartures[indexPath.row];
-    cell.textLabel.text = departure.title;
-    cell.detailTextLabel.text = [departure.departure_date description];
-    
     static  NSDateFormatter *dateFormatter = nil;
     if (!dateFormatter) {
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -65,6 +58,12 @@
         dateFormatter.dateStyle = NSDateFormatterShortStyle;
         dateFormatter.locale = [NSLocale currentLocale];
     }
+    
+    static NSString *CellIdentifier = @"GSDepartureCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    GSDeparture *departure = self.nextDepartures[indexPath.row];
+    cell.textLabel.text = departure.title;
     
     cell.detailTextLabel.text = [dateFormatter stringFromDate:departure.departure_date];
     

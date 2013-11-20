@@ -11,7 +11,7 @@
 @class GSAgency;
 @class GSStop;
 
-@interface GSTripsTableController : UITableViewController
+@interface GSStopInfoTableController : UITableViewController
 
 @property (nonatomic, weak)   GSAgency  * agency;
 @property (nonatomic, strong) GSStop    * stop;

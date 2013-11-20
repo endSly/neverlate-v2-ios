@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="mGY-1P-yds">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -41,17 +41,17 @@
             </objects>
             <point key="canvasLocation" x="422" y="-171"/>
         </scene>
-        <!--Trips Table Controller-->
+        <!--Stop Info Table Controller-->
         <scene sceneID="G2j-el-N2b">
             <objects>
-                <tableViewController id="Oig-RV-L3x" customClass="GSTripsTableController" sceneMemberID="viewController">
+                <tableViewController id="Oig-RV-L3x" customClass="GSStopInfoTableController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X8i-4e-BU2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GSDepartureCell" textLabel="1vz-ez-1mV" detailTextLabel="DLK-wE-BHk" style="IBUITableViewCellStyleSubtitle" id="O06-le-pbG">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O06-le-pbG" id="w1D-5h-J22">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -148,7 +148,7 @@
                         <color key="sectionIndexTrackingBackgroundColor" red="0.33333333333333331" green="0.3411764705882353" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" restorationIdentifier="GSAgencyCell" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GSAgencyCell" textLabel="ZXG-tL-q9E" style="IBUITableViewCellStyleDefault" id="Yqx-2k-F0I">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yqx-2k-F0I" id="1l2-47-spH">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>

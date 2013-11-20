@@ -19,7 +19,7 @@
 #import "GSStop+Query.h"
 #import "GSDeparture.h"
 
-#import "GSTripsTableController.h"
+#import "GSStopInfoTableController.h"
 
 #import "GSIndeterminatedProgressView.h"
 #import "GSNavigationBar.h"
@@ -402,7 +402,7 @@
     [self hideDeparturesHeader:YES];
     
     if ([segue.identifier isEqualToString:@"GSShowTripsSegue"]) {
-        GSTripsTableController *tripsTableController = (GSTripsTableController *) segue.destinationViewController;
+        GSStopInfoTableController *tripsTableController = (GSStopInfoTableController *) segue.destinationViewController;
         tripsTableController.stop = self.nextDeparturesStop;
     }
 }
