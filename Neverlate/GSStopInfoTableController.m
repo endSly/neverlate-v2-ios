@@ -16,6 +16,8 @@
 
 #import "GSAgencyNavigationController.h"
 
+#import "ScrollViewFrameAccessor.h"
+
 @interface GSStopInfoTableController ()
 
 @end
@@ -31,10 +33,21 @@
     
     self.title = self.stop.stop_name;
     
+    [self.mapView addAnnotation:self.stop];
+    [self.mapView addAnnotations:self.stop.childStops];
+    
+    self.mapView.userInteractionEnabled = NO;
+    self.mapView.showsUserLocation = YES;
+    
+    CLLocationCoordinate2D center = self.stop.coordinate;
+    center.latitude -= 0.0015;
+    self.mapView.region = MKCoordinateRegionMakeWithDistance(center, 600, 600);
+    
     [self.stop nextDepartures:^(NSArray *departures) {
         self.nextDepartures = departures;
         [self.tableView reloadData];
     }];
+    
 }
 
 #pragma mark - Table view data source

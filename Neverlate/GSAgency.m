@@ -20,6 +20,15 @@
     _agency_color = agency_color;
 }
 
+- (MKCoordinateRegion)region
+{
+    CLLocationCoordinate2D center = self.agency_center.CLLocation.coordinate;
+    CLLocationCoordinate2D ne = self.agency_bounds.ne.CLLocation.coordinate;
+    CLLocationCoordinate2D sw = self.agency_bounds.sw.CLLocation.coordinate;
+    
+    return MKCoordinateRegionMake(center, MKCoordinateSpanMake(ne.latitude - sw.latitude, ne.longitude - sw.longitude));
+}
+
 @end
 
 @implementation GSAgencyBounds

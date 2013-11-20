@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+@import MapKit;
 
 #import "GSCoordinates.h"
 
@@ -28,6 +29,8 @@
 @property (nonatomic, strong) GSCoordinates     * agency_center;
 @property (nonatomic, strong) GSAgencyBounds    * agency_bounds;
 @property (nonatomic, strong) UIColor   * agency_color;
+
+@property (nonatomic, readonly) MKCoordinateRegion region;
 
 @end
 

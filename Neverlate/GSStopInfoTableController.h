@@ -7,11 +7,15 @@
 //
 
 @import UIKit;
+@import MapKit;
 
 @class GSAgency;
 @class GSStop;
 
-@interface GSStopInfoTableController : UITableViewController
+@interface GSStopInfoTableController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView    * tableView;
+@property (nonatomic, weak) IBOutlet MKMapView      * mapView;
 
 @property (nonatomic, weak)   GSAgency  * agency;
 @property (nonatomic, strong) GSStop    * stop;

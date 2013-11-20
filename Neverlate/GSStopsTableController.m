@@ -80,7 +80,7 @@
         [headerView.showMapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView.menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
         
-        [headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTripsAction:)]];
+        [headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showStopInfoAction:)]];
         
         [self.navigationController.navigationBar addSubview:headerView];
         
@@ -148,9 +148,9 @@
     [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
 }
 
-- (void)showTripsAction:(id)sender
+- (void)showStopInfoAction:(id)sender
 {
-    [self performSegueWithIdentifier:@"GSShowTripsSegue" sender:self];
+    [self performSegueWithIdentifier:@"GSShowStopInfoSegue" sender:self];
 }
 
 - (void)showAgenciesMenuAction:(id)sender
@@ -403,7 +403,7 @@
 {
     [self hideDeparturesHeader:YES];
     
-    if ([segue.identifier isEqualToString:@"GSShowTripsSegue"]) {
+    if ([segue.identifier isEqualToString:@"GSShowStopInfoSegue"]) {
         GSStopInfoTableController *tripsTableController = (GSStopInfoTableController *) segue.destinationViewController;
         tripsTableController.stop = self.nextDeparturesStop;
     }
