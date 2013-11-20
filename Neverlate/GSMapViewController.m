@@ -32,6 +32,10 @@
     [self.agency stops:^(NSArray *stops) {
         [self.mapView addAnnotations:stops];
     }];
+    
+    self.mapView.showsUserLocation = YES;
+    
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }
 
 @end

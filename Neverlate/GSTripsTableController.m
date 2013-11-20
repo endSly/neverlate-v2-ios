@@ -58,12 +58,15 @@
     cell.textLabel.text = departure.title;
     cell.detailTextLabel.text = [departure.departure_date description];
     
-    NSTimeInterval departure1Interval = [departure.departure_date timeIntervalSinceNow] / 60.0f;
-    //if (departure1Interval > 120.0f) {
-        cell.detailTextLabel.text = [departure.departure_date description];
-    //} else {
-    //    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0fm", departure1Interval];
-    //}
+    static  NSDateFormatter *dateFormatter = nil;
+    if (!dateFormatter) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.locale = [NSLocale currentLocale];
+    }
+    
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:departure.departure_date];
     
     return cell;
 }
