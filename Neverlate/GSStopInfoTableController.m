@@ -16,6 +16,7 @@
 
 #import "GSAgencyNavigationController.h"
 
+#import "UIBarButtonItem+IonIcons.h"
 #import "FrameAccessor.h"
 #import "ScrollViewFrameAccessor.h"
 
@@ -37,9 +38,10 @@
     [self.mapView addAnnotation:self.stop];
     [self.mapView addAnnotations:self.stop.childStops];
     
-    self.mapView.userInteractionEnabled = NO;
     self.mapView.showsUserLocation = YES;
-    
+
+    [self.mapView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandMapAction:)]];
+
     CLLocationCoordinate2D center = self.stop.coordinate;
     center.latitude -= 0.0015;
     self.mapView.region = MKCoordinateRegionMakeWithDistance(center, 600, 600);
@@ -51,6 +53,24 @@
     
     self.tableView.backgroundColor = [UIColor clearColor];
     
+}
+
+- (void)expandMapAction:(id)sender
+{
+    [UIView animateWithDuration:0.35 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.tableView.y = self.view.height;
+    } completion:^(BOOL finished){
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithIcon:icon_ios7_close_outline target:self action:@selector(contractMapAction:)];
+    }];
+}
+
+- (void)contractMapAction:(id)sender
+{
+    [UIView animateWithDuration:0.35 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        self.tableView.y = 300;
+    } completion:^(BOOL finished){
+        self.navigationItem.leftBarButtonItem = nil;
+    }];
 }
 
 #pragma mark - Table view data source

@@ -27,7 +27,7 @@
 #import "GSStopCell.h"
 #import "GSDepartureHeaderView.h"
 
-#import "UIFont+IonIcons.h"
+#import "UIBarButtonItem+IonIcons.h"
 #import "ViewFrameAccessor.h"
 #import "ScrollViewFrameAccessor.h"
 
@@ -128,19 +128,9 @@
 - (void)buildNavigationItem
 {
     self.navigationItem.title = self.agency.agency_name;
-    
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-    menuButton.titleLabel.font = [UIFont iconicFontOfSize:32];
-    [menuButton setTitle:icon_navicon forState:UIControlStateNormal];
-    [menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-    
-    UIButton *mapButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-    mapButton.titleLabel.font = [UIFont iconicFontOfSize:32];
-    [mapButton setTitle:icon_ios7_navigate_outline forState:UIControlStateNormal];
-    [mapButton setTitle:icon_ios7_navigate forState:UIControlStateSelected];
-    [mapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mapButton];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithIcon:icon_navicon target:self action:@selector(showAgenciesMenuAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate target:self action:@selector(showMapAction:)];
 }
 
 - (void)showMapAction:(id)sender
@@ -305,11 +295,8 @@
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            self.tableView.contentOffsetY -= 128.0f;
             headerView.layer.opacity = 1;
-        } completion:^(BOOL finished) {
-            self.tableView.contentOffsetY += 128.0f;
-        }];
+        } completion:nil];
     } else {
         self.navigationController.navigationBar.height = 172.0f;
     }
