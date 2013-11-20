@@ -15,7 +15,6 @@
 #import "GSAgency+Query.h"
 
 #import "GSAgencyNavigationController.h"
-#import "GSStopsTableController.h"
 
 #import "GSNavigationBar.h"
 #import "GSIndeterminatedProgressView.h"
@@ -33,8 +32,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:85 / 255.0f green:87 / 255.0f blue:89 / 255.0f alpha:1];
     
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
-    navigationBar.indeterminateProgressView.progressTintColor = navigationBar.barTintColor;
-    
+
     [navigationBar.indeterminateProgressView startAnimating];
     [GSAgency all:^(NSArray *agencies) {
         [navigationBar.indeterminateProgressView stopAnimating];
@@ -85,9 +83,6 @@
     
     GSAgencyNavigationController *agencyNavigation = (GSAgencyNavigationController *) segue.destinationViewController;
     agencyNavigation.agency = agency;
-    
-    GSStopsTableController * stopsTableController = agencyNavigation.viewControllers.firstObject;
-    stopsTableController.agency = agency;
 }
 
 @end

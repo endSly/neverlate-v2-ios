@@ -19,6 +19,7 @@
 #import "GSStop+Query.h"
 #import "GSDeparture.h"
 
+#import "GSAgencyNavigationController.h"
 #import "GSStopInfoTableController.h"
 
 #import "GSIndeterminatedProgressView.h"
@@ -68,8 +69,6 @@
     
     self.tableView.contentOffsetY = 44.0f; // Hide search bar
 
-    [self buildNavigationItem];
-    
     // Build departure header view
     {
         GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
@@ -99,14 +98,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
+    self.agency = navigationController.agency;
+    
     _nextDeparturesStopSelected = NO;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
     
     if (self.agency) {
-        GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
-        navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
-        navigationBar.indeterminateProgressView.progressTintColor = [self.agency.agency_color colorWithAlphaComponent:0.65f];
+        if (!_isHeaderVisible)
+            [self buildNavigationItem];
+        
         [self loadStops];
     }
 }
