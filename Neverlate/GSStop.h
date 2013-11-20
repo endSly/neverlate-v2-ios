@@ -19,7 +19,9 @@ NS_ENUM(NSUInteger, GSLocationType) {
     GSLocationTypeEntrance = 2,
 };
 
-@interface GSStop : NSObject <MKAnnotation>
+@interface GSStop : NSObject <MKAnnotation> {
+    NSString *_stringForSearch;
+}
 
 @property (nonatomic, weak) GSAgency    * agency;
 
@@ -55,6 +57,6 @@ NS_ENUM(NSUInteger, GSLocationType) {
 
 @property (nonatomic, readonly) BOOL isRootStation;
 
-@property (nonatomic, readonly) NSString    * subtitle;
+@property (nonatomic, readonly, copy) NSString    * subtitle;
 
 @end

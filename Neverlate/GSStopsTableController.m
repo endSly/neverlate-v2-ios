@@ -58,8 +58,6 @@
     BOOL _nextDeparturesStopSelected;
     
     NSArray *_stopsForTable;
-    
-    NSArray *_searchFilteredStops;
 }
 
 #pragma  mark - View controller lifecycle
@@ -395,27 +393,6 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self.tableView reloadData];
-}
-
-#pragma mark - Search display delegate
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    NSUInteger originalCount = _searchFilteredStops.count;
-    
-    _searchFilteredStops = [self.stops filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"stop_name CONTAINS[cd] %@", searchString]];
-    
-    return originalCount != _searchFilteredStops.count;
-}
-
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
-{
-    _searchFilteredStops = self.stops;
-}
-
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{
-    _searchFilteredStops = nil;
 }
 
 #pragma mark - Segues

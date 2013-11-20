@@ -12,7 +12,10 @@
 @class GSStop;
 @class GSDepartureHeaderView;
 
-@interface GSStopsTableController : UITableViewController <UISearchDisplayDelegate>
+@interface GSStopsTableController : UITableViewController <UISearchDisplayDelegate> {
+@private
+    NSArray *_searchFilteredStops;
+}
 
 @property (nonatomic, strong) GSAgency  * agency;
 

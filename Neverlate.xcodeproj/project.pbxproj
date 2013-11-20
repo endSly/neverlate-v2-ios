@@ -57,6 +57,7 @@
 		0D45D258183BBD7F006498A9 /* GSStop+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D257183BBD7F006498A9 /* GSStop+Query.m */; };
 		0D45D25D183CB707006498A9 /* GSTripsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D25C183CB707006498A9 /* GSTripsTableController.m */; };
 		0D45D25F183CC1A0006498A9 /* GSStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45D25E183CC1A0006498A9 /* GSStopCell.xib */; };
+		0D45D262183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D261183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m */; };
 		0D9F839C1836BBB200595484 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */; };
 		0D9F839D1836BBB200595484 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83981836BBB200595484 /* ViewFrameAccessor.m */; };
 		0D9F839E1836BBB200595484 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F839B1836BBB200595484 /* ISO8601DateFormatter.m */; };
@@ -193,6 +194,7 @@
 		0D45D25B183CB707006498A9 /* GSTripsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSTripsTableController.h; sourceTree = "<group>"; };
 		0D45D25C183CB707006498A9 /* GSTripsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSTripsTableController.m; sourceTree = "<group>"; };
 		0D45D25E183CC1A0006498A9 /* GSStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GSStopCell.xib; sourceTree = "<group>"; };
+		0D45D261183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSStopsTableController+SearchDisplayController.m"; sourceTree = "<group>"; };
 		0D9F83941836BBB200595484 /* FrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83951836BBB200595484 /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
+				0D45D261183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m */,
 				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,
 				0DFF189618367CEA00B08CA9 /* GSMapViewController.m */,
 				0D45D25B183CB707006498A9 /* GSTripsTableController.h */,
@@ -672,6 +675,7 @@
 				0D45D247183A2219006498A9 /* UIColor+HexColor.m in Sources */,
 				0D45D24B183A38FC006498A9 /* GSSlidingAnimationTransitioning.m in Sources */,
 				0DFF189718367CEA00B08CA9 /* GSMapViewController.m in Sources */,
+				0D45D262183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m in Sources */,
 				0D29F20E1838069C004EA2B8 /* GSAgenciesTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
