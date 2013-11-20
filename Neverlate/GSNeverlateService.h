@@ -22,6 +22,7 @@
 - (void)getRoutes:(NSDictionary *)params    callback:(TZRESTCallback)callback;
 - (void)getTrips:(NSDictionary *)params     callback:(TZRESTCallback)callback;
 - (void)getStops:(NSDictionary *)params     callback:(TZRESTCallback)callback;
+- (void)getTrip:(NSDictionary *)params      callback:(TZRESTCallback)callback;
 
 - (void)getNextDepartures:(NSDictionary *)params
                  callback:(TZRESTCallback)callback;

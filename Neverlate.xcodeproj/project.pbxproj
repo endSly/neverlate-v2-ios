@@ -55,6 +55,9 @@
 		0D45D24F183A467C006498A9 /* GSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D24E183A467C006498A9 /* GSNavigationController.m */; };
 		0D45D255183BB985006498A9 /* GSAgency+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D254183BB985006498A9 /* GSAgency+Query.m */; };
 		0D45D258183BBD7F006498A9 /* GSStop+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D257183BBD7F006498A9 /* GSStop+Query.m */; };
+		0D45D25D183CB707006498A9 /* GSStopInfoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D25C183CB707006498A9 /* GSStopInfoTableController.m */; };
+		0D45D25F183CC1A0006498A9 /* GSStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45D25E183CC1A0006498A9 /* GSStopCell.xib */; };
+		0D45D262183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D261183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m */; };
 		0D9F839C1836BBB200595484 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */; };
 		0D9F839D1836BBB200595484 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83981836BBB200595484 /* ViewFrameAccessor.m */; };
 		0D9F839E1836BBB200595484 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F839B1836BBB200595484 /* ISO8601DateFormatter.m */; };
@@ -188,6 +191,10 @@
 		0D45D254183BB985006498A9 /* GSAgency+Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSAgency+Query.m"; sourceTree = "<group>"; };
 		0D45D256183BBD7F006498A9 /* GSStop+Query.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GSStop+Query.h"; sourceTree = "<group>"; };
 		0D45D257183BBD7F006498A9 /* GSStop+Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSStop+Query.m"; sourceTree = "<group>"; };
+		0D45D25B183CB707006498A9 /* GSStopInfoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopInfoTableController.h; sourceTree = "<group>"; };
+		0D45D25C183CB707006498A9 /* GSStopInfoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopInfoTableController.m; sourceTree = "<group>"; };
+		0D45D25E183CC1A0006498A9 /* GSStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GSStopCell.xib; sourceTree = "<group>"; };
+		0D45D261183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSStopsTableController+SearchDisplayController.m"; sourceTree = "<group>"; };
 		0D9F83941836BBB200595484 /* FrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83951836BBB200595484 /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
@@ -368,14 +375,8 @@
 			children = (
 				0D45D24D183A467C006498A9 /* GSNavigationController.h */,
 				0D45D24E183A467C006498A9 /* GSNavigationController.m */,
-				0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */,
-				0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */,
-				0D35D3161834CD340061CD8B /* GSAgencyNavigationController.h */,
-				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
-				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
-				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
-				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,
-				0DFF189618367CEA00B08CA9 /* GSMapViewController.m */,
+				0D45D259183CB69B006498A9 /* Agencies Navigation */,
+				0D45D25A183CB6B5006498A9 /* Agency Show Navigation */,
 			);
 			name = Contollers;
 			sourceTree = "<group>";
@@ -401,6 +402,7 @@
 				0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */,
 				0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */,
 				0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */,
+				0D45D25E183CC1A0006498A9 /* GSStopCell.xib */,
 				0D35D2F91833A8580061CD8B /* GSStopCell.h */,
 				0D35D2FA1833A8580061CD8B /* GSStopCell.m */,
 				0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */,
@@ -421,6 +423,31 @@
 				0D45D24A183A38FC006498A9 /* GSSlidingAnimationTransitioning.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		0D45D259183CB69B006498A9 /* Agencies Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */,
+				0D29F20D1838069C004EA2B8 /* GSAgenciesTableController.m */,
+			);
+			name = "Agencies Navigation";
+			sourceTree = "<group>";
+		};
+		0D45D25A183CB6B5006498A9 /* Agency Show Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				0D35D3161834CD340061CD8B /* GSAgencyNavigationController.h */,
+				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
+				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
+				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
+				0D45D261183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m */,
+				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,
+				0DFF189618367CEA00B08CA9 /* GSMapViewController.m */,
+				0D45D25B183CB707006498A9 /* GSStopInfoTableController.h */,
+				0D45D25C183CB707006498A9 /* GSStopInfoTableController.m */,
+			);
+			name = "Agency Show Navigation";
 			sourceTree = "<group>";
 		};
 		0D9F83931836BBB200595484 /* FrameAccessor */ = {
@@ -565,6 +592,7 @@
 				0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */,
 				0D07DC1C18337E9700CCE04B /* Images.xcassets in Resources */,
 				0D32959A1834359A00BE6D8C /* GSDepartureHeaderView.xib in Resources */,
+				0D45D25F183CC1A0006498A9 /* GSStopCell.xib in Resources */,
 				0D07DC0E18337E9700CCE04B /* InfoPlist.strings in Resources */,
 				0D07DC1718337E9700CCE04B /* Main.storyboard in Resources */,
 			);
@@ -635,6 +663,7 @@
 				0D07DC56183383D100CCE04B /* GSAgency.m in Sources */,
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
 				0D32959E1834370700BE6D8C /* GSDepartureHeaderView.m in Sources */,
+				0D45D25D183CB707006498A9 /* GSStopInfoTableController.m in Sources */,
 				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
 				0D45D24F183A467C006498A9 /* GSNavigationController.m in Sources */,
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
@@ -646,6 +675,7 @@
 				0D45D247183A2219006498A9 /* UIColor+HexColor.m in Sources */,
 				0D45D24B183A38FC006498A9 /* GSSlidingAnimationTransitioning.m in Sources */,
 				0DFF189718367CEA00B08CA9 /* GSMapViewController.m in Sources */,
+				0D45D262183CC9FC006498A9 /* GSStopsTableController+SearchDisplayController.m in Sources */,
 				0D29F20E1838069C004EA2B8 /* GSAgenciesTableController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

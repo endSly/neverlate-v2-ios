@@ -44,7 +44,7 @@
 {
     self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
     self.stopNameLabel.text = self.stop.stop_name;
-    self.entranceNameLabel.text = self.stop.nearestEntrance.stop_name;
+    self.detailTextLabel.text = self.stop.subtitle;
     self.headingArrow.transform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + (3 * M_PI / 4));
 }
 

@@ -11,6 +11,10 @@
 #import <ECSlidingViewController.h>
 #import <UIViewController+ECSlidingViewController.h>
 
+#import "GSAgency.h"
+
+#import "GSNavigationBar.h"
+
 #import "GSSlidingAnimationTransitioning.h"
 
 @implementation GSAgencyNavigationController
@@ -34,6 +38,13 @@
         [self.slidingViewController anchorTopViewToRightAnimated:NO];
     }
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationBar;
+    navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
+}
+
 
 #pragma mark - ECSlidingViewController delegate
 

@@ -54,6 +54,7 @@
 
 - (void)setBarTintColor:(UIColor *)barTintColor
 {
+    self.indeterminateProgressView.progressTintColor = barTintColor;
     _underlayView.backgroundColor = [barTintColor colorWithAlphaComponent:0.5];
     super.barTintColor = [barTintColor colorWithAlphaComponent:0.5];
 }

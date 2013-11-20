@@ -61,7 +61,7 @@
     }];
 }
 
-- (void)stopWithId:(NSString *)stopId callback:(void(^)(NSArray *))callback
+- (void)stopWithId:(NSString *)stopId callback:(void(^)(GSStop *))callback
 {
     if (_stopsMap) {
         callback(_stopsMap[stopId]);
@@ -70,6 +70,13 @@
     
     [self stops:^(NSArray *stops) {
         callback(_stopsMap[stopId]);
+    }];
+}
+
+- (void)tripWithId:(NSString *)tripId callback:(void(^)(GSTrip *))callback
+{
+    [[GSNeverlateService sharedService] getTrip:@{@"agency_key": self.agency_key, @"trip_id": tripId} callback:^(GSTrip *trip, NSURLResponse * resp, NSError *error) {
+        callback(trip);
     }];
 }
 

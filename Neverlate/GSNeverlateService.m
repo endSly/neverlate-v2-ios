@@ -38,6 +38,10 @@
     [self get:@"/api/v1/:agency_key/routes" class:GSRoute.class     as:$(getRoutes:callback:)   cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
     [self get:@"/api/v1/:agency_key/trips"  class:GSTrip.class      as:$(getRoutes:callback:)   cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
     [self get:@"/api/v1/:agency_key/stops"  class:GSStop.class      as:$(getStops:callback:)    cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
+    [self get:@"/api/v1/:agency_key/trips/:trip_id"
+        class:GSTrip.class
+           as:$(getTrip:callback:)
+  cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
     
     [self get:@"/api/v1/:agency_key/stops/:stop_id/next-departures"
         class:GSDeparture.class

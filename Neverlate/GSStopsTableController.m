@@ -19,6 +19,9 @@
 #import "GSStop+Query.h"
 #import "GSDeparture.h"
 
+#import "GSAgencyNavigationController.h"
+#import "GSStopInfoTableController.h"
+
 #import "GSIndeterminatedProgressView.h"
 #import "GSNavigationBar.h"
 #import "GSStopCell.h"
@@ -66,8 +69,6 @@
     
     self.tableView.contentOffsetY = 44.0f; // Hide search bar
 
-    [self buildNavigationItem];
-    
     // Build departure header view
     {
         GSDepartureHeaderView *headerView = [[NSBundle mainBundle] loadNibNamed:@"GSDepartureHeaderView"
@@ -79,10 +80,17 @@
         [headerView.showMapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView.menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
         
+        [headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showStopInfoAction:)]];
+        
         [self.navigationController.navigationBar addSubview:headerView];
         
         _headerView = headerView;
     }
+    
+    [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
+    
+    [self.searchDisplayController.searchResultsTableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
+                                               forCellReuseIdentifier:@"GSStopCell"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
@@ -90,14 +98,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
+    self.agency = navigationController.agency;
+    
     _nextDeparturesStopSelected = NO;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
     
     if (self.agency) {
-        GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
-        navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
-        navigationBar.indeterminateProgressView.progressTintColor = [self.agency.agency_color colorWithAlphaComponent:0.65f];
+        if (!_isHeaderVisible)
+            [self buildNavigationItem];
+        
         [self loadStops];
     }
 }
@@ -136,6 +147,11 @@
 {
     [self hideDeparturesHeader:YES];
     [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
+}
+
+- (void)showStopInfoAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"GSShowStopInfoSegue" sender:self];
 }
 
 - (void)showAgenciesMenuAction:(id)sender
@@ -244,7 +260,7 @@
     GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
     
     headerView.stopNameLabel.text = stop.stop_name;
-    headerView.entranceNameLabel.text = stop.nearestEntrance.stop_name;
+    headerView.entranceNameLabel.text = stop.subtitle;
     headerView.distanceLabel.text = stop.formattedDistance;
     headerView.tripHeadsign1.text = departure1.title;
     headerView.tripHeadsign2.text = departure2.title;
@@ -273,6 +289,7 @@
         return;
 
     _isHeaderVisible = YES;
+
     [self.tableView reloadData];
     
     GSDepartureHeaderView *headerView = _headerView;
@@ -304,6 +321,7 @@
         return;
 
     _isHeaderVisible = NO;
+
     [self.tableView reloadData];
 
     GSDepartureHeaderView *headerView = _headerView;
@@ -341,7 +359,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
+    if (tableView == self.tableView) {
+        return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
+    } else {
+        return _searchFilteredStops.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -349,7 +371,12 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSStop *stop = [self stopForRow:indexPath.row];
+    GSStop *stop;
+    if (tableView == self.tableView) {
+        stop = [self stopForRow:indexPath.row];
+    } else {
+        stop = _searchFilteredStops[indexPath.row];
+    }
     cell.stop = stop;
     
     return cell;
@@ -364,12 +391,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchDisplayController setActive:NO animated:YES];
+
     _nextDeparturesStopSelected = YES;
     [self showNextDeparturesStop:[self stopForRow:indexPath.row]];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self.tableView reloadData];
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [self hideDeparturesHeader:YES];
+    
+    if ([segue.identifier isEqualToString:@"GSShowStopInfoSegue"]) {
+        GSStopInfoTableController *tripsTableController = (GSStopInfoTableController *) segue.destinationViewController;
+        tripsTableController.stop = self.nextDeparturesStop;
+    }
 }
 
 @end

@@ -104,4 +104,11 @@
     return self.stop_name;
 }
 
+- (NSString *)subtitle
+{
+    return self.nearestEntrance && self.nearestEntrance != self
+    ? self.nearestEntrance.stop_name
+    : self.stop_code;
+}
+
 @end
