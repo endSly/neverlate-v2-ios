@@ -56,6 +56,7 @@
 		0D45D255183BB985006498A9 /* GSAgency+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D254183BB985006498A9 /* GSAgency+Query.m */; };
 		0D45D258183BBD7F006498A9 /* GSStop+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D257183BBD7F006498A9 /* GSStop+Query.m */; };
 		0D45D25D183CB707006498A9 /* GSTripsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D25C183CB707006498A9 /* GSTripsTableController.m */; };
+		0D45D25F183CC1A0006498A9 /* GSStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45D25E183CC1A0006498A9 /* GSStopCell.xib */; };
 		0D9F839C1836BBB200595484 /* ScrollViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */; };
 		0D9F839D1836BBB200595484 /* ViewFrameAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F83981836BBB200595484 /* ViewFrameAccessor.m */; };
 		0D9F839E1836BBB200595484 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9F839B1836BBB200595484 /* ISO8601DateFormatter.m */; };
@@ -191,6 +192,7 @@
 		0D45D257183BBD7F006498A9 /* GSStop+Query.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GSStop+Query.m"; sourceTree = "<group>"; };
 		0D45D25B183CB707006498A9 /* GSTripsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSTripsTableController.h; sourceTree = "<group>"; };
 		0D45D25C183CB707006498A9 /* GSTripsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSTripsTableController.m; sourceTree = "<group>"; };
+		0D45D25E183CC1A0006498A9 /* GSStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GSStopCell.xib; sourceTree = "<group>"; };
 		0D9F83941836BBB200595484 /* FrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83951836BBB200595484 /* ScrollViewFrameAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewFrameAccessor.h; sourceTree = "<group>"; };
 		0D9F83961836BBB200595484 /* ScrollViewFrameAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewFrameAccessor.m; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */,
 				0D35D2FC1833AAEE0061CD8B /* GSNavigationBar.h */,
 				0D35D2FD1833AAEE0061CD8B /* GSNavigationBar.m */,
+				0D45D25E183CC1A0006498A9 /* GSStopCell.xib */,
 				0D35D2F91833A8580061CD8B /* GSStopCell.h */,
 				0D35D2FA1833A8580061CD8B /* GSStopCell.m */,
 				0D3295991834359A00BE6D8C /* GSDepartureHeaderView.xib */,
@@ -586,6 +589,7 @@
 				0D3295911833B82300BE6D8C /* ionicons.ttf in Resources */,
 				0D07DC1C18337E9700CCE04B /* Images.xcassets in Resources */,
 				0D32959A1834359A00BE6D8C /* GSDepartureHeaderView.xib in Resources */,
+				0D45D25F183CC1A0006498A9 /* GSStopCell.xib in Resources */,
 				0D07DC0E18337E9700CCE04B /* InfoPlist.strings in Resources */,
 				0D07DC1718337E9700CCE04B /* Main.storyboard in Resources */,
 			);

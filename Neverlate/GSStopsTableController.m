@@ -58,6 +58,8 @@
     BOOL _nextDeparturesStopSelected;
     
     NSArray *_stopsForTable;
+    
+    NSArray *_searchFilteredStops;
 }
 
 #pragma  mark - View controller lifecycle
@@ -87,6 +89,11 @@
         
         _headerView = headerView;
     }
+    
+    [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
+    
+    [self.searchDisplayController.searchResultsTableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
+                                               forCellReuseIdentifier:@"GSStopCell"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
@@ -348,7 +355,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
+    if (tableView == self.tableView) {
+        return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
+    } else {
+        return _searchFilteredStops.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -356,7 +367,12 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSStop *stop = [self stopForRow:indexPath.row];
+    GSStop *stop;
+    if (tableView == self.tableView) {
+        stop = [self stopForRow:indexPath.row];
+    } else {
+        stop = _searchFilteredStops[indexPath.row];
+    }
     cell.stop = stop;
     
     return cell;
@@ -371,12 +387,35 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchDisplayController setActive:NO animated:YES];
+    
     _nextDeparturesStopSelected = YES;
     [self showNextDeparturesStop:[self stopForRow:indexPath.row]];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self.tableView reloadData];
+}
+
+#pragma mark - Search display delegate
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSUInteger originalCount = _searchFilteredStops.count;
+    
+    _searchFilteredStops = [self.stops filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"stop_name CONTAINS[cd] %@", searchString]];
+    
+    return originalCount != _searchFilteredStops.count;
+}
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+    _searchFilteredStops = self.stops;
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    _searchFilteredStops = nil;
 }
 
 #pragma mark - Segues
