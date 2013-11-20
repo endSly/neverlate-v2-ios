@@ -19,6 +19,8 @@
 #import "GSStop+Query.h"
 #import "GSDeparture.h"
 
+#import "GSTripsTableController.h"
+
 #import "GSIndeterminatedProgressView.h"
 #import "GSNavigationBar.h"
 #import "GSStopCell.h"
@@ -79,6 +81,8 @@
         [headerView.showMapButton addTarget:self action:@selector(showMapAction:) forControlEvents:UIControlEventTouchUpInside];
         [headerView.menuButton addTarget:self action:@selector(showAgenciesMenuAction:) forControlEvents:UIControlEventTouchUpInside];
         
+        [headerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showTripsAction:)]];
+        
         [self.navigationController.navigationBar addSubview:headerView];
         
         _headerView = headerView;
@@ -134,10 +138,12 @@
 
 - (void)showMapAction:(id)sender
 {
-    [self hideDeparturesHeader:YES];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
-    });
+    [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
+}
+
+- (void)showTripsAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"GSShowTripsSegue" sender:self];
 }
 
 - (void)showAgenciesMenuAction:(id)sender
@@ -271,14 +277,9 @@
     if (_isHeaderVisible)
         return;
     
+    _isHeaderVisible = YES;
     
     [self.tableView reloadData];
-    
-    //[self.tableView beginUpdates];
-    _isHeaderVisible = YES;
-    //[self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-    //                      withRowAnimation:UITableViewRowAnimationBottom];
-    //[self.tableView endUpdates];
     
     GSDepartureHeaderView *headerView = _headerView;
     
@@ -293,10 +294,10 @@
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            //self.tableView.contentOffsetY -= 128.0f;
+            self.tableView.contentOffsetY -= 128.0f;
             headerView.layer.opacity = 1;
         } completion:^(BOOL finished) {
-            //self.tableView.contentOffsetY += 128.0f;
+            self.tableView.contentOffsetY += 128.0f;
         }];
     } else {
         self.navigationController.navigationBar.height = 172.0f;
@@ -308,13 +309,10 @@
     if (!_isHeaderVisible)
         return;
     
-    [self.tableView reloadData];
-    //[self.tableView beginUpdates];
     _isHeaderVisible = NO;
-    //[self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-    //                      withRowAnimation:UITableViewRowAnimationBottom];
-    //[self.tableView endUpdates];
     
+    [self.tableView reloadData];
+
     GSDepartureHeaderView *headerView = _headerView;
     
     if (animated) {
@@ -373,24 +371,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    {
-        [self.tableView beginUpdates];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                              withRowAnimation:UITableViewRowAnimationBottom];
-        
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                              withRowAnimation:UITableViewRowAnimationMiddle];
-        
-        [self.tableView endUpdates];
-    }
-    */
     _nextDeparturesStopSelected = YES;
     [self showNextDeparturesStop:[self stopForRow:indexPath.row]];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self.tableView reloadData];
+}
+
+#pragma mark - Segues
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    [self hideDeparturesHeader:YES];
+    
+    if ([segue.identifier isEqualToString:@"GSShowTripsSegue"]) {
+        GSTripsTableController *tripsTableController = (GSTripsTableController *) segue.destinationViewController;
+        tripsTableController.stop = self.nextDeparturesStop;
+    }
 }
 
 @end

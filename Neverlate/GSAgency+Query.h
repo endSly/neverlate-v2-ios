@@ -8,16 +8,14 @@
 
 #import "GSAgency.h"
 
-struct GSAgencyQueryPrivate {
-    
-};
+@class GSStop;
 
 @interface GSAgency (Query)
 
 + (void)all:(void(^)(NSArray *))callback;
 
 - (void)stops:(void(^)(NSArray *))callback;
-- (void)stopWithId:(NSString *)stopId callback:(void(^)(NSArray *))callback;
+- (void)stopWithId:(NSString *)stopId callback:(void(^)(GSStop *))callback;
 
 
 @end

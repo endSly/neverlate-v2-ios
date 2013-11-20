@@ -61,7 +61,7 @@
     }];
 }
 
-- (void)stopWithId:(NSString *)stopId callback:(void(^)(NSArray *))callback
+- (void)stopWithId:(NSString *)stopId callback:(void(^)(GSStop *))callback
 {
     if (_stopsMap) {
         callback(_stopsMap[stopId]);

@@ -71,6 +71,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="eu1-tE-vge" id="2d0-Ko-f3e"/>
                         <segue destination="gNX-0m-zMX" kind="push" identifier="GSShowMapSegue" id="fRa-Md-DHe"/>
+                        <segue destination="Oig-RV-L3x" kind="push" identifier="GSShowTripsSegue" id="6mZ-BG-Tf8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3e-lv-ceZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -85,6 +86,51 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="422" y="-171"/>
+        </scene>
+        <!--Trips Table Controller-->
+        <scene sceneID="G2j-el-N2b">
+            <objects>
+                <tableViewController id="Oig-RV-L3x" customClass="GSTripsTableController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="X8i-4e-BU2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GSDepartureCell" textLabel="1vz-ez-1mV" detailTextLabel="DLK-wE-BHk" style="IBUITableViewCellStyleSubtitle" id="O06-le-pbG">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O06-le-pbG" id="w1D-5h-J22">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" id="1vz-ez-1mV">
+                                            <rect key="frame" x="15" y="3" width="30" height="22"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DLK-wE-BHk">
+                                            <rect key="frame" x="15" y="25" width="41" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Oig-RV-L3x" id="z5U-ci-c3e"/>
+                            <outlet property="delegate" destination="Oig-RV-L3x" id="y2H-YJ-g24"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="LYv-B7-kWf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wmB-5m-cqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="963" y="208"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="vO1-eq-cbZ">
@@ -112,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcJ-hW-gnH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="965" y="-584"/>
+            <point key="canvasLocation" x="963" y="-496"/>
         </scene>
         <!--Sliding View Controller-->
         <scene sceneID="MPc-Fq-9b5">
