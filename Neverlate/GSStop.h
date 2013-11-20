@@ -55,4 +55,6 @@ NS_ENUM(NSUInteger, GSLocationType) {
 
 @property (nonatomic, readonly) BOOL isRootStation;
 
+@property (nonatomic, readonly) NSString    * subtitle;
+
 @end

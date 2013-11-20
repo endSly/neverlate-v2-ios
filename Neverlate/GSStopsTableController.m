@@ -256,7 +256,7 @@
     GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
     
     headerView.stopNameLabel.text = stop.stop_name;
-    headerView.entranceNameLabel.text = stop.nearestEntrance.stop_name;
+    headerView.entranceNameLabel.text = stop.subtitle;
     headerView.distanceLabel.text = stop.formattedDistance;
     headerView.tripHeadsign1.text = departure1.title;
     headerView.tripHeadsign2.text = departure2.title;

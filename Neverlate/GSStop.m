@@ -50,6 +50,13 @@
     return [self.entrances sortedArrayUsingSelector:@selector(distance)].firstObject ?: self;
 }
 
+- (NSString *)subtitle
+{
+    return self.nearestEntrance.stop_name && self.nearestEntrance != self
+    ? self.nearestEntrance.stop_name
+    : self.stop_code;
+}
+
 - (NSArray *)entrances
 {
     return [self.childStops filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"location_type = %u", GSLocationTypeEntrance]];
