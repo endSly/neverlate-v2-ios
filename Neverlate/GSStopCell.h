@@ -19,6 +19,8 @@
 @property (nonatomic, weak) IBOutlet UILabel * entranceNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * stopDistanceLabel;
 
+@property (nonatomic, weak) IBOutlet UIView * distanceContainerView;
+
 @property (nonatomic, strong) GSStop    * stop;
 
 @end

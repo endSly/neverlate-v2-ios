@@ -30,6 +30,8 @@
         
         self.headingArrow.layer.anchorPoint = CGPointMake(0.5, 0.5);
         self.headingArrow.transform = CGAffineTransformMakeRotation(-M_PI / 4);
+        
+        self.distanceContainerView.layer.cornerRadius = 2.0f;
     }
     [self updateInfo];
 }
@@ -38,6 +40,16 @@
 {
     _stop = stop;
     [self updateInfo];
+}
+
+- (UILabel *)detailTextLabel
+{
+    return self.entranceNameLabel;
+}
+
+- (UILabel *)textLabel
+{
+    return self.stopNameLabel;
 }
 
 - (void)updateInfo
