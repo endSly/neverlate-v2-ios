@@ -12,12 +12,14 @@
 
 - (id)initWithIcon:(NSString *)icon target:(id)target action:(SEL)action
 {
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-    button.titleLabel.font = [UIFont iconicFontOfSize:32];
-    [button setTitle:icon forState:UIControlStateNormal];
-    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    self = [self initWithTitle:icon style:UIBarButtonItemStylePlain target:target action:action];
+    
+    if (self) {
+        [self setTitleTextAttributes:@{NSFontAttributeName: [UIFont iconicFontOfSize:32]}
+                            forState:UIControlStateNormal];
+    }
 
-    return [self initWithCustomView:button];
+    return self;
 }
 
 @end
