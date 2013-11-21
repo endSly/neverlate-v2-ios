@@ -27,7 +27,7 @@
         [self addSubview:progressView];
         self.indeterminateProgressView = progressView;
         
-        self.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:20],
+        self.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:20],
                                      NSForegroundColorAttributeName: UIColor.whiteColor};
     }
     
@@ -54,7 +54,7 @@
 
 - (void)setBarTintColor:(UIColor *)barTintColor
 {
-    self.indeterminateProgressView.progressTintColor = barTintColor;
+    self.indeterminateProgressView.progressTintColor = [barTintColor colorWithAlphaComponent:0.6];
     _underlayView.backgroundColor = [barTintColor colorWithAlphaComponent:0.6];
     super.barTintColor = [barTintColor colorWithAlphaComponent:0.1];
 }
