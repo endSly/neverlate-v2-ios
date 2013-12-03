@@ -14,9 +14,8 @@
 #import "GSRoute.h"
 #import "GSTrip.h"
 #import "GSStop.h"
-#import "GSDeparture.h"
 
-#define BASE_URL    @"https://neverlate-es-bizkaia.herokuapp.com"
+#define BASE_URL    @"https://neverlate-es-bi.herokuapp.com"
 #define AUTH_TOKEN  @"13D062745383DF798B486CB73F7FE539DC165D3B931645473A0D0A823F2F1009"
 
 @implementation GSNeverlateService
@@ -44,7 +43,7 @@
   cachePolicy:TZCachePolicyRevalidate expiration:30 * 24 * 60 * 60];
     
     [self get:@"/api/v1/:agency_key/stops/:stop_id/next-departures"
-        class:GSDeparture.class
+        class:GSTrip.class
            as:$(getNextDepartures:callback:)
      cachePolicy:TZCachePolicyBypassCache
    expiration:0];

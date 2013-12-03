@@ -12,7 +12,7 @@
 #import "GSAgency+Query.h"
 #import "GSStop.h"
 #import "GSStop+Query.h"
-#import "GSDeparture.h"
+#import "GSTrip.h"
 
 #import "GSAgencyNavigationController.h"
 
@@ -98,10 +98,10 @@
     static NSString *CellIdentifier = @"GSDepartureCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    GSDeparture *departure = self.nextDepartures[indexPath.row];
+    GSTrip *departure = self.nextDepartures[indexPath.row];
     cell.textLabel.text = departure.title;
     
-    cell.detailTextLabel.text = [dateFormatter stringFromDate:departure.departure_date];
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:[departure departureDateForStop:self.stop]];
     
     return cell;
 }
@@ -122,11 +122,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    GSDeparture *departure = self.nextDepartures[indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    GSTrip *departure = self.nextDepartures[indexPath.row];
     
     [self.agency tripWithId:departure.trip_id callback:^(GSTrip *trip) {
-        
+        [self.mapView addOverlay:trip];
     }];
+}
+
+#pragma mark - Map view delegate
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    GSTrip *trip = (GSTrip *)overlay;
+    NSArray *stops = trip.stops;
+    CLLocationCoordinate2D coordinates[stops.count];
+    
+    int i = 0;
+    for (GSStop *stop in stops) {
+        coordinates[i++] = stop.coordinate;
+    }
+    
+    MKPolyline *tripPath = [MKPolyline polylineWithCoordinates:coordinates count:stops.count];
+    MKPolylineRenderer *tripRenderer = [[MKPolylineRenderer alloc] initWithPolyline:tripPath];
+    tripRenderer.fillColor = [UIColor redColor];
+    tripRenderer.lineWidth = 4.0f;
+    return tripRenderer;
 }
 
 /*

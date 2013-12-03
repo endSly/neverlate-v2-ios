@@ -30,8 +30,6 @@
 		0D07DC5B1833855000CCE04B /* GSRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC591833855000CCE04B /* GSRoute.m */; };
 		0D07DC5E183385E500CCE04B /* GSTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC5D183385E500CCE04B /* GSTrip.m */; };
 		0D07DC5F183385E500CCE04B /* GSTrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC5D183385E500CCE04B /* GSTrip.m */; };
-		0D07DC621833867700CCE04B /* GSDeparture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC611833867700CCE04B /* GSDeparture.m */; };
-		0D07DC631833867700CCE04B /* GSDeparture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC611833867700CCE04B /* GSDeparture.m */; };
 		0D07DC6F18338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
 		0D07DC7018338B4800CCE04B /* GSNeverlateService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */; };
 		0D07DC76183395DA00CCE04B /* libTenzingCore-RESTService.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D07DC471833801300CCE04B /* libTenzingCore-RESTService.a */; };
@@ -155,8 +153,6 @@
 		0D07DC591833855000CCE04B /* GSRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSRoute.m; sourceTree = "<group>"; };
 		0D07DC5C183385E500CCE04B /* GSTrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSTrip.h; sourceTree = "<group>"; };
 		0D07DC5D183385E500CCE04B /* GSTrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSTrip.m; sourceTree = "<group>"; };
-		0D07DC601833867700CCE04B /* GSDeparture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSDeparture.h; sourceTree = "<group>"; };
-		0D07DC611833867700CCE04B /* GSDeparture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSDeparture.m; sourceTree = "<group>"; };
 		0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNeverlateService.h; sourceTree = "<group>"; };
 		0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNeverlateService.m; sourceTree = "<group>"; };
 		0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsTableController.h; sourceTree = "<group>"; };
@@ -346,8 +342,6 @@
 				0D07DC591833855000CCE04B /* GSRoute.m */,
 				0D07DC5C183385E500CCE04B /* GSTrip.h */,
 				0D07DC5D183385E500CCE04B /* GSTrip.m */,
-				0D07DC601833867700CCE04B /* GSDeparture.h */,
-				0D07DC611833867700CCE04B /* GSDeparture.m */,
 				0D35D3111833DEDE0061CD8B /* GSCoordinates.h */,
 				0D35D3121833DEDE0061CD8B /* GSCoordinates.m */,
 			);
@@ -670,7 +664,6 @@
 				0D07DC521833807000CCE04B /* GSStop.m in Sources */,
 				0D32959E1834370700BE6D8C /* GSDepartureHeaderView.m in Sources */,
 				0D45D25D183CB707006498A9 /* GSStopInfoTableController.m in Sources */,
-				0D07DC621833867700CCE04B /* GSDeparture.m in Sources */,
 				0D45D24F183A467C006498A9 /* GSNavigationController.m in Sources */,
 				0D07DC5A1833855000CCE04B /* GSRoute.m in Sources */,
 				0D45D258183BBD7F006498A9 /* GSStop+Query.m in Sources */,
@@ -693,7 +686,6 @@
 				0D07DC7018338B4800CCE04B /* GSNeverlateService.m in Sources */,
 				0D07DC2F18337E9700CCE04B /* NeverlateTests.m in Sources */,
 				0D07DC5B1833855000CCE04B /* GSRoute.m in Sources */,
-				0D07DC631833867700CCE04B /* GSDeparture.m in Sources */,
 				0D07DC7D1833A4B700CCE04B /* GSStopsTableController.m in Sources */,
 				0D07DC5F183385E500CCE04B /* GSTrip.m in Sources */,
 				0D07DC57183383D100CCE04B /* GSAgency.m in Sources */,

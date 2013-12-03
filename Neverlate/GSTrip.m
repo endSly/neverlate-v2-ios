@@ -8,6 +8,92 @@
 
 #import "GSTrip.h"
 
+#import <TenzingCore/TenzingCore.h>
+
+#import "GSAgency+Query.h"
+#import "GSRoute.h"
+#import "GSStop.h"
+
+#import "ISO8601DateFormatter.h"
+
 @implementation GSTrip
+
+- (Class)stop_timesClass {
+    return [GSStopTime class];
+}
+
+- (void)setDate:(NSDate *)date
+{
+    if ([date isKindOfClass:NSDate.class]) {
+        _date = date;
+        return;
+    }
+    
+    // Convert to date if it is a atring
+    if ([date isKindOfClass:NSString.class]) {
+        static ISO8601DateFormatter *dateFormatter = nil;
+        if (!dateFormatter)
+            dateFormatter = [[ISO8601DateFormatter alloc] init];
+        
+        _date = [dateFormatter dateFromString:(NSString *)date];
+        return;
+    }
+}
+
+- (NSArray *)stops
+{
+    @synchronized(self) {
+        // Wait for stops load
+        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+        [self.agency stops:^(NSArray *stops) {
+            dispatch_semaphore_signal(sema);
+        }];
+        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        
+        __block NSMutableArray *stops = [NSMutableArray arrayWithCapacity:self.stop_times.count];
+        
+        for (GSStopTime *stopTime in self.stop_times) {
+            [self.agency stopWithId:stopTime.stop_id callback:^(GSStop *stop) {
+                [stops addObject:stop];
+            }];
+        }
+        return stops;
+    }
+}
+
+- (NSDate *)departureDateForStop:(GSStop *)stop
+{
+    GSStopTime *time = [self.stop_times find:^BOOL(GSStopTime *time) { return [time.stop_id isEqualToString:stop.stop.stop_id]; }];
+    return [self.date dateByAddingTimeInterval:time.departure_time.floatValue];
+}
+
+- (MKMapRect)boundingMapRect
+{
+    CGFloat n = self.agency.agency_bounds.ne.latitude.floatValue,
+    e = self.agency.agency_bounds.ne.longitude.floatValue,
+    s = self.agency.agency_bounds.sw.latitude.floatValue,
+    w = self.agency.agency_bounds.sw.longitude.floatValue;
+    
+    return MKMapRectWorld;
+    
+    return MKMapRectMake(n, e, n - s, e - w);
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    MKMapRect rect = self.boundingMapRect;
+    return CLLocationCoordinate2DMake(rect.origin.x + rect.size.width / 2.0f, rect.origin.y + rect.size.height / 2.0f);
+}
+
+- (NSString *)title
+{
+    return self.trip_headsign.length != 0
+    ? self.trip_headsign
+    : [NSString stringWithFormat:@"%@ %@", self.route.route_short_name, self.route.route_long_name];
+}
+
+@end
+
+@implementation GSStopTime
 
 @end

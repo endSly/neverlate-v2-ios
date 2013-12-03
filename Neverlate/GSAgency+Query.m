@@ -12,6 +12,7 @@
 
 #import "GSNeverlateService.h"
 #import "GSStop.h"
+#import "GSTrip.h"
 
 @implementation GSAgency (Query)
 
@@ -76,6 +77,7 @@
 - (void)tripWithId:(NSString *)tripId callback:(void(^)(GSTrip *))callback
 {
     [[GSNeverlateService sharedService] getTrip:@{@"agency_key": self.agency_key, @"trip_id": tripId} callback:^(GSTrip *trip, NSURLResponse * resp, NSError *error) {
+        trip.agency = self;
         callback(trip);
     }];
 }

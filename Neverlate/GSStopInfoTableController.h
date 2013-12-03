@@ -12,7 +12,7 @@
 @class GSAgency;
 @class GSStop;
 
-@interface GSStopInfoTableController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface GSStopInfoTableController : UIViewController <UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView    * tableView;
 @property (nonatomic, weak) IBOutlet MKMapView      * mapView;

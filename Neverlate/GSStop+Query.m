@@ -15,8 +15,7 @@
 - (void)nextDepartures:(void(^)(NSArray *))callback
 {
     [[GSNeverlateService sharedService] getNextDepartures:@{@"agency_key": self.agency_key, @"stop_id": self.stop.stop_id} callback:^(NSArray *departures, NSURLResponse *resp, NSError *error) {
-        
-        departures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
+        //departures = [departures sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"departure_date" ascending:YES]]];
         callback(departures);
     }];
 }

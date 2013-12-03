@@ -17,7 +17,7 @@
 #import "GSAgency+Query.h"
 #import "GSStop.h"
 #import "GSStop+Query.h"
-#import "GSDeparture.h"
+#import "GSTrip.h"
 
 #import "GSAgencyNavigationController.h"
 #import "GSStopInfoTableController.h"
@@ -209,7 +209,10 @@
 
 - (void)updateNextDepartures
 {
-    self.nextDepartures = [self.nextDepartures filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"departure_date > %@", [NSDate date]]];
+    self.nextDepartures = [self.nextDepartures filter:^BOOL(GSTrip *trip) {
+        return [[trip departureDateForStop:self.nextDeparturesStop] timeIntervalSinceNow] > 0;
+    }];
+
     if (self.nextDepartures.count < 2) {
         [self hideDeparturesHeader:YES];
     } else {
@@ -247,21 +250,21 @@
 
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
-    GSDeparture *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
+    GSTrip *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
     
     headerView.stopNameLabel.text = stop.stop_name;
     headerView.entranceNameLabel.text = stop.subtitle;
     headerView.distanceLabel.text = stop.formattedDistance;
     headerView.tripHeadsign1.text = departure1.title;
     headerView.tripHeadsign2.text = departure2.title;
-    NSTimeInterval departure1Interval = [departure1.departure_date timeIntervalSinceNow] / 60.0f;
+    NSTimeInterval departure1Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
     if (departure1Interval > 120.0f) {
         headerView.departureTime1.text = @"+120m";
     } else {
         headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", departure1Interval];
     }
     
-    NSTimeInterval departure2Interval = [departure2.departure_date timeIntervalSinceNow] / 60.0f;
+    NSTimeInterval departure2Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
     if (departure2Interval > 120.0f) {
         headerView.departureTime2.text = @"+120m";
     } else {
