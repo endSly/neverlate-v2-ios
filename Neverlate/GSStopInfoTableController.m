@@ -146,8 +146,8 @@
     
     MKPolyline *tripPath = [MKPolyline polylineWithCoordinates:coordinates count:stops.count];
     MKPolylineRenderer *tripRenderer = [[MKPolylineRenderer alloc] initWithPolyline:tripPath];
-    tripRenderer.fillColor = [UIColor redColor];
-    tripRenderer.lineWidth = 4.0f;
+    tripRenderer.strokeColor = [UIColor redColor];
+    tripRenderer.lineWidth = 2.0f;
     return tripRenderer;
 }
 

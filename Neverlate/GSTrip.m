@@ -52,11 +52,14 @@
         
         __block NSMutableArray *stops = [NSMutableArray arrayWithCapacity:self.stop_times.count];
         
+        self.stop_times = [self.stop_times sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"stop_sequence" ascending:YES]]];
+        
         for (GSStopTime *stopTime in self.stop_times) {
             [self.agency stopWithId:stopTime.stop_id callback:^(GSStop *stop) {
                 [stops addObject:stop];
             }];
         }
+        
         return stops;
     }
 }
