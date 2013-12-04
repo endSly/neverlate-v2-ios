@@ -12,9 +12,12 @@
 @class GSStop;
 @class GSDepartureHeaderView;
 
+@class GADBannerView;
+
 @interface GSStopsTableController : UITableViewController <UISearchDisplayDelegate> {
 @private
     NSArray *_searchFilteredStops;
+    GADBannerView *_bannerView;
 }
 
 @property (nonatomic, strong) GSAgency  * agency;

@@ -26,6 +26,7 @@
 #import "GSNavigationBar.h"
 #import "GSStopCell.h"
 #import "GSDepartureHeaderView.h"
+#import "GADBannerView.h"
 
 #import "UIBarButtonItem+IonIcons.h"
 #import "ViewFrameAccessor.h"
@@ -94,6 +95,11 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
+    
+    _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
+    _bannerView.adUnitID = @"a1529f2900969fa";
+    _bannerView.rootViewController = self;
+    [_bannerView loadRequest:[GADRequest request]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -389,6 +395,16 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     [self.tableView reloadData];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return _bannerView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return kGADAdSizeBanner.size.height;
 }
 
 #pragma mark - Segues
