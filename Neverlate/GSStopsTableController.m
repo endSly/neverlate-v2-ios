@@ -87,7 +87,7 @@
         
         _headerView = headerView;
     }
-
+    
     [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
     
     [self.searchDisplayController.searchResultsTableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
@@ -124,12 +124,11 @@
     
     { // Build toolbar
         self.navigationController.toolbarHidden = NO;
-        self.navigationController.toolbar.tintColor = self.agency.agency_color;
         self.toolbarItems =
         @[
           [[UIBarButtonItem alloc] initWithIcon:icon_ios7_calendar_outline color:self.agency.agency_color target:self action:@selector(showCalendarAction:)],
           [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline      color:self.agency.agency_color target:self action:@selector(showMapAction:)],
+          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline color:self.agency.agency_color target:self action:@selector(showMapAction:)],
           ];
         NSLog(@"--- %@", self.navigationController.toolbar);
     }
@@ -164,7 +163,6 @@
     self.navigationItem.title = self.agency.agency_name;
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithIcon:icon_navicon target:self action:@selector(showAgenciesMenuAction:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate target:self action:@selector(showMapAction:)];
 }
 
 - (void)showMapAction:(id)sender
