@@ -1,5 +1,6 @@
 PODS:
   - ECSlidingViewController (2.0.0-beta2)
+  - Google-Mobile-Ads-SDK (6.6.1)
   - NanoStore (2.7.7)
   - TenzingCore (0.2.0):
     - TenzingCore/Core
@@ -9,16 +10,14 @@ PODS:
 
 DEPENDENCIES:
   - ECSlidingViewController (~> 2.0.0-beta)
+  - Google-Mobile-Ads-SDK (~> 6.6.1)
   - NanoStore (~> 2.7.7)
-  - TenzingCore (from `https://github.com/endSly/TenzingCore.git`)
-  - TenzingCore/RESTService (from `https://github.com/endSly/TenzingCore.git`)
-
-EXTERNAL SOURCES:
-  TenzingCore:
-    :git: https://github.com/endSly/TenzingCore.git
+  - TenzingCore (~> 0.2.0)
+  - TenzingCore/RESTService (~> 0.2.0)
 
 SPEC CHECKSUMS:
   ECSlidingViewController: 097e5451e8628611f17ed27a6e0829fa705f7851
+  Google-Mobile-Ads-SDK: edd71358f4ac3c7a09e5614728e19957dd91c017
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
   TenzingCore: c19e507c14ecbd1aa7feddbbbfddd8ffcf5f3b10
 

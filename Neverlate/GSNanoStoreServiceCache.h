@@ -8,7 +8,7 @@
 
 #import <NanoStore.h>
 #import <TenzingCore/TenzingCore.h>
-#import <TenzingCore-RESTService/TenzingCore-RESTService.h>
+#import <TenzingCore/TenzingCore-RESTService.h>
 
 @interface GSNanoStoreServiceCache : NSObject <TZRESTServiceCacheStore>
 

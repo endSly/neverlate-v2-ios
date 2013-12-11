@@ -7,7 +7,7 @@
 //
 
 #import <TenzingCore/TenzingCore.h>
-#import <TenzingCore-RESTService/TenzingCore-RESTService.h>
+#import <TenzingCore/TenzingCore-RESTService.h>
 
 @interface GSNeverlateService : TZRESTService
 
