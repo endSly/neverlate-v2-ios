@@ -55,7 +55,11 @@
     }];
     
     self.tableView.backgroundColor = [UIColor clearColor];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.toolbarHidden = YES;
 }
 
 - (void)expandMapAction:(id)sender

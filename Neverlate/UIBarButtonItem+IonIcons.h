@@ -13,5 +13,6 @@
 @interface UIBarButtonItem (IonIcons)
 
 - (id)initWithIcon:(NSString *)icon target:(id)target action:(SEL)action;
+- (id)initWithIcon:(NSString *)icon color:(UIColor *)color target:(id)target action:(SEL)action;
 
 @end

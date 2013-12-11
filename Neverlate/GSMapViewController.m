@@ -34,4 +34,9 @@
     [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.toolbarHidden = YES;
+}
+
 @end
