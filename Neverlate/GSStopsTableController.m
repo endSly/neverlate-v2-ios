@@ -99,7 +99,22 @@
     _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     _bannerView.adUnitID = @"a1529f2900969fa";
     _bannerView.rootViewController = self;
-    [_bannerView loadRequest:[GADRequest request]];
+    [self refreshBanner];
+    
+    [NSTimer scheduledTimerWithTimeInterval:15000 target:self selector:@selector(refreshBanner) userInfo:nil repeats:YES];
+}
+
+- (void)refreshBanner
+{
+    GADRequest *request = [GADRequest request];
+    
+    CLLocation *location = [GSLocationManager sharedManager].location;
+    if (location) {
+        [request setLocationWithLatitude:location.coordinate.latitude
+                               longitude:location.coordinate.longitude
+                                accuracy:location.horizontalAccuracy];
+    }
+    [_bannerView loadRequest:request];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -88,6 +88,28 @@
     return CLLocationCoordinate2DMake(rect.origin.x + rect.size.width / 2.0f, rect.origin.y + rect.size.height / 2.0f);
 }
 
+- (MKCoordinateRegion)region
+{
+    CLLocationDegrees n = INFINITY, s = -INFINITY, e = INFINITY, w = -INFINITY;
+    for (GSStop *stop in self.stops) {
+        n = MIN(n, stop.loc.latitude.doubleValue);
+        s = MAX(s, stop.loc.latitude.doubleValue);
+        e = MIN(e, stop.loc.longitude.doubleValue);
+        w = MAX(w, stop.loc.longitude.doubleValue);
+    }
+    
+    return (MKCoordinateRegion) {
+        .center = {
+            .latitude = (n + s) / 2.0,
+            .longitude = (e + w) / 2.0
+        },
+        .span = {
+            .latitudeDelta = (n + s) / 2.0 - n,
+            .longitudeDelta = (e + w) / 2.0 - e
+        }
+    };
+}
+
 - (NSString *)title
 {
     return self.trip_headsign.length != 0

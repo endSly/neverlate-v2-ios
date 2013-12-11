@@ -30,6 +30,8 @@
 
 @property (nonatomic, readonly) NSArray * stops;
 
+@property (nonatomic, readonly) MKCoordinateRegion region;
+
 - (NSDate *)departureDateForStop:(GSStop *)stop;
 
 @end

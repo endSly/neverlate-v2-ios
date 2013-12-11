@@ -20,6 +20,9 @@
 #import "FrameAccessor.h"
 #import "ScrollViewFrameAccessor.h"
 
+#import "GSNavigationBar.h"
+#import "GSIndeterminatedProgressView.h"
+
 @interface GSStopInfoTableController ()
 
 @end
@@ -126,8 +129,15 @@
     
     GSTrip *departure = self.nextDepartures[indexPath.row];
     
+    GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationController.navigationBar;
+    
+    [navigationBar.indeterminateProgressView startAnimating];
     [self.agency tripWithId:departure.trip_id callback:^(GSTrip *trip) {
+        [navigationBar.indeterminateProgressView stopAnimating];
+        
         [self.mapView addOverlay:trip];
+        
+        [self.mapView setRegion:trip.region animated:YES];
     }];
 }
 
