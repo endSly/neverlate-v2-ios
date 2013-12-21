@@ -15,8 +15,6 @@
 
 #import "GSNavigationBar.h"
 
-#import "GSSlidingAnimationTransitioning.h"
-
 @implementation GSAgencyNavigationController
 
 - (void)viewDidLoad
@@ -43,16 +41,6 @@
 {
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationBar;
     navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
-}
-
-
-#pragma mark - ECSlidingViewController delegate
-
-- (id<UIViewControllerAnimatedTransitioning>)slidingViewController:(ECSlidingViewController *)slidingViewController
-                                   animationControllerForOperation:(ECSlidingViewControllerOperation)operation
-                                                 topViewController:(UIViewController *)topViewController
-{
-    return [[GSSlidingAnimationTransitioning alloc] init];
 }
 
 
