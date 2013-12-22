@@ -171,6 +171,11 @@
     [self performSegueWithIdentifier:@"GSShowMapSegue" sender:self];
 }
 
+- (void)showCalendarAction:(id)sender
+{
+    
+}
+
 - (void)showStopInfoAction:(id)sender
 {
     [self performSegueWithIdentifier:@"GSShowStopInfoSegue" sender:self];
@@ -316,21 +321,24 @@
     _isHeaderVisible = YES;
 
     [self.tableView reloadData];
-    
-    GSDepartureHeaderView *headerView = _headerView;
-    
+
+    BOOL locationAvailable = [GSLocationManager sharedManager].location != nil;
+
+    _headerView.distanceLabel.hidden = !locationAvailable;
+    _headerView.headingArrow.hidden = !locationAvailable;
+
     self.navigationItem.title = nil;
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.rightBarButtonItem = nil;
     
-    headerView.hidden = NO;
+    _headerView.hidden = NO;
     
     if (animated) {
-        headerView.layer.opacity = 0;
+        _headerView.layer.opacity = 0;
         
         [UIView animateWithDuration:0.25f animations:^{
             self.navigationController.navigationBar.height = 172.0f;
-            headerView.layer.opacity = 1;
+            _headerView.layer.opacity = 1;
         } completion:nil];
     } else {
         self.navigationController.navigationBar.height = 172.0f;

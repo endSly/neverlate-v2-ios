@@ -8,7 +8,8 @@
 
 #import "GSAgenciesTableController.h"
 
-#import "FrameAccessor.h"
+#import <FrameAccessor/FrameAccessor.h>
+#import <ECSlidingViewController/UIViewController+ECSlidingViewController.h>
 
 #import "GSNeverlateService.h"
 #import "GSAgency.h"
@@ -19,9 +20,7 @@
 #import "GSNavigationBar.h"
 #import "GSIndeterminatedProgressView.h"
 
-@interface GSAgenciesTableController ()
-
-@end
+NSString * const kGSSelectedAgencyKey = @"kGSSelectedAgencyKey";
 
 @implementation GSAgenciesTableController
 
@@ -36,7 +35,18 @@
     [navigationBar.indeterminateProgressView startAnimating];
     [GSAgency all:^(NSArray *agencies) {
         [navigationBar.indeterminateProgressView stopAnimating];
+
         self.agencies = agencies;
+
+        NSString *selectedAgency = [[NSUserDefaults standardUserDefaults] objectForKey:kGSSelectedAgencyKey];
+        if (selectedAgency) {
+            GSAgency *agency = [agencies filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"agency_key = %@", selectedAgency]].lastObject;
+            if (agency) {
+                [self performSegueWithIdentifier:@"ShowAgencySegue" sender:agency];
+                [self.slidingViewController resetTopViewAnimated:NO];
+            }
+        }
+
         [self.tableView reloadData];
     }];
 }
@@ -77,12 +87,20 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    UITableViewCell *cell = (UITableViewCell*) sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    GSAgency *agency = self.agencies[indexPath.row];
+    GSAgency *agency;
+    if ([sender isKindOfClass:[GSAgency class]]) {
+        agency = sender;
+    } else {
+        UITableViewCell *cell = (UITableViewCell*) sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        agency = self.agencies[indexPath.row];
+    }
     
     GSAgencyNavigationController *agencyNavigation = (GSAgencyNavigationController *) segue.destinationViewController;
     agencyNavigation.agency = agency;
+
+    // Save last selected agency
+    [[NSUserDefaults standardUserDefaults] setObject:agency.agency_key forKey:kGSSelectedAgencyKey];
 }
 
 @end

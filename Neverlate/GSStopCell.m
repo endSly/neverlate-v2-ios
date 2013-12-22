@@ -22,8 +22,8 @@
     
     if (!_initialized) {
         _initialized = YES;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSHeadingUpdated  object:[GSLocationManager sharedManager]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSLocationUpdated object:[GSLocationManager sharedManager]];
         
         self.headingArrow.font = [UIFont iconicFontOfSize:16];
         self.headingArrow.text = icon_navigate;
@@ -54,6 +54,12 @@
 
 - (void)updateInfo
 {
+    BOOL locationAvailable = [GSLocationManager sharedManager].location != nil;
+
+    self.stopDistanceLabel.hidden = !locationAvailable;
+    self.headingArrow.hidden = !locationAvailable;
+    self.distanceContainerView.hidden = !locationAvailable;
+
     self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
     self.stopNameLabel.text = self.stop.stop_name;
     self.detailTextLabel.text = self.stop.subtitle;
