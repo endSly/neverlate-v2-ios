@@ -25,6 +25,7 @@
     NSArray *_searchFilteredStops;
     NSArray *_stops;
     NSArray *_placemarks;
+    NSArray *_placemarkStops;
 }
 
 - (id)initWithStops:(NSArray *)stops
@@ -50,6 +51,19 @@
 
         [geocoder geocodeAddressString:searchString inRegion:nil completionHandler:^(NSArray *placemarks, NSError *error) {
             _placemarks = placemarks;
+
+            NSMutableArray *placemarkStops = [NSMutableArray arrayWithCapacity:_placemarks.count];
+
+            for (CLPlacemark *placemark in placemarks) {
+                NSArray *stopsByPlacemark = [_stops sortedArrayWithOptions:NSSortConcurrent usingComparator:^(GSStop *stop1, GSStop *stop2) {
+                    return [stop1.loc.CLLocation distanceFromLocation:placemark.location] < [stop2.loc.CLLocation distanceFromLocation:placemark.location]
+                    ? NSOrderedAscending
+                    : NSOrderedDescending;
+                }];
+                [placemarkStops addObject:stopsByPlacemark];
+            }
+            _placemarkStops = placemarkStops;
+
             [controller.searchResultsTableView reloadData];
         }];
     }
@@ -76,7 +90,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? _searchFilteredStops.count : 0;
+    return section == 0 ? _searchFilteredStops.count : MIN(3, _stops.count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +98,11 @@
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-    cell.stop = _searchFilteredStops[indexPath.row];;
+    if (indexPath.section > 0) {
+        cell.stop = _placemarkStops[indexPath.section - 1][indexPath.row];
+    } else {
+        cell.stop = _searchFilteredStops[indexPath.row];
+    }
 
     return cell;
 }
@@ -107,8 +125,6 @@
         return nil;
 
     CLPlacemark *placemark = _placemarks[section - 1];
-
-    NSLog(@"%@", placemark.addressDictionary);
 
     return [(NSArray *) (placemark.addressDictionary[@"FormattedAddressLines"]) join:@", "];
 }
