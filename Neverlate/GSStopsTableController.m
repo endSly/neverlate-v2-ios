@@ -12,6 +12,7 @@
 #import <TenzingCore/TenzingCore.h>
 
 #import "GSLocationManager.h"
+#import "GSStopsSearchController.h"
 
 #import "GSAgency.h"
 #import "GSAgency+Query.h"
@@ -60,6 +61,10 @@
     BOOL _nextDeparturesStopSelected;
     
     NSArray *_stopsForTable;
+
+    GSStopsSearchController *_searchController;
+
+    GADBannerView *_bannerView;
 }
 
 #pragma  mark - View controller lifecycle
@@ -89,9 +94,8 @@
     }
     
     [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
-    
-    [self.searchDisplayController.searchResultsTableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
-                                               forCellReuseIdentifier:@"GSStopCell"];
+
+
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
@@ -102,6 +106,22 @@
     [self refreshBanner];
     
     [NSTimer scheduledTimerWithTimeInterval:15000 target:self selector:@selector(refreshBanner) userInfo:nil repeats:YES];
+}
+
+- (void)setStops:(NSArray *)stops
+{
+    _stops = stops;
+
+    // Configure search controller
+    {
+        _searchController = [[GSStopsSearchController alloc] initWithStops:self.stops];
+
+        [self.searchDisplayController.searchResultsTableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
+                                                   forCellReuseIdentifier:@"GSStopCell"];
+        self.searchDisplayController.delegate = _searchController;
+        self.searchDisplayController.searchResultsDataSource = _searchController;
+        self.searchDisplayController.searchResultsDelegate = _searchController;
+    }
 }
 
 - (void)refreshBanner
@@ -130,7 +150,6 @@
           [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
           [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline color:self.agency.agency_color target:self action:@selector(showMapAction:)],
           ];
-        NSLog(@"--- %@", self.navigationController.toolbar);
     }
 
 
@@ -389,25 +408,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.tableView) {
-        return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
-    } else {
-        return _searchFilteredStops.count;
-    }
+    return _isHeaderVisible ? _stopsForTable.count : self.stops.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"GSStopCell";
     GSStopCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    GSStop *stop;
-    if (tableView == self.tableView) {
-        stop = [self stopForRow:indexPath.row];
-    } else {
-        stop = _searchFilteredStops[indexPath.row];
-    }
-    cell.stop = stop;
+
+    cell.stop = [self stopForRow:indexPath.row];
     
     return cell;
 }

@@ -14,11 +14,7 @@
 
 @class GADBannerView;
 
-@interface GSStopsTableController : UITableViewController <UISearchDisplayDelegate> {
-@private
-    NSArray *_searchFilteredStops;
-    GADBannerView *_bannerView;
-}
+@interface GSStopsTableController : UITableViewController <UISearchDisplayDelegate>
 
 @property (nonatomic, strong) GSAgency  * agency;
 
