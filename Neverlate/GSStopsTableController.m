@@ -10,6 +10,7 @@
 
 #import <ECSlidingViewController/UIViewController+ECSlidingViewController.h>
 #import <TenzingCore/TenzingCore.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "GSLocationManager.h"
 #import "GSStopsSearchDisplayController.h"
