@@ -12,7 +12,7 @@
 #import <TenzingCore/TenzingCore.h>
 
 #import "GSLocationManager.h"
-#import "GSStopsSearchController.h"
+#import "GSStopsSearchDisplayController.h"
 
 #import "GSAgency.h"
 #import "GSAgency+Query.h"
@@ -62,7 +62,7 @@
     
     NSArray *_stopsForTable;
 
-    GSStopsSearchController *_searchController;
+    GSStopsSearchDisplayController *_searchController;
 
     GADBannerView *_bannerView;
 }
@@ -92,10 +92,19 @@
         
         _headerView = headerView;
     }
-    
+
+    // Configure search controller
+    {
+        _searchController = (GSStopsSearchDisplayController *) self.searchDisplayController;
+        [_searchController.searchResultsTableView registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
+                                       forCellReuseIdentifier:@"GSStopCell"];
+
+        _searchController.delegate = _searchController;
+        _searchController.searchResultsDelegate = _searchController;
+        _searchController.searchResultsDataSource = _searchController;
+    }
+
     [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
-
-
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
@@ -112,16 +121,7 @@
 {
     _stops = stops;
 
-    // Configure search controller
-    {
-        _searchController = [[GSStopsSearchController alloc] initWithStops:self.stops];
-
-        [self.searchDisplayController.searchResultsTableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
-                                                   forCellReuseIdentifier:@"GSStopCell"];
-        self.searchDisplayController.delegate = _searchController;
-        self.searchDisplayController.searchResultsDataSource = _searchController;
-        self.searchDisplayController.searchResultsDelegate = _searchController;
-    }
+    _searchController.stops = stops;
 }
 
 - (void)refreshBanner

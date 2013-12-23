@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface GSStopsSearchController : NSObject <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface GSStopsSearchDisplayController : UISearchDisplayController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
 
-- (id)initWithStops:(NSArray *)stops;
+@property (nonatomic, strong) NSArray * stops;
 
 @end

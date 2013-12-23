@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import "GSStopsSearchController.h"
+#import "GSStopsSearchDisplayController.h"
 
 @import CoreLocation;
 #import <TenzingCore/TenzingCore.h>
@@ -21,21 +21,26 @@
 
 @end
 
-@implementation GSStopsSearchController {
+@implementation GSStopsSearchDisplayController {
     NSArray *_searchFilteredStops;
-    NSArray *_stops;
     NSArray *_placemarks;
     NSArray *_placemarkStops;
 }
 
-- (id)initWithStops:(NSArray *)stops
+- (id)initWithSearchBar:(UISearchBar *)searchBar contentsController:(UIViewController *)viewController
 {
-    self = [super init];
+    self = [super initWithSearchBar:searchBar contentsController:viewController];
 
     if (self) {
-        _stops = stops;
+        [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
+                          forCellReuseIdentifier:@"GSStopCell"];
+
+        self.delegate = self;
+        self.searchResultsDataSource = self;
+        self.searchResultsDelegate = self;
     }
-    return  self;
+
+    return self;
 }
 
 #pragma mark - Search display delegate
