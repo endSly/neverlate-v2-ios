@@ -4,6 +4,12 @@ PODS:
   - Google-Mobile-Ads-SDK (6.6.1)
   - ISO8601DateFormatter (0.7)
   - NanoStore (2.7.7)
+  - ReactiveCocoa (2.1.8):
+    - ReactiveCocoa/Core
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/Core (2.1.8):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.1.8)
   - TenzingCore (0.2.0):
     - TenzingCore/Core
   - TenzingCore/Core (0.2.0)
@@ -16,6 +22,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 6.6.1)
   - ISO8601DateFormatter (~> 0.7)
   - NanoStore (~> 2.7.7)
+  - ReactiveCocoa (~> 2.1.8)
   - TenzingCore (~> 0.2.0)
   - TenzingCore/RESTService (~> 0.2.0)
 
@@ -25,6 +32,7 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: edd71358f4ac3c7a09e5614728e19957dd91c017
   ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
+  ReactiveCocoa: 0db710a0afa1c627a64470e5c912a3870d4854ae
   TenzingCore: c19e507c14ecbd1aa7feddbbbfddd8ffcf5f3b10
 
 COCOAPODS: 0.28.0

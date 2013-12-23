@@ -8,6 +8,8 @@
 
 #import "GSStopCell.h"
 
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import "UIFont+IonIcons.h"
 
 #import "GSLocationManager.h"
@@ -32,6 +34,22 @@
         self.headingArrow.transform = CGAffineTransformMakeRotation(-M_PI / 4);
         
         self.distanceContainerView.layer.cornerRadius = 2.0f;
+
+        RAC(self.stopNameLabel, text)       = RACObserve(self, stop.stop_name);
+        RAC(self.stopDistanceLabel, text)   = RACObserve(self, stop.nearestEntrance.formattedDistance);
+        RAC(self.entranceNameLabel, text)   = RACObserve(self, stop.subtitle);
+
+        RAC(self.headingArrow, transform)   = [RACSignal combineLatest:@[RACObserve(self, stop),
+                                                                         RACObserve([GSLocationManager sharedManager], location)]
+                                                                reduce:^(NSNumber *direction){
+                                                                    return [NSValue valueWithCGAffineTransform:
+                                                                            CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + (3 * M_PI / 4))];
+                                                                }];
+
+        RAC(self.stopDistanceLabel, hidden) = [RACObserve([GSLocationManager sharedManager], location) reduceEach:^(id loc){
+            return @(loc != nil);
+        }];
+
     }
     [self updateInfo];
 }
@@ -42,16 +60,6 @@
     [self updateInfo];
 }
 
-- (UILabel *)detailTextLabel
-{
-    return self.entranceNameLabel;
-}
-
-- (UILabel *)textLabel
-{
-    return self.stopNameLabel;
-}
-
 - (void)updateInfo
 {
     BOOL locationAvailable = [GSLocationManager sharedManager].location != nil;
@@ -60,10 +68,10 @@
     self.headingArrow.hidden = !locationAvailable;
     self.distanceContainerView.hidden = !locationAvailable;
 
-    self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
-    self.stopNameLabel.text = self.stop.stop_name;
-    self.detailTextLabel.text = self.stop.subtitle;
-    self.headingArrow.transform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + (3 * M_PI / 4));
+    //self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
+    //self.stopNameLabel.text = self.stop.stop_name;
+    //self.detailTextLabel.text = self.stop.subtitle;
+    //self.headingArrow.transform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + (3 * M_PI / 4));
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
