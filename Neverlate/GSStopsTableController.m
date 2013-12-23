@@ -34,18 +34,17 @@
 #import "ViewFrameAccessor.h"
 #import "ScrollViewFrameAccessor.h"
 
-@interface GSStopsTableController (PrivateMethods)
+@interface GSStopsTableController ()
+
+@property (nonatomic) BOOL isHeaderVisible;
 
 - (void)loadStops;
 - (void)sortStopsByDistance;
 - (void)sortStopsAlphabetically;
 - (void)loadNextDepartures;
-- (void)refreshHeaderView;
 
 - (void)showAgenciesMenuAction:(id)sender;
 - (void)showMapAction:(id)sender;
-
-- (void)locationHasUpdated;
 
 - (void)showDeparturesHeader:(BOOL)animated;
 - (void)hideDeparturesHeader:(BOOL)animated;
@@ -54,10 +53,6 @@
 
 @implementation GSStopsTableController {
     GSDepartureHeaderView *_headerView;
-    
-    NSTimer *_timer;
-    
-    BOOL _isHeaderVisible;
     
     BOOL _nextDeparturesStopSelected;
     
@@ -105,10 +100,18 @@
         _searchController.searchResultsDataSource = _searchController;
     }
 
+    // Build toolbar
+    {
+        self.navigationController.toolbarHidden = NO;
+        self.toolbarItems =
+        @[
+          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_calendar_outline color:self.agency.agency_color target:self action:@selector(showCalendarAction:)],
+          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline color:self.agency.agency_color target:self action:@selector(showMapAction:)],
+          ];
+    }
+
     [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
     
     _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     _bannerView.adUnitID = @"a1529f2900969fa";
@@ -116,13 +119,66 @@
     [self refreshBanner];
     
     [NSTimer scheduledTimerWithTimeInterval:15000 target:self selector:@selector(refreshBanner) userInfo:nil repeats:YES];
+
+    [self createSignals];
 }
 
-- (void)setStops:(NSArray *)stops
+- (void)createSignals
 {
-    _stops = stops;
+    RAC(self, agency)               = RACObserve(((GSAgencyNavigationController *) self.navigationController), agency);
+    RAC(_searchController, stops)   = RACObserve(self, stops);
 
-    _searchController.stops = stops;
+    RACSignal *updateHeaderSignal = [RACSignal combineLatest:@[RACObserve(self, agency),
+                                                               RACObserve(self, isHeaderVisible)]];
+
+    RACSignal *timeoutSignal = [RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]];
+
+    [updateHeaderSignal subscribeNext:^(id x) {
+
+    }];
+
+    RAC(_headerView.stopNameLabel, text)        = RACObserve(self, nextDeparturesStop.stop_name);
+    RAC(_headerView.entranceNameLabel, text)    = RACObserve(self, nextDeparturesStop.subtitle);
+    RAC(_headerView.distanceLabel, text)        = RACObserve(self, nextDeparturesStop.formattedDistance);
+
+    // Update timeouts
+    [timeoutSignal subscribeNext:^(id x) {
+        self.nextDepartures = [self.nextDepartures filter:^BOOL(GSTrip *trip) {
+            return [[trip departureDateForStop:self.nextDeparturesStop] timeIntervalSinceNow] > 0;
+        }];
+
+        if (self.nextDepartures && self.nextDepartures.count < 4)
+            [self loadNextDepartures];
+    }];
+
+    // Update views
+    [[RACObserve(self, nextDepartures) combineLatestWith:timeoutSignal] subscribeNext:^(id x) {
+        GSTrip *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
+
+        _headerView.tripHeadsign1.text = departure1.title;
+        _headerView.tripHeadsign2.text = departure2.title;
+
+        NSTimeInterval dep1Time = [[departure1 departureDateForStop:self.nextDeparturesStop] timeIntervalSinceNow] / 60.0f;
+        _headerView.departureTime1.text = dep1Time > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep1Time];
+        NSTimeInterval dep2Time = [[departure1 departureDateForStop:self.nextDeparturesStop] timeIntervalSinceNow] / 60.0f;
+        _headerView.departureTime1.text = dep2Time > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep2Time];
+    }];
+
+    RACSignal *positionUpdated  = [RACSignal combineLatest:@[RACObserve(GSLocationManager.sharedManager, location),
+                                                             RACObserve(GSLocationManager.sharedManager, heading),
+                                                             RACObserve(self, nextDeparturesStop)]];
+
+    [positionUpdated subscribeNext:^(id x) {
+        _headerView.headingAngle = self.nextDeparturesStop.direction * M_PI / 180.0;
+
+        [self sortStopsByDistance];
+
+        if (!_nextDeparturesStopSelected) {
+            [self showNextDeparturesStop:self.stops.firstObject];
+
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)refreshBanner
@@ -140,35 +196,14 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
-    self.agency = navigationController.agency;
-    
-    { // Build toolbar
-        self.navigationController.toolbarHidden = NO;
-        self.toolbarItems =
-        @[
-          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_calendar_outline color:self.agency.agency_color target:self action:@selector(showCalendarAction:)],
-          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline color:self.agency.agency_color target:self action:@selector(showMapAction:)],
-          ];
-    }
-
-
     _nextDeparturesStopSelected = NO;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
-    [_timer fire];
-    
+
     if (self.agency) {
         if (!_isHeaderVisible)
             [self buildNavigationItem];
         
         [self loadStops];
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [_timer invalidate];
 }
 
 - (void)viewWillLayoutSubviews
@@ -219,19 +254,6 @@
     [self loadNextDepartures];
 }
 
-- (void)locationHasUpdated
-{
-    [self sortStopsByDistance];
-    
-    if (!_nextDeparturesStopSelected) {
-        [self showNextDeparturesStop:self.stops.firstObject];
-        
-        [self.tableView reloadData];
-        
-        [self refreshHeaderView];
-    }
-}
-
 - (void)loadStops
 {
     self.stops = nil;
@@ -244,11 +266,7 @@
         [navigationBar.indeterminateProgressView stopAnimating];
         
         self.stops = stops;
-        if (GSLocationManager.sharedManager.location) {
-            [self locationHasUpdated];
-        } else {
-            [self sortStopsAlphabetically];
-        }
+        [self sortStopsAlphabetically];
         
         [self.tableView reloadData];
     }];
@@ -264,24 +282,6 @@
     self.stops = [self.stops sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"stop_name" ascending:YES]]];
 }
 
-- (void)updateNextDepartures
-{
-    self.nextDepartures = [self.nextDepartures filter:^BOOL(GSTrip *trip) {
-        return [[trip departureDateForStop:self.nextDeparturesStop] timeIntervalSinceNow] > 0;
-    }];
-
-    if (self.nextDepartures.count < 2) {
-        [self hideDeparturesHeader:YES];
-    } else {
-        [self showDeparturesHeader:YES];
-    }
-    
-    if (self.nextDepartures && self.nextDepartures.count < 6) {
-        [self loadNextDepartures];
-    }
-    [self refreshHeaderView];
-}
-
 - (void)loadNextDepartures
 {
     self.nextDepartures = nil;
@@ -295,40 +295,7 @@
         self.nextDepartures = departures;
         
         [self showDeparturesHeader:YES];
-        
-        [self refreshHeaderView];
     }];
-}
-
-- (void)refreshHeaderView
-{
-    if (self.nextDepartures.count < 2)
-        return;
-
-    GSStop *stop = self.nextDeparturesStop;
-    GSDepartureHeaderView *headerView = _headerView;
-    GSTrip *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
-    
-    headerView.stopNameLabel.text = stop.stop_name;
-    headerView.entranceNameLabel.text = stop.subtitle;
-    headerView.distanceLabel.text = stop.formattedDistance;
-    headerView.tripHeadsign1.text = departure1.title;
-    headerView.tripHeadsign2.text = departure2.title;
-    NSTimeInterval departure1Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
-    if (departure1Interval > 120.0f) {
-        headerView.departureTime1.text = @"+120m";
-    } else {
-        headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", departure1Interval];
-    }
-    
-    NSTimeInterval departure2Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
-    if (departure2Interval > 120.0f) {
-        headerView.departureTime2.text = @"+120m";
-    } else {
-        headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", departure2Interval];
-    }
-    
-    headerView.headingAngle = stop.direction * M_PI / 180.0;
 }
 
 #pragma mark - Departures Header Control
