@@ -196,6 +196,20 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
+    self.agency = navigationController.agency;
+    
+    { // Build toolbar
+        self.navigationController.toolbarHidden = NO;
+        self.toolbarItems =
+        @[[[UIBarButtonItem alloc] initWithIcon:icon_ios7_calendar_outline color:self.agency.agency_color target:self action:@selector(showCalendarAction:)],
+          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+          [[UIBarButtonItem alloc] initWithIcon:icon_arrow_graph_up_right color:self.agency.agency_color target:self action:@selector(showRoutesAction:)],
+          [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+          [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline color:self.agency.agency_color target:self action:@selector(showMapAction:)],
+          ];
+    }
+
     _nextDeparturesStopSelected = NO;
 
     if (self.agency) {
@@ -227,6 +241,11 @@
 }
 
 - (void)showCalendarAction:(id)sender
+{
+    
+}
+
+- (void)showRoutesAction:(id)sender
 {
     
 }
