@@ -4,10 +4,10 @@ PODS:
   - Google-Mobile-Ads-SDK (6.6.1)
   - ISO8601DateFormatter (0.7)
   - NanoStore (2.7.7)
-  - TenzingCore (0.2.0):
+  - TenzingCore (0.2.1):
     - TenzingCore/Core
-  - TenzingCore/Core (0.2.0)
-  - TenzingCore/RESTService (0.2.0):
+  - TenzingCore/Core (0.2.1)
+  - TenzingCore/RESTService (0.2.1):
     - TenzingCore/Core
 
 DEPENDENCIES:
@@ -16,15 +16,15 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 6.6.1)
   - ISO8601DateFormatter (~> 0.7)
   - NanoStore (~> 2.7.7)
-  - TenzingCore (~> 0.2.0)
-  - TenzingCore/RESTService (~> 0.2.0)
+  - TenzingCore (~> 0.2.1)
+  - TenzingCore/RESTService (~> 0.2.1)
 
 SPEC CHECKSUMS:
   ECSlidingViewController: 097e5451e8628611f17ed27a6e0829fa705f7851
   FrameAccessor: 1c383c4dc298925749fb2a6b9c05cd45be0d8857
-  Google-Mobile-Ads-SDK: edd71358f4ac3c7a09e5614728e19957dd91c017
+  Google-Mobile-Ads-SDK: 52b22c6593f051f3976bb72b64d1ed6951e95d3e
   ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
-  TenzingCore: c19e507c14ecbd1aa7feddbbbfddd8ffcf5f3b10
+  TenzingCore: efca489afeb24a421eeb5d3cc11c1f86c88d7999
 
-COCOAPODS: 0.28.0
+COCOAPODS: 0.29.0

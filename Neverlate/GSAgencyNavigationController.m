@@ -30,17 +30,17 @@
     self.slidingViewController.delegate = self;
     
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
-    
-    if (!self.agency) {
-        self.slidingViewController.anchorRightPeekAmount = -12.0f;
-        [self.slidingViewController anchorTopViewToRightAnimated:NO];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationBar;
     navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
+
+    if (!self.agency) {
+        self.slidingViewController.anchorRightPeekAmount = -12.0f;
+        [self.slidingViewController anchorTopViewToRightAnimated:NO];
+    }
 }
 
 
