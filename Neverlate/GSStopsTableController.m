@@ -307,33 +307,26 @@
 
 - (void)refreshHeaderView
 {
-    if (self.nextDepartures.count < 2)
+    if (self.nextDepartures.count == 0)
         return;
 
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
-    GSTrip *departure1 = self.nextDepartures[0], *departure2 = self.nextDepartures[1];
+    GSTrip *departure1 = self.nextDepartures.count >= 1 ? self.nextDepartures[0] : nil;
+    GSTrip *departure2 = self.nextDepartures.count >= 2 ? self.nextDepartures[1] : nil;
     
     headerView.stopNameLabel.text = stop.stop_name;
     headerView.entranceNameLabel.text = stop.subtitle;
     headerView.distanceLabel.text = stop.formattedDistance;
-    headerView.tripHeadsign1.text = departure1.title;
-    headerView.tripHeadsign2.text = departure2.title;
-    NSTimeInterval departure1Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
-    if (departure1Interval > 120.0f) {
-        headerView.departureTime1.text = @"+120m";
-    } else {
-        headerView.departureTime1.text = [NSString stringWithFormat:@"%.0fm", departure1Interval];
-    }
-    
-    NSTimeInterval departure2Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
-    if (departure2Interval > 120.0f) {
-        headerView.departureTime2.text = @"+120m";
-    } else {
-        headerView.departureTime2.text = [NSString stringWithFormat:@"%.0fm", departure2Interval];
-    }
-    
     headerView.headingAngle = stop.direction * M_PI / 180.0;
+
+    headerView.tripHeadsign1.text = departure1.title;
+    NSTimeInterval dep1Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
+    headerView.departureTime1.text = dep1Interval > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep1Interval];
+
+    headerView.tripHeadsign2.text = departure2.title;
+    NSTimeInterval dep2Interval = [[departure2 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
+    headerView.departureTime2.text = dep2Interval > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep2Interval];
 }
 
 #pragma mark - Departures Header Control
