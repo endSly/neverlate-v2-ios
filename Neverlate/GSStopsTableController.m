@@ -441,11 +441,17 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"kGSHideAds"])
+        return nil;
+
     return _bannerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"kGSHideAds"])
+        return 0.0f;
+
     return kGADAdSizeBanner.size.height;
 }
 

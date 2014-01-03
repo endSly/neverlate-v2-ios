@@ -47,6 +47,17 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    if ([searchString isEqualToString:@":set hideAds=true"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kGSHideAds"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return NO;
+    }
+    if ([searchString isEqualToString:@":set hideAds=false"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kGSHideAds"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        return NO;
+    }
+
     NSUInteger originalCount = _searchFilteredStops.count;
 
     _searchFilteredStops = [_stops filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"stringForSearch CONTAINS[cd] %@", searchString]];
