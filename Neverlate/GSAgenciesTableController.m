@@ -101,6 +101,7 @@ NSString * const kGSSelectedAgencyKey = @"kGSSelectedAgencyKey";
 
     // Save last selected agency
     [[NSUserDefaults standardUserDefaults] setObject:agency.agency_key forKey:kGSSelectedAgencyKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

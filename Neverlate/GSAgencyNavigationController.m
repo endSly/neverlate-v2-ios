@@ -32,7 +32,7 @@
     self.slidingViewController.topViewAnchoredGesture = ECSlidingViewControllerAnchoredGestureTapping | ECSlidingViewControllerAnchoredGesturePanning;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationBar;
     navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
