@@ -50,11 +50,13 @@
     if ([searchString isEqualToString:@":set hideAds=true"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"kGSHideAds"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self setActive:NO animated:YES];
         return NO;
     }
     if ([searchString isEqualToString:@":set hideAds=false"]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"kGSHideAds"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self setActive:NO animated:YES];
         return NO;
     }
 

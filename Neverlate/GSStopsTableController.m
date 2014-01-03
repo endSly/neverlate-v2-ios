@@ -153,8 +153,7 @@
           ];
     }
 
-
-    _nextDeparturesStopSelected = NO;
+    //_nextDeparturesStopSelected = NO;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
     
@@ -310,8 +309,14 @@
     if (self.nextDepartures.count == 0)
         return;
 
+    BOOL locationAvailable = [GSLocationManager sharedManager].location != nil;
+
     GSStop *stop = self.nextDeparturesStop;
     GSDepartureHeaderView *headerView = _headerView;
+
+    headerView.distanceLabel.hidden = !locationAvailable;
+    headerView.headingArrow.hidden = !locationAvailable;
+
     GSTrip *departure1 = self.nextDepartures.count >= 1 ? self.nextDepartures[0] : nil;
     GSTrip *departure2 = self.nextDepartures.count >= 2 ? self.nextDepartures[1] : nil;
     
@@ -339,11 +344,6 @@
     _isHeaderVisible = YES;
 
     [self.tableView reloadData];
-
-    BOOL locationAvailable = [GSLocationManager sharedManager].location != nil;
-
-    _headerView.distanceLabel.hidden = !locationAvailable;
-    _headerView.headingArrow.hidden = !locationAvailable;
 
     self.navigationItem.title = nil;
     self.navigationItem.leftBarButtonItem = nil;
