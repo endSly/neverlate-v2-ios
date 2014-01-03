@@ -139,7 +139,6 @@
 
     RAC(_headerView.stopNameLabel, text)        = RACObserve(self, nextDeparturesStop.stop_name);
     RAC(_headerView.entranceNameLabel, text)    = RACObserve(self, nextDeparturesStop.subtitle);
-    RAC(_headerView.distanceLabel, text)        = RACObserve(self, nextDeparturesStop.formattedDistance);
 
     // Update timeouts
     [timeoutSignal subscribeNext:^(id x) {
@@ -164,12 +163,11 @@
         _headerView.departureTime1.text = dep2Time > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep2Time];
     }];
 
-    RACSignal *positionUpdated  = [RACSignal combineLatest:@[RACObserve(GSLocationManager.sharedManager, location),
-                                                             RACObserve(GSLocationManager.sharedManager, heading),
+    RACSignal *locationUpdated  = [RACSignal combineLatest:@[RACObserve(GSLocationManager.sharedManager, location),
                                                              RACObserve(self, nextDeparturesStop)]];
 
-    [positionUpdated subscribeNext:^(id x) {
-        _headerView.headingAngle = self.nextDeparturesStop.direction * M_PI / 180.0;
+    [locationUpdated subscribeNext:^(id x) {
+        _headerView.distanceLabel.text = self.nextDeparturesStop.formattedDistance;
 
         [self sortStopsByDistance];
 
@@ -178,6 +176,13 @@
 
             [self.tableView reloadData];
         }
+    }];
+
+    RACSignal *headingUpdated  = [RACSignal combineLatest:@[RACObserve(GSLocationManager.sharedManager, heading),
+                                                            RACObserve(self, nextDeparturesStop)]];
+
+    [headingUpdated subscribeNext:^(id x) {
+        _headerView.headingAngle = self.nextDeparturesStop.direction * M_PI / 180.0;
     }];
 }
 
@@ -196,9 +201,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
-    self.agency = navigationController.agency;
-    
     { // Build toolbar
         self.navigationController.toolbarHidden = NO;
         self.toolbarItems =
