@@ -164,7 +164,7 @@
             </objects>
             <point key="canvasLocation" x="-1178" y="-171"/>
         </scene>
-        <!--Agencies Table Controller - Agencies-->
+        <!--Agencies Table Controller - Neverlate-->
         <scene sceneID="t8f-a2-F7C">
             <objects>
                 <tableViewController id="Cdb-0K-g6Q" customClass="GSAgenciesTableController" sceneMemberID="viewController">
@@ -198,7 +198,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Agencies" id="6fl-S1-AHj"/>
+                    <navigationItem key="navigationItem" title="Neverlate" id="6fl-S1-AHj"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6KI-Fg-fqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

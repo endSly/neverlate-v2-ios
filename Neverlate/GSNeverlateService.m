@@ -55,7 +55,7 @@
 {
     [(*request) addValue:AUTH_TOKEN forHTTPHeaderField:@"Authorization"];
     
-    NSLog(@"[%@] %@ %@", self.class, (*request).HTTPMethod, (*request).URL);
+    //NSLog(@"[%@] %@ %@", self.class, (*request).HTTPMethod, (*request).URL);
 }
 
 - (void)RESTService:(TZRESTService *)service
@@ -63,7 +63,7 @@
                data:(NSData *__autoreleasing *)data
               error:(NSError *__autoreleasing *)error
 {
-    NSLog(@"[%@] %li %@", self.class, (long)((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
+    //NSLog(@"[%@] %li %@", self.class, (long)((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
 }
 
 @end

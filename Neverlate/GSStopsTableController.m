@@ -141,7 +141,7 @@
 {
     GSAgencyNavigationController *navigationController = (GSAgencyNavigationController *) self.navigationController;
     self.agency = navigationController.agency;
-    
+    /*
     { // Build toolbar
         self.navigationController.toolbarHidden = NO;
         self.toolbarItems =
@@ -152,7 +152,7 @@
           [[UIBarButtonItem alloc] initWithIcon:icon_ios7_navigate_outline color:self.agency.agency_color target:self action:@selector(showMapAction:)],
           ];
     }
-
+     */
     //_nextDeparturesStopSelected = NO;
     _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
