@@ -56,7 +56,7 @@
 		0D45D258183BBD7F006498A9 /* GSStop+Query.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D257183BBD7F006498A9 /* GSStop+Query.m */; };
 		0D45D25D183CB707006498A9 /* GSStopInfoTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D45D25C183CB707006498A9 /* GSStopInfoTableController.m */; };
 		0D45D25F183CC1A0006498A9 /* GSStopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D45D25E183CC1A0006498A9 /* GSStopCell.xib */; };
-		0D58EBD018670564008893E5 /* GSStopsSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D58EBCF18670564008893E5 /* GSStopsSearchDisplayController.m */; };
+		0D58EBD018670564008893E5 /* GSStopsSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D58EBCF18670564008893E5 /* GSStopsSearchController.m */; };
 		0D7DFF06183D428E008C39DC /* UIBarButtonItem+IonIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D7DFF05183D428E008C39DC /* UIBarButtonItem+IonIcons.m */; };
 		0DFF187E18361B8500B08CA9 /* CLLocation+Heading.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF187D18361B8500B08CA9 /* CLLocation+Heading.m */; };
 		0DFF188B183639CD00B08CA9 /* GSIndeterminatedProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFF188A183639CD00B08CA9 /* GSIndeterminatedProgressView.m */; };
@@ -144,8 +144,8 @@
 		0D45D25B183CB707006498A9 /* GSStopInfoTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopInfoTableController.h; sourceTree = "<group>"; };
 		0D45D25C183CB707006498A9 /* GSStopInfoTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopInfoTableController.m; sourceTree = "<group>"; };
 		0D45D25E183CC1A0006498A9 /* GSStopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GSStopCell.xib; sourceTree = "<group>"; };
-		0D58EBCE18670564008893E5 /* GSStopsSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsSearchDisplayController.h; sourceTree = "<group>"; };
-		0D58EBCF18670564008893E5 /* GSStopsSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsSearchDisplayController.m; sourceTree = "<group>"; };
+		0D58EBCE18670564008893E5 /* GSStopsSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsSearchController.h; sourceTree = "<group>"; };
+		0D58EBCF18670564008893E5 /* GSStopsSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsSearchController.m; sourceTree = "<group>"; };
 		0D7DFF04183D428E008C39DC /* UIBarButtonItem+IonIcons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+IonIcons.h"; sourceTree = "<group>"; };
 		0D7DFF05183D428E008C39DC /* UIBarButtonItem+IonIcons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+IonIcons.m"; sourceTree = "<group>"; };
 		0DFF187C18361B8500B08CA9 /* CLLocation+Heading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Heading.h"; sourceTree = "<group>"; };
@@ -381,8 +381,8 @@
 				0D35D3171834CD340061CD8B /* GSAgencyNavigationController.m */,
 				0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */,
 				0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */,
-				0D58EBCE18670564008893E5 /* GSStopsSearchDisplayController.h */,
-				0D58EBCF18670564008893E5 /* GSStopsSearchDisplayController.m */,
+				0D58EBCE18670564008893E5 /* GSStopsSearchController.h */,
+				0D58EBCF18670564008893E5 /* GSStopsSearchController.m */,
 				0DFF189518367CEA00B08CA9 /* GSMapViewController.h */,
 				0DFF189618367CEA00B08CA9 /* GSMapViewController.m */,
 				0D45D25B183CB707006498A9 /* GSStopInfoTableController.h */,
@@ -551,7 +551,7 @@
 				0D45D258183BBD7F006498A9 /* GSStop+Query.m in Sources */,
 				0D35D3031833D2890061CD8B /* GSLocationManager.m in Sources */,
 				0D35D2FB1833A8580061CD8B /* GSStopCell.m in Sources */,
-				0D58EBD018670564008893E5 /* GSStopsSearchDisplayController.m in Sources */,
+				0D58EBD018670564008893E5 /* GSStopsSearchController.m in Sources */,
 				0D35D2FE1833AAEE0061CD8B /* GSNavigationBar.m in Sources */,
 				0D3295961833B8E300BE6D8C /* UIFont+IonIcons.m in Sources */,
 				0D45D247183A2219006498A9 /* UIColor+HexColor.m in Sources */,

@@ -68,7 +68,7 @@
     self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
     self.stopNameLabel.text = self.stop.stop_name;
     self.detailTextLabel.text = self.stop.subtitle;
-    self.headingArrow.layer.affineTransform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180);
+    self.headingArrow.layer.affineTransform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + M_PI);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

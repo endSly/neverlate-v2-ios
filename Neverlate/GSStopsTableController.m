@@ -12,7 +12,7 @@
 #import <TenzingCore/TenzingCore.h>
 
 #import "GSLocationManager.h"
-#import "GSStopsSearchDisplayController.h"
+#import "GSStopsSearchController.h"
 
 #import "GSAgency.h"
 #import "GSAgency+Query.h"
@@ -62,8 +62,6 @@
     
     NSArray *_stopsForTable;
 
-    GSStopsSearchDisplayController *_searchController;
-
     GADBannerView *_bannerView;
 }
 
@@ -93,17 +91,6 @@
         _headerView = headerView;
     }
 
-    // Configure search controller
-    {
-        _searchController = (GSStopsSearchDisplayController *) self.searchDisplayController;
-        [_searchController.searchResultsTableView registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
-                                       forCellReuseIdentifier:@"GSStopCell"];
-
-        _searchController.delegate = _searchController;
-        _searchController.searchResultsDelegate = _searchController;
-        _searchController.searchResultsDataSource = _searchController;
-    }
-
     [self.tableView  registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil] forCellReuseIdentifier:@"GSStopCell"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationHasUpdated) name:kGSLocationUpdated object:GSLocationManager.sharedManager];
@@ -114,14 +101,15 @@
     _bannerView.rootViewController = self;
     [self refreshBanner];
     
-    [NSTimer scheduledTimerWithTimeInterval:15000 target:self selector:@selector(refreshBanner) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(refreshBanner) userInfo:nil repeats:YES];
 }
 
 - (void)setStops:(NSArray *)stops
 {
     _stops = stops;
 
-    _searchController.stops = stops;
+    GSStopsSearchController *searchController = (GSStopsSearchController *) self.searchDisplayController;
+    searchController.stops = stops;
 }
 
 - (void)refreshBanner
@@ -154,7 +142,7 @@
     }
      */
     //_nextDeparturesStopSelected = NO;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1000 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
     
     if (self.agency) {
@@ -431,8 +419,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.searchDisplayController setActive:NO animated:YES];
-
     _nextDeparturesStopSelected = YES;
     [self showNextDeparturesStop:[self stopForRow:indexPath.row]];
     
@@ -455,6 +441,16 @@
         return 0.0f;
 
     return kGADAdSizeBanner.size.height;
+}
+
+#pragma mark - Stops search controller delegate
+
+- (void)stopsSearchController:(GSStopsSearchController *)searchController didSelectStop:(GSStop *)stop
+{
+    _nextDeparturesStopSelected = YES;
+    [self.searchDisplayController setActive:NO animated:YES];
+
+    [self showNextDeparturesStop:stop];
 }
 
 #pragma mark - Segues

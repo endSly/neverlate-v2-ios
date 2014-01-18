@@ -32,7 +32,7 @@
 - (void)setHeadingAngle:(CGFloat)headingAngle
 {
     _headingAngle = headingAngle;
-    self.headingArrow.layer.affineTransform = CGAffineTransformMakeRotation(headingAngle);
+    self.headingArrow.layer.affineTransform = CGAffineTransformMakeRotation(headingAngle + M_PI);
 }
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Endika Gutiérrez Salas. All rights reserved.
 //
 
-#import "GSStopsSearchDisplayController.h"
+#import "GSStopsSearchController.h"
 
 @import CoreLocation;
 #import <TenzingCore/TenzingCore.h>
@@ -21,26 +21,20 @@
 
 @end
 
-@implementation GSStopsSearchDisplayController {
+@implementation GSStopsSearchController {
     NSArray *_searchFilteredStops;
     NSArray *_placemarks;
     NSArray *_placemarkStops;
 }
 
-- (id)initWithSearchBar:(UISearchBar *)searchBar contentsController:(UIViewController *)viewController
+- (void)awakeFromNib
 {
-    self = [super initWithSearchBar:searchBar contentsController:viewController];
+    [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
+                      forCellReuseIdentifier:@"GSStopCell"];
 
-    if (self) {
-        [self.searchResultsTableView registerNib:[UINib nibWithNibName:@"GSStopCell" bundle:nil]
-                          forCellReuseIdentifier:@"GSStopCell"];
-
-        self.delegate = self;
-        self.searchResultsDataSource = self;
-        self.searchResultsDelegate = self;
-    }
-
-    return self;
+    self.delegate = self;
+    self.searchResultsDataSource = self;
+    self.searchResultsDelegate = self;
 }
 
 #pragma mark - Search display delegate
@@ -134,7 +128,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    GSStop *stop;
+    if (indexPath.section > 0) {
+        stop = _placemarkStops[indexPath.section - 1][indexPath.row];
+    } else {
+        stop = _searchFilteredStops[indexPath.row];
+    }
+    [self.stopsSearchDelegate stopsSearchController:self didSelectStop:stop];
+    [self.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -152,10 +153,7 @@
     return section == 0 ? 0 : 24.0f;
 }
 
-
 @end
-
-
 
 @implementation GSStop (Search)
 

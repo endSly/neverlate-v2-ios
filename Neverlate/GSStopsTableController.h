@@ -8,13 +8,15 @@
 
 @import UIKit;
 
+#import "GSStopsSearchController.h"
+
 @class GSAgency;
 @class GSStop;
 @class GSDepartureHeaderView;
 
 @class GADBannerView;
 
-@interface GSStopsTableController : UITableViewController <UISearchDisplayDelegate>
+@interface GSStopsTableController : UITableViewController <GSStopsSearchControllerDelegate>
 
 @property (nonatomic, strong) GSAgency  * agency;
 

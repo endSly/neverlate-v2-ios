@@ -30,10 +30,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V3e-lv-ceZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="eu1-tE-vge" customClass="GSStopsSearchDisplayController">
+                <searchDisplayController id="eu1-tE-vge" customClass="GSStopsSearchController">
                     <connections>
                         <outlet property="searchBar" destination="mGY-1P-yds" id="CgP-RA-1j9"/>
                         <outlet property="searchContentsController" destination="lNF-hD-E0M" id="N72-DY-wi5"/>
+                        <outlet property="stopsSearchDelegate" destination="lNF-hD-E0M" id="qmR-l9-0tW"/>
                     </connections>
                 </searchDisplayController>
             </objects>
