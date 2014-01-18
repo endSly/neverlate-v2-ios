@@ -22,13 +22,18 @@
     
     if (!_initialized) {
         _initialized = YES;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSHeadingUpdated  object:[GSLocationManager sharedManager]];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateInfo) name:kGSLocationUpdated object:[GSLocationManager sharedManager]];
-        
-        self.headingArrow.font = [UIFont iconicFontOfSize:16];
-        self.headingArrow.text = icon_navigate;
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateInfo)
+                                                     name:kGSHeadingUpdated
+                                                   object:[GSLocationManager sharedManager]];
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateInfo)
+                                                     name:kGSLocationUpdated
+                                                   object:[GSLocationManager sharedManager]];
         
         self.headingArrow.layer.anchorPoint = CGPointMake(0.5, 0.5);
+        self.headingArrow.clipsToBounds = NO;
         self.headingArrow.transform = CGAffineTransformMakeRotation(-M_PI / 4);
         
         self.distanceContainerView.layer.cornerRadius = 2.0f;
@@ -63,7 +68,7 @@
     self.stopDistanceLabel.text = self.stop.nearestEntrance.formattedDistance;
     self.stopNameLabel.text = self.stop.stop_name;
     self.detailTextLabel.text = self.stop.subtitle;
-    self.headingArrow.transform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180 + (3 * M_PI / 4));
+    self.headingArrow.layer.affineTransform = CGAffineTransformMakeRotation(self.stop.nearestEntrance.direction * M_PI / 180);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

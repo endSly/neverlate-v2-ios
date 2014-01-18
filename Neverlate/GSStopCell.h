@@ -14,7 +14,7 @@
     BOOL _initialized;
 }
 
-@property (nonatomic, weak) IBOutlet UILabel * headingArrow;
+@property (nonatomic, weak) IBOutlet UIImageView * headingArrow;
 @property (nonatomic, weak) IBOutlet UILabel * stopNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * entranceNameLabel;
 @property (nonatomic, weak) IBOutlet UILabel * stopDistanceLabel;

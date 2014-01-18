@@ -154,7 +154,7 @@
     }
      */
     //_nextDeparturesStopSelected = NO;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1000 target:self selector:@selector(updateNextDepartures) userInfo:nil repeats:YES];
     [_timer fire];
     
     if (self.agency) {
@@ -343,24 +343,26 @@
 
     _isHeaderVisible = YES;
 
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
 
-    self.navigationItem.title = nil;
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationItem.rightBarButtonItem = nil;
-    
-    _headerView.hidden = NO;
-    
-    if (animated) {
-        _headerView.layer.opacity = 0;
-        
-        [UIView animateWithDuration:0.25f animations:^{
+        self.navigationItem.title = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.rightBarButtonItem = nil;
+
+        _headerView.hidden = NO;
+
+        if (animated) {
+            _headerView.layer.opacity = 0;
+
+            [UIView animateWithDuration:0.25f animations:^{
+                self.navigationController.navigationBar.height = 172.0f;
+                _headerView.layer.opacity = 1;
+            } completion:nil];
+        } else {
             self.navigationController.navigationBar.height = 172.0f;
-            _headerView.layer.opacity = 1;
-        } completion:nil];
-    } else {
-        self.navigationController.navigationBar.height = 172.0f;
-    }
+        }
+    });
 }
 
 - (void)hideDeparturesHeader:(BOOL)animated

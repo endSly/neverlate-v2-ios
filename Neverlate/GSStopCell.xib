@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -13,81 +13,51 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jz8-nx-186">
+                    <view contentMode="scaleToFill" id="Jz8-nx-186">
                         <rect key="frame" x="248" y="33" width="60" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="njz-LJ-GHS">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500m" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" id="njz-LJ-GHS">
                                 <rect key="frame" x="4" y="0.0" width="52" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Svi-JV-iyl"/>
-                                    <constraint firstAttribute="width" constant="52" id="WHG-2O-qGy"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.62745098040000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="njz-LJ-GHS" firstAttribute="leading" secondItem="Jz8-nx-186" secondAttribute="leading" constant="4" id="5iF-Al-6nT"/>
-                            <constraint firstItem="njz-LJ-GHS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jz8-nx-186" secondAttribute="leading" constant="4" id="P7M-ry-0gO"/>
-                            <constraint firstAttribute="trailing" secondItem="njz-LJ-GHS" secondAttribute="trailing" constant="4" id="VsC-9e-4pt"/>
-                            <constraint firstItem="njz-LJ-GHS" firstAttribute="centerX" secondItem="Jz8-nx-186" secondAttribute="centerX" id="ewH-d8-dEw"/>
-                            <constraint firstItem="njz-LJ-GHS" firstAttribute="top" secondItem="Jz8-nx-186" secondAttribute="top" id="hnm-0g-nM6"/>
-                            <constraint firstAttribute="bottom" secondItem="njz-LJ-GHS" secondAttribute="bottom" id="mqd-5f-ZQL"/>
-                        </constraints>
                     </view>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBm-Xo-OXb">
-                        <rect key="frame" x="288" y="8" width="21" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="Tla-gX-GSJ"/>
-                            <constraint firstAttribute="width" constant="21" id="mMx-hP-m5U"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4Z-Ic-oZL">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a4Z-Ic-oZL">
                         <rect key="frame" x="20" y="8" width="237" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkl-8t-fxf">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vkl-8t-fxf">
                         <rect key="frame" x="20" y="33" width="237" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeadingArrowGray" id="sfh-Do-tYL">
+                        <rect key="frame" x="288" y="11" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="a4Z-Ic-oZL" firstAttribute="leading" secondItem="Cwo-di-0G2" secondAttribute="leading" constant="20" symbolic="YES" id="3RS-dc-zk2"/>
-                    <constraint firstAttribute="trailing" secondItem="GBm-Xo-OXb" secondAttribute="trailing" constant="11" id="8re-0m-GUq"/>
-                    <constraint firstItem="Jz8-nx-186" firstAttribute="bottom" secondItem="vkl-8t-fxf" secondAttribute="bottom" id="Ma7-Fb-bTZ"/>
-                    <constraint firstItem="Jz8-nx-186" firstAttribute="top" secondItem="vkl-8t-fxf" secondAttribute="top" id="UcG-cc-OY7"/>
-                    <constraint firstItem="GBm-Xo-OXb" firstAttribute="top" secondItem="Cwo-di-0G2" secondAttribute="top" constant="8" id="V5J-B3-3te"/>
-                    <constraint firstItem="a4Z-Ic-oZL" firstAttribute="leading" secondItem="vkl-8t-fxf" secondAttribute="leading" id="YCz-2H-qiL"/>
-                    <constraint firstItem="a4Z-Ic-oZL" firstAttribute="top" secondItem="GBm-Xo-OXb" secondAttribute="top" id="bz2-fp-Dry"/>
-                    <constraint firstItem="a4Z-Ic-oZL" firstAttribute="trailing" secondItem="vkl-8t-fxf" secondAttribute="trailing" id="qwt-bk-aJQ"/>
-                    <constraint firstAttribute="trailing" secondItem="Jz8-nx-186" secondAttribute="trailing" constant="12" id="tbR-IB-BI3"/>
-                    <constraint firstAttribute="bottom" secondItem="Jz8-nx-186" secondAttribute="bottom" constant="5" id="wNN-BX-p2G"/>
-                    <constraint firstItem="Jz8-nx-186" firstAttribute="top" secondItem="a4Z-Ic-oZL" secondAttribute="bottom" constant="3" id="wVQ-jB-B1R"/>
-                    <constraint firstItem="GBm-Xo-OXb" firstAttribute="leading" secondItem="a4Z-Ic-oZL" secondAttribute="trailing" constant="31" id="x0l-ee-idJ"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="distanceContainerView" destination="Jz8-nx-186" id="oOs-bY-5Dy"/>
                 <outlet property="entranceNameLabel" destination="vkl-8t-fxf" id="eR7-eT-azI"/>
-                <outlet property="headingArrow" destination="GBm-Xo-OXb" id="jA8-k5-4ZM"/>
+                <outlet property="headingArrow" destination="sfh-Do-tYL" id="a8N-PJ-E7Q"/>
                 <outlet property="stopDistanceLabel" destination="njz-LJ-GHS" id="Pxc-Ni-ioE"/>
                 <outlet property="stopNameLabel" destination="a4Z-Ic-oZL" id="TqW-tb-oyX"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="HeadingArrowGray" width="12" height="16"/>
+    </resources>
 </document>

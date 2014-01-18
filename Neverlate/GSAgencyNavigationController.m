@@ -35,7 +35,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     GSNavigationBar *navigationBar = (GSNavigationBar *) self.navigationBar;
-    navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.5f];
+    navigationBar.opaque = NO;
+    navigationBar.barTintColor = [self.agency.agency_color colorWithAlphaComponent:0.8];
 
     if (!self.agency) {
         self.slidingViewController.anchorRightPeekAmount = -12.0f;

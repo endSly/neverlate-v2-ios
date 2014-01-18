@@ -12,7 +12,7 @@
 #import "GSIndeterminatedProgressView.h"
 
 @implementation GSNavigationBar {
-    UIView *_underlayView;
+    //UIView *_underlayView;
     
     BOOL _initialized;
 }
@@ -32,7 +32,8 @@
     }
     
     [super layoutSubviews];
-    
+
+    /*
     if(!_underlayView) {
 		const CGFloat statusBarHeight = 20;
 		const CGSize selfSize = self.frame.size;
@@ -47,16 +48,16 @@
     }
     
     [self insertSubview:_underlayView atIndex:1];
-    
+    */
     
     self.tintColor = [UIColor whiteColor];
 }
 
 - (void)setBarTintColor:(UIColor *)barTintColor
 {
-    self.indeterminateProgressView.progressTintColor = [barTintColor colorWithAlphaComponent:0.6];
-    _underlayView.backgroundColor = [barTintColor colorWithAlphaComponent:0.6];
-    super.barTintColor = [barTintColor colorWithAlphaComponent:0.1];
+    self.indeterminateProgressView.progressTintColor = [UIColor clearColor];
+    //_underlayView.backgroundColor = [barTintColor colorWithAlphaComponent:0.6];
+    super.barTintColor = barTintColor;
 }
 
 @end
