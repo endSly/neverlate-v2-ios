@@ -22,6 +22,9 @@
 
 @protocol GSStopsSearchControllerDelegate <NSObject>
 
+- (void)stopsSearchControllerWillBeginSearch:(GSStopsSearchController *)searchController;
+- (void)stopsSearchControllerDidEndSearch:(GSStopsSearchController *)searchController;
+
 - (void)stopsSearchController:(GSStopsSearchController *)searchController didSelectStop:(GSStop *)stop;
 
 @end

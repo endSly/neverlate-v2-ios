@@ -445,12 +445,22 @@
 
 #pragma mark - Stops search controller delegate
 
+- (void)stopsSearchControllerWillBeginSearch:(GSStopsSearchController *)searchController
+{
+    [self hideDeparturesHeader:YES];
+}
+
+- (void)stopsSearchControllerDidEndSearch:(GSStopsSearchController *)searchController
+{
+
+}
+
 - (void)stopsSearchController:(GSStopsSearchController *)searchController didSelectStop:(GSStop *)stop
 {
     _nextDeparturesStopSelected = YES;
-    [self.searchDisplayController setActive:NO animated:YES];
+    self.nextDeparturesStop = stop;
 
-    [self showNextDeparturesStop:stop];
+    [self.searchDisplayController setActive:NO animated:YES];
 }
 
 #pragma mark - Segues

@@ -86,11 +86,15 @@
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
     _searchFilteredStops = _stops;
+
+    [self.stopsSearchDelegate stopsSearchControllerWillBeginSearch:self];
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
     _searchFilteredStops = nil;
+
+    [self.stopsSearchDelegate stopsSearchControllerDidEndSearch:self];
 }
 
 #pragma mark - Table view data source
