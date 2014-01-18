@@ -315,11 +315,11 @@
 
     headerView.tripHeadsign1.text = departure1.title;
     NSTimeInterval dep1Interval = [[departure1 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
-    headerView.departureTime1.text = dep1Interval > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep1Interval];
+    headerView.departureTime1.text = dep1Interval > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", fabs(dep1Interval)];
 
     headerView.tripHeadsign2.text = departure2.title;
     NSTimeInterval dep2Interval = [[departure2 departureDateForStop:stop] timeIntervalSinceNow] / 60.0f;
-    headerView.departureTime2.text = dep2Interval > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", dep2Interval];
+    headerView.departureTime2.text = dep2Interval > 120.0f ? @"+120m" : [NSString stringWithFormat:@"%.0fm", fabs(dep2Interval)];
 }
 
 #pragma mark - Departures Header Control
