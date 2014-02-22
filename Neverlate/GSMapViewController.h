@@ -9,9 +9,11 @@
 @import UIKit;
 @import MapKit;
 
+#import <REMarkerClusterer/REMarkerClusterer.h>
+
 @class GSAgency;
 
-@interface GSMapViewController : UIViewController
+@interface GSMapViewController : UIViewController <REMarkerClusterDelegate>
 
 @property (nonatomic, weak) IBOutlet MKMapView  * mapView;
 
