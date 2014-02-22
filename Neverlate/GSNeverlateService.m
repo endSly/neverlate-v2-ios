@@ -15,7 +15,7 @@
 #import "GSTrip.h"
 #import "GSStop.h"
 
-#define BASE_URL    @"https://neverlate-es-bi.herokuapp.com"
+#define BASE_URL    @"https://neverlate-us-nyc.herokuapp.com"
 #define AUTH_TOKEN  @"13D062745383DF798B486CB73F7FE539DC165D3B931645473A0D0A823F2F1009"
 
 @implementation GSNeverlateService
@@ -55,7 +55,7 @@
 {
     [(*request) addValue:AUTH_TOKEN forHTTPHeaderField:@"Authorization"];
     
-    //NSLog(@"[%@] %@ %@", self.class, (*request).HTTPMethod, (*request).URL);
+    NSLog(@"[%@] %@ %@", self.class, (*request).HTTPMethod, (*request).URL);
 }
 
 - (void)RESTService:(TZRESTService *)service
@@ -63,7 +63,7 @@
                data:(NSData *__autoreleasing *)data
               error:(NSError *__autoreleasing *)error
 {
-    //NSLog(@"[%@] %li %@", self.class, (long)((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
+    NSLog(@"[%@] %li %@", self.class, (long)((NSHTTPURLResponse *) *resp).statusCode, (*resp).MIMEType);
 }
 
 @end
