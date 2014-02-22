@@ -8,10 +8,17 @@
 
 #import "GSAppDelegate.h"
 
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
+
+#import "GSConstants.h"
+
 @implementation GSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Initialize a tracker using a Google Analytics property ID.
+    [[GAI sharedInstance] trackerWithTrackingId:ANALYTICS_TRACKING_ID];
+
     // Override point for customization after application launch.
     return YES;
 }

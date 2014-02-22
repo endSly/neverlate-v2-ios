@@ -11,6 +11,8 @@
 #import <ECSlidingViewController/UIViewController+ECSlidingViewController.h>
 #import <TenzingCore/TenzingCore.h>
 
+#import "GSConstants.h"
+
 #import "GSLocationManager.h"
 #import "GSStopsSearchController.h"
 
@@ -97,7 +99,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHeaderView)  name:kGSHeadingUpdated  object:GSLocationManager.sharedManager];
     
     _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
-    _bannerView.adUnitID = @"a1529f2900969fa";
+    _bannerView.adUnitID = ADMOB_PUBLISHER_ID;
     _bannerView.rootViewController = self;
     [self refreshBanner];
     

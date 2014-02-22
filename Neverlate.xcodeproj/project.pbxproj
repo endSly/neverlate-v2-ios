@@ -112,6 +112,7 @@
 		0D07DC6E18338B4800CCE04B /* GSNeverlateService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNeverlateService.m; sourceTree = "<group>"; };
 		0D07DC7A1833A4B700CCE04B /* GSStopsTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSStopsTableController.h; sourceTree = "<group>"; };
 		0D07DC7B1833A4B700CCE04B /* GSStopsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSStopsTableController.m; sourceTree = "<group>"; };
+		0D181ED618B93EDC00AA91A0 /* GSConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GSConstants.h; path = ../GSConstants.h; sourceTree = "<group>"; };
 		0D25AD9F18353C910036D18D /* GSNanoStoreServiceCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSNanoStoreServiceCache.h; sourceTree = "<group>"; };
 		0D25ADA018353C910036D18D /* GSNanoStoreServiceCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSNanoStoreServiceCache.m; sourceTree = "<group>"; };
 		0D29F20C1838069C004EA2B8 /* GSAgenciesTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAgenciesTableController.h; sourceTree = "<group>"; };
@@ -242,6 +243,7 @@
 				0D07DC3D18337F3500CCE04B /* Models */,
 				0D07DC7E1833A4C200CCE04B /* Contollers */,
 				0D35D2F81833A83E0061CD8B /* Views */,
+				0D181ED618B93EDC00AA91A0 /* GSConstants.h */,
 				0D07DC1218337E9700CCE04B /* GSAppDelegate.h */,
 				0D07DC1318337E9700CCE04B /* GSAppDelegate.m */,
 				0D07DC6D18338B4800CCE04B /* GSNeverlateService.h */,
