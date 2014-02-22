@@ -14,7 +14,9 @@
 #import "GSAgency+Query.h"
 #import "GSStop.h"
 
-@implementation GSMapViewController
+@implementation GSMapViewController {
+    REMarkerClusterer *_clusterer;
+}
 
 - (void)viewDidLoad
 {
@@ -24,9 +26,23 @@
     self.agency = navigationController.agency;
     
     self.mapView.region = self.agency.region;
-    
+
+    _clusterer = [[REMarkerClusterer alloc] initWithMapView:self.mapView delegate:self];
+
+    _clusterer.gridSize = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 25 : 20;
+    _clusterer.clusterTitle = @"%i stops";
+
     [self.agency stops:^(NSArray *stops) {
-        [self.mapView addAnnotations:stops];
+        //[self.mapView addAnnotations:stops];
+
+        for (GSStop *stop in stops) {
+            REMarker *marker = [[REMarker alloc] init];
+            marker.coordinate = stop.coordinate;
+            marker.title = stop.title;
+            marker.userInfo = @{ @"stop": stop };
+            [_clusterer addMarker:marker];
+        }
+
     }];
     
     self.mapView.showsUserLocation = YES;

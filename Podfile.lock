@@ -4,6 +4,7 @@ PODS:
   - Google-Mobile-Ads-SDK (6.6.1)
   - ISO8601DateFormatter (0.7)
   - NanoStore (2.7.7)
+  - REMarkerClusterer (2.3.1)
   - TenzingCore (0.2.1):
     - TenzingCore/Core
   - TenzingCore/Core (0.2.1)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - Google-Mobile-Ads-SDK (~> 6.6.1)
   - ISO8601DateFormatter (~> 0.7)
   - NanoStore (~> 2.7.7)
+  - REMarkerClusterer (~> 2.3.1)
   - TenzingCore (~> 0.2.1)
   - TenzingCore/RESTService (~> 0.2.1)
 
@@ -25,6 +27,7 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 52b22c6593f051f3976bb72b64d1ed6951e95d3e
   ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
   NanoStore: 879a131b4f9b968f936187bb927cd5f8887cb202
+  REMarkerClusterer: 4d92b025d90a5fef71e94c678bb3912cabbd4a1a
   TenzingCore: efca489afeb24a421eeb5d3cc11c1f86c88d7999
 
 COCOAPODS: 0.29.0
