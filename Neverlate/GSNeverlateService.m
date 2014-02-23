@@ -15,8 +15,7 @@
 #import "GSTrip.h"
 #import "GSStop.h"
 
-#define BASE_URL    @"https://neverlate-us-nyc.herokuapp.com"
-#define AUTH_TOKEN  @"13D062745383DF798B486CB73F7FE539DC165D3B931645473A0D0A823F2F1009"
+#import "GSConstants.h"
 
 @implementation GSNeverlateService
 
